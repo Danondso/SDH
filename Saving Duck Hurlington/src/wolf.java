@@ -5,20 +5,18 @@ public class wolf extends Creature {
  int playerhealth;
  Player Player;
 	public wolf(Position p, Player player){
-	 super(30,30,10,5, p);
+	 super(30, 30, 10, 5, 0, p);
 	 Player = player;
 	 
  }
-	
-@Override
-void Attack() {
-	// TODO Auto-generated method stub
-	
-	}
 
-@Override
-void Move() {
-	// TODO Auto-generated method stub
+	Projectile Attack() {
+		return null;
+	}
+	
+	void Move() {
+		Update();
+		// TODO Auto-generated method stub
     	if(Player.Position.GetX()> Position.GetX()){
     		Position.AdjustX(Speed);
     	}
@@ -31,7 +29,8 @@ void Move() {
     	else if (Player.Position.GetY()>Position.GetY()){
     		Position.AdjustY(-Speed);
     	}
-}
+	}
+
 }
 
 

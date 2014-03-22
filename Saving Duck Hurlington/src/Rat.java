@@ -6,7 +6,7 @@ public class Rat extends Creature{
 	Entity e1;
 	private static Random rand;
 	public Rat(Position pos,int yin,int xin,int height,int width){
-		super(10,10,1,1,pos);
+		super(10,10,1,1, 0,pos);
 		Position = pos;
 		x = xin;
 		y = yin;
@@ -15,7 +15,6 @@ public class Rat extends Creature{
 		
 	}
 
-	@Override
 	void Move() {
 		int x = Position.GetX() + xslope;
 		int y = Position.GetY() + yslope;
@@ -25,15 +24,15 @@ public class Rat extends Creature{
 		if(x > w) x = 0;
 		if(y < 0) y = h;
 		if(y > h) y = 0;
-		Position.SetX(Position.GetX());
-		Position.SetY(Position.GetY());
+		Position.SetX(Position.GetX() + xslope);
+		Position.SetY(Position.GetY() + yslope);
 		//RAT MOVEMENT IS NOT FINAL
 	}
 
-	@Override
-	void Attack() {
+	Projectile Attack() {
+		Update();
+		return null;
 		//RAT ATTACKS BY COLLISION
-		
 	}
 	
 	

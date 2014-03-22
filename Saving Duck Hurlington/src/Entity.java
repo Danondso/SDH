@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 //This is a rough draft of the Entities class that will encompass all of the entities of the game, we will make sub classes that makes thing more specific later
 abstract class Entity {
 	static boolean Player = true;
@@ -5,11 +7,12 @@ abstract class Entity {
 	protected Position Position;
 	protected Hitbox Hitbox;
 	protected boolean Remove;
+	protected Image Sprite;
 	
 	public Entity(Position pos){
 		//only Players should pass null in
 		Position = pos;
-		//add hitbox information
+		Hitbox = new Hitbox(/*Add information once the Hitbox class has been filled out*/);
 		Remove = false;
 	}
 	

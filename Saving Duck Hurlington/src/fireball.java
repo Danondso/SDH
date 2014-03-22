@@ -1,8 +1,10 @@
 
 public class fireball extends Projectile {
+	private int BurnDamage;
 
-	public fireball(int Damage, int Speed, int Range, boolean ownership) {
-		super(Damage, Speed, Range, ownership);
+	public fireball(int Damage, int burndamage, int Speed, int Range, boolean ownership, Position pos) {
+		super(Damage, Speed, Range, Range, ownership, pos);
+		BurnDamage = burndamage;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -14,6 +16,9 @@ public class fireball extends Projectile {
 
 	@Override
 	void Collide(Entity entity) {
+		if(Overlap(entity) && entity instanceof Creature){
+			((Creature) entity).Burn(20, BurnDamage);
+		}
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,22 +1,35 @@
 
 public class Player extends Creature{
-	private String AttackType;
+	private Projectile Attack;
 	
 	public Player(Position pos){
-		super(5, 5, 5, 5, pos);
-		AttackType = "Sword";
+		super(5, 5, 5, 5, 100, pos);
+		Attack = new Sword(Damage, Damage, Damage, Damage, IsBurned, pos);
 	}
 
 	@Override
-	void Attack() {
-		// TODO Auto-generated method stub
+	Projectile Attack() {
+		if(Attack instanceof Sword){
+			Projectile sword = new Sword(Damage, Speed, Speed, Damage, Player, Position);
+			return sword;
+		}
 		
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Override
+	void SetDirection(int x, int y){
+		if(x >= -1 && x <= 1)
+			MovingX = x;
+		
+		if(y >= -1 && y <= 1)
+			MovingY = y;
+	}
+	
 	void Move() {
-		// TODO Auto-generated method stub
-		
+		Update();
+		Position.SetX(Position.GetX() + Speed * MovingX);
+		Position.SetY(Position.GetY() + Speed * MovingY);
 	}
 
 }

@@ -8,7 +8,7 @@ public class wilsonowisp extends Creature {
 
 	@Override
 	Projectile Attack() {
-		fireball fire = new fireball(Damage,5,256,Enemy, Position);
+		fireball fire = new fireball(Damage, 5, 256, Range, Enemy, Position);
 		return fire;
 		
 	}

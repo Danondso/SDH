@@ -9,8 +9,9 @@ public class fireball extends Projectile {
 	}
 
 	@Override
-	void Move() {
+	public void Move() {
 		// TODO Auto-generated method stub
+		super.Move();
 		Position.SetX(Position.GetX() + SpeedX);
 		Position.SetY(Position.GetY() + SpeedY);
 	}

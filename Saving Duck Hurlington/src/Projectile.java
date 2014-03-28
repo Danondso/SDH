@@ -1,5 +1,4 @@
 //projectiles may not need collision classes, that may need to be moved to creature, to make the code more simple
-
 abstract class Projectile extends Entity{
 	protected int Damage;
 	protected int SpeedX;
@@ -18,7 +17,11 @@ abstract class Projectile extends Entity{
 		Owner = ownership;
 	}
 	
-	abstract void Move();
+	public void Move(){
+		DistTraveled++;
+		if(DistTraveled >= Range)
+			this.Remove();
+	}
 	
 	public int GetDamage(){
 		return Damage;

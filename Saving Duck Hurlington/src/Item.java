@@ -1,5 +1,5 @@
 
-public class Item extends Entity {
+public abstract class Item extends Entity {
 
 	public Item(Position pos) {
 		super(pos);
@@ -11,4 +11,5 @@ public class Item extends Entity {
 		
 	}
 
+	abstract void Collect(Player player);
 }

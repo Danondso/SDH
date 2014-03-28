@@ -16,6 +16,7 @@ public class Rat extends Creature{
 	}
 
 	void Move() {
+		Update();
 		int x = Position.GetX() + xslope;
 		int y = Position.GetY() + yslope;
 		xslope = rand.nextInt(2)*Speed;
@@ -30,7 +31,6 @@ public class Rat extends Creature{
 	}
 
 	Projectile Attack() {
-		Update();
 		return null;
 		//RAT ATTACKS BY COLLISION
 	}

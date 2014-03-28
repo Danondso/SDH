@@ -1,16 +1,20 @@
 
 public class Player extends Creature{
 	private Projectile Attack;
+	protected boolean PanicBoots;
+	protected boolean PanicGloves;
 	
 	public Player(Position pos){
 		super(5, 5, 5, 5, 100, pos);
 		Attack = new Sword(Damage, Damage, Damage, Damage, IsBurned, pos);
+		PanicBoots = false;
+		InvincibilityFrames = 10;
 	}
 
 	@Override
 	Projectile Attack() {
 		if(Attack instanceof Sword){
-			Projectile sword = new Sword(Damage, Speed, Speed, Damage, Player, Position);
+			Projectile sword = new Sword(Damage, Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
 			return sword;
 		}
 		
@@ -28,8 +32,11 @@ public class Player extends Creature{
 	
 	void Move() {
 		Update();
-		Position.SetX(Position.GetX() + Speed * MovingX);
-		Position.SetY(Position.GetY() + Speed * MovingY);
+		Position.SetX(Position.GetX() + (Speed + (PanicBoots ? MaxHealth - Health : 0)) * MovingX); // if we have PanicBoots then adjust speed based on health missing, Maybe adjust this later to no be insane at hight HP
+		Position.SetY(Position.GetY() + (Speed + (PanicBoots ? MaxHealth - Health : 0)) * MovingY);
 	}
 
+	public void Collect(Item item){
+		//apply changes based on item
+	}
 }

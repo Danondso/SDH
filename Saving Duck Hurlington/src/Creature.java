@@ -11,6 +11,8 @@ abstract class Creature extends Entity{
 	protected boolean IsBurned;
 	protected int BurnTime;
 	protected int BurnDamage;
+	protected int InvincibilityFrames;
+	protected int IFCount; //IFCount counts how many invincibility frames remain on a creature
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos){
 		super(pos);
@@ -25,6 +27,8 @@ abstract class Creature extends Entity{
 		BurnTime = 0;
 		MovingX = 0;
 		MovingY = 0;
+		InvincibilityFrames = 3;
+		IFCount = 0;
 	}
 	
 	public int GetHealth(){
@@ -42,26 +46,60 @@ abstract class Creature extends Entity{
 	}
 	
 	public void Collide(Entity entity){
-		//Current collisons are Player-Enemy, Creature-Projectile,
+		//Collisions are split into Player and non player collisions
+		//Added Invincibility frames so that each collision will only damage a character or enemy once
+		
 		if(Overlap(entity)){
-			if(entity instanceof Player){
-				((Player) entity).AdjustHealth(-Damage);
-			}
-			
-			if(entity instanceof Projectile){
-				if((((Projectile) entity).Owner = Enemy && this instanceof Player) || (((Projectile) entity).Owner = Player && !(this instanceof Player))){//check to see if this creature and the projectile are the same ownership
-					if(entity instanceof fireball){
-						this.Burn(3, ((fireball)entity).BurnDamage);
+			if(this instanceof Player){
+				
+				//Player-Enemy collision in case we add an item that does contact damage to enemies, empty for now
+				if(entity instanceof Creature){
+					
+				}
+				
+				//Player-Projectile collision
+				if(entity instanceof Projectile){
+					if(((Projectile) entity).Owner = Enemy){//check to see if this creature and the projectile are the same ownership
+						if(entity instanceof fireball){
+							this.Burn(3, ((fireball)entity).BurnDamage);
+						}
+						this.AdjustHealth(-((Projectile)entity).Damage);
+						entity.Remove();
 					}
-					this.AdjustHealth(-((Projectile)entity).Damage);
+				}
+				
+				//Player-Item collision
+				if(entity instanceof Item){
+					((Item) entity).Collect((Player) this);
 					entity.Remove();
 				}
+				//write more collision stuff				
 			}
 			
-			//write more collision stuff
+			else{
+				//Enemy-Player collision
+				if(entity instanceof Player){
+					if(((Player) entity).IFCount > 0){
+						((Player) entity).AdjustHealth(-Damage);
+						((Player) entity).IFCount = ((Player) entity).InvincibilityFrames;
+					}
+				}
+					
+					//Enemy-Player collision
+					if(entity instanceof Projectile){
+						if(((Projectile) entity).Owner = Player){//check to see if this creature and the projectile are the same ownership
+							if(entity instanceof fireball){
+								this.Burn(3, ((fireball)entity).BurnDamage);
+							}
+							this.AdjustHealth(-((Projectile)entity).Damage);
+							entity.Remove();
+						}
+					}
+				//write more collision stuff
+			}
 		}
-		
 	}
+	
 	protected void Update(){
 		if(IsBurned){
 			Health -= BurnDamage;
@@ -72,6 +110,8 @@ abstract class Creature extends Entity{
 			}
 		}
 		
+		if(IFCount > 0)
+			IFCount--;
 		//More Update stuff, maybe add poison or regeneration over time or something later
 	}
 	

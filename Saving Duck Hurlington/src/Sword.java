@@ -10,7 +10,8 @@ public class Sword extends Projectile{
 	@Override
 	void Move() {
 		// TODO Auto-generated method stub
-		
+		Position.SetX(Position.GetX() + SpeedX);
+		Position.SetY(Position.GetY() + SpeedY);
 	}
 
 	@Override

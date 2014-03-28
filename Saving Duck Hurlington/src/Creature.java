@@ -42,14 +42,22 @@ abstract class Creature extends Entity{
 	}
 	
 	public void Collide(Entity entity){
+		//Current collisons are Player-Enemy, Creature-Projectile,
 		if(Overlap(entity)){
 			if(entity instanceof Player){
-				((Player) entity).AdjustHealth(-Damage); //This is wrong, this deals OUR damage to ourself
+				((Player) entity).AdjustHealth(-Damage);
 			}
 			
 			if(entity instanceof Projectile){
-				// check if the projectile is owned by a player, if it is and this is a player then nothing happens, if it is then the enemy is hurt and the projectile is gone.  Same goes for the opposite.
+				if((((Projectile) entity).Owner = Enemy && this instanceof Player) || (((Projectile) entity).Owner = Player && !(this instanceof Player))){//check to see if this creature and the projectile are the same ownership
+					if(entity instanceof fireball){
+						this.Burn(3, ((fireball)entity).BurnDamage);
+					}
+					this.AdjustHealth(-((Projectile)entity).Damage);
+					entity.Remove();
+				}
 			}
+			
 			//write more collision stuff
 		}
 		

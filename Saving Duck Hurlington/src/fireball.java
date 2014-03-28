@@ -1,6 +1,6 @@
 
 public class fireball extends Projectile {
-	private int BurnDamage;
+	protected int BurnDamage;
 
 	public fireball(int Damage, int burndamage, int Speed, int Range, boolean ownership, Position pos) {
 		super(Damage, Speed, Range, Range, ownership, pos);
@@ -11,7 +11,8 @@ public class fireball extends Projectile {
 	@Override
 	void Move() {
 		// TODO Auto-generated method stub
-		
+		Position.SetX(Position.GetX() + SpeedX);
+		Position.SetY(Position.GetY() + SpeedY);
 	}
 
 	@Override

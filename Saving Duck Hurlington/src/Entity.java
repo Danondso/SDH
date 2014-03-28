@@ -37,6 +37,9 @@ abstract class Entity {
 		return false;
 	}
 	
+	public void Remove(){
+		Remove = true;
+	}
 	public boolean ShouldRemove(){
 		return Remove;
 	}

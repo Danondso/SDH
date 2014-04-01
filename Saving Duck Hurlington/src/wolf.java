@@ -7,6 +7,7 @@ public class wolf extends Creature {
 	public wolf(Position p, Player player){
 	 super(30, 30, 10, 5, 0, p);
 	 Player = player;
+	 //checking to  see if neal can see this
 	 
  }
 

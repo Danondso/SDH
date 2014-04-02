@@ -1,6 +1,6 @@
 
 public class wilsonowisp extends Creature {
-
+Player Player;
 	public wilsonowisp(Position pos) {
 		super(100, 100, 3, 10, 100, pos);
 		// TODO Auto-generated constructor stub
@@ -17,6 +17,18 @@ public class wilsonowisp extends Creature {
 	void Move() {
 		Update();
 		// TODO Auto-generated method stub
-		
+    	if(Player.Position.GetX()> Position.GetX()){
+    		Position.AdjustX(Speed);
+    	}
+    	else if(Player.Position.GetX()< Position.GetX()){
+    		Position.AdjustX(-Speed);
+    	}
+    	if(Player.Position.GetY()> Position.GetY()){
+    		Position.AdjustY(Speed);
+    	}
+    	else if (Player.Position.GetY()<Position.GetY()){
+    		Position.AdjustY(-Speed);
+    	}
 	}
+
 }

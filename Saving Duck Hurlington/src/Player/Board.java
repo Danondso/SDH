@@ -1,8 +1,9 @@
 package Player;
 
-import java.awt.Color;
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +14,30 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import Map.Beach;
+
 public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
     private Craft craft;
-
+    private boolean mapdraw = false;
+    private Beach b = new Beach();
+    private Image[][] Map;
+    
     public Board() {
 
         addKeyListener(new TAdapter());
-        setFocusable(true);      
+        setFocusable(true);
+
+        //the map draws here
+        b.createMap();
+        b.clearDoors();
+        b.genBorders();
+        Map = b.loadTile();
+        
+         
+        
+        
         setDoubleBuffered(true);
        
         craft = new Craft();
@@ -29,13 +45,37 @@ public class Board extends JPanel implements ActionListener {
         timer.start();
     }
 
+    public void addlvl(){
+    	
+    	
+    	
+    }
      
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g, Graphics d) {
         super.paintComponent(g);
 
+        super.paintComponent(d);
+        
+      
         Graphics2D g2d = (Graphics2D)g;
 
+       
+
         
+        // b.repaint();
+        // b.update(g2d);
+        
+/*       // if(mapdraw == false){
+        	for(int i = 0; i < b.tilerow; i++)
+        	{
+ 		       for(int j = 0; j < b.tilecolumn;j++)
+ 		       {
+ */       	
+/* 		       }
+        	}
+*/        
+          mapdraw = true;
+       // }
         if (craft.getDX() == 1) {
         	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
         }

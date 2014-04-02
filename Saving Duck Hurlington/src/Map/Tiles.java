@@ -15,7 +15,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 
 
-abstract class Tiles extends JPanel {
+abstract class Tiles extends Canvas {
 	
 		private String[] textures;
 		private int[] id;
@@ -26,8 +26,8 @@ abstract class Tiles extends JPanel {
 		static int column = 64;
 		
 		//display tile dimensions
-		static int tilerow = 16;
-		static int tilecolumn = 16;
+		public static int tilerow = 16;
+		public int tilecolumn = 16;
 		
 		
 		//These allow the tiles to reload based on adding values of 
@@ -151,9 +151,11 @@ abstract class Tiles extends JPanel {
 		
 		//Draws the map in the total 64 X 64 array	
 		
-		public void paintComponent(Graphics g){
+		public void paint(Graphics g){
 				
-			super.paintComponent(g);
+			super.paint(g);
+			
+			Graphics2D gm = (Graphics2D)g;
 			
 			int wrect = getWidth() / tilerow;
 			int hrect = getHeight() / tilecolumn;
@@ -165,7 +167,7 @@ abstract class Tiles extends JPanel {
 				 int y = j * hrect;
 				 Image temp[][] = loadTile();
 				 
-				 g.drawImage(temp[i][j], x, y, wrect, hrect, null);
+				 gm.drawImage(temp[i][j], x, y, wrect, hrect, null);
 		
 				}
 			}

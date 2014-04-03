@@ -25,7 +25,7 @@ public class Craft {
         ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
         image = ii.getImage();
         missiles = new ArrayList();
-        x = 40;
+        x = 100;
         y = 60;
     }
 
@@ -47,10 +47,22 @@ public class Craft {
         return y;
     }
     
+    public void setX(int Xin) {
+    	x = Xin;
+    }
+    
+    public void setY(int Yin) {
+    	y = Yin;
+    }
+    
     public int getDX() {
     	return dx;
     }
 
+    public int getDY() {
+        return dy;	
+    }
+    
     public Image getImage() {
         return image;
     }

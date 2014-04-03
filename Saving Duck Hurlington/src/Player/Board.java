@@ -68,9 +68,10 @@ public class Board extends JPanel implements ActionListener {
    
        // if(mapdraw)
        // {
-            int wrect = getWidth() / b.tilerow;
-            int hrect = getHeight() / b.tilecolumn;
+            int wWin = getWidth() / b.tilerow;
+            int hWin = getHeight() / b.tilecolumn;
                
+<<<<<<< HEAD
             for(int i = 0; i < b.tilerow; i++)
              {
                for(int j = 0; j < b.tilecolumn; j++)
@@ -81,14 +82,50 @@ public class Board extends JPanel implements ActionListener {
                  }
              }
          // mapdraw = false;
+=======
+         for(int i = 0; i < b.tilerow; i++)
+         {
+          for(int j = 0; j < b.tilecolumn; j++)
+          {
+        	  int x = i * wWin;
+        	  int y = j * hWin;
+        	 g2d.drawImage(Map[i][j], x, y, this); 
+          }
+         }
+       //   mapdraw = false;
+>>>>>>> 6177f952d5d3c2779a56d8da6a319679774e9fae
        // }
           if (craft.getDX() == 1) {
         	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);
-        }
+          }
         
-        if (craft.getDX() == -1) {
+          if (craft.getDX() == -1) {
         	g2d.drawImage(craft.getImage(), craft.getX() + craft.getImage().getWidth(this), craft.getY(), craft.getDX() * craft.getImage().getWidth(this), craft.getImage().getHeight(this), this);
-        }
+          }
+          
+          if (craft.getX() + craft.getDX() == getWidth()){
+        	  //Clear crap
+        	  //Change map
+        	  craft.setX(0 - craft.getCraftSize());
+          }
+          
+          if (craft.getX() + craft.getDX() + craft.getCraftSize() == 0){
+        	  //Clear crap
+        	  //Change map
+        	  craft.setX(getWidth());
+          }
+        
+          if (craft.getY() + craft.getDY() == getHeight()){
+        	  //Clear crap
+        	  //Change map
+        	  craft.setY(0 - craft.getCraftSize());
+          }
+          
+          if (craft.getY() + craft.getDY() + craft.getCraftSize() == 0){
+        	  //Clear crap
+        	  //Change map
+        	  craft.setY(getHeight());
+          }
         
         else {
         	g2d

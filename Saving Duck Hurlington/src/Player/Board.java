@@ -23,7 +23,7 @@ public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
     private Craft craft;
-    private boolean mapdraw = false;
+    private boolean mapdraw = true;
     private Beach b = new Beach();
     private Image[][] Map;
     
@@ -43,10 +43,13 @@ public class Board extends JPanel implements ActionListener {
         //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
         //setLayout(new FlowLayout());
         
- //       JLabel background = new JLabel(new ImageIcon(Map[0][0]));
-//        add(background);
+        JLabel background = new JLabel(new ImageIcon(Map[4][4]));
+       add(background);
         setDoubleBuffered(true);
-       
+   
+      
+        
+        
         craft = new Craft();
         timer = new Timer(5, this);
         timer.start();
@@ -63,11 +66,24 @@ public class Board extends JPanel implements ActionListener {
        
         Graphics2D g2d = (Graphics2D)g;
    
-       
-          //mapdraw = true;
- 
+       // if(mapdraw)
+       // {
+            int wrect = getWidth() / b.tilerow;
+            int hrect = getHeight() / b.tilecolumn;
+               
+         for(int i = 0; i < b.tilerow; i++)
+         {
+          for(int j = 0; j < b.tilecolumn; j++)
+          {
+        	  int x = i * wrect;
+        	  int y = j * hrect;
+        	 g2d.drawImage(Map[i][j], x, y, this); 
+          }
+         }
+          mapdraw = false;
+       // }
           if (craft.getDX() == 1) {
-        	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),null);
+        	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);
         }
         
         if (craft.getDX() == -1) {

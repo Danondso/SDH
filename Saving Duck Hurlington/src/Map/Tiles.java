@@ -25,6 +25,8 @@ abstract class Tiles extends Canvas {
 		static int row = 64;
 		static int column = 64;
 		
+
+		
 		//display tile dimensions
 		public static int tilerow = 16;
 		public int tilecolumn = 16;
@@ -41,6 +43,9 @@ abstract class Tiles extends Canvas {
 		//This creates the map for the levels
 		//Will consist of the tiles
 		protected Image[][] totalmap = new Image[row][column];
+		
+		protected Image[][] level = new Image[4][4];
+		
 		//The subclass array of asset strings will be passed into this
 		protected Image[] terrain;
 		//Randomize the terrain object

@@ -13,11 +13,17 @@ public class Player extends Creature{
 
 	@Override
 	Projectile Attack() {
-		if(Attack instanceof Sword){
+		if(CDelay == 0){
+			if(Attack instanceof Sword){
 			Projectile sword = new Sword(Damage, Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
 			return sword;
-		}
 		
+			}
+			CDelay = AttackDelay;
+		}
+		else{
+			CDelay--;
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}

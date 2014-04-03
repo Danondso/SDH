@@ -71,16 +71,16 @@ public class Board extends JPanel implements ActionListener {
             int wrect = getWidth() / b.tilerow;
             int hrect = getHeight() / b.tilecolumn;
                
-         for(int i = 0; i < b.tilerow; i++)
-         {
-          for(int j = 0; j < b.tilecolumn; j++)
-          {
-        	  int x = i * wrect;
-        	  int y = j * hrect;
-        	 g2d.drawImage(Map[i][j], x, y, this); 
-          }
-         }
-          mapdraw = false;
+            for(int i = 0; i < b.tilerow; i++)
+             {
+               for(int j = 0; j < b.tilecolumn; j++)
+                 {
+        	       int x = i * wrect;
+        	       int y = j * hrect;
+        	       g2d.drawImage(Map[i][j], x, y, this); 
+                 }
+             }
+         // mapdraw = false;
        // }
           if (craft.getDX() == 1) {
         	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);

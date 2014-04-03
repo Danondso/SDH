@@ -1,4 +1,5 @@
 //Creatures need to know what directions they are moving so that they know what to give to their attack functions as far as speed goes
+//Creatures need to have an attack delay if they shoot something, that must be implemented
 abstract class Creature extends Entity{
 	protected int Health;
 	protected int MaxHealth;
@@ -13,6 +14,8 @@ abstract class Creature extends Entity{
 	protected int BurnDamage;
 	protected int InvincibilityFrames;
 	protected int IFCount; //IFCount counts how many invincibility frames remain on a creature
+	protected int AttackDelay;
+	protected int CDelay;
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos){
 		super(pos);
@@ -29,6 +32,24 @@ abstract class Creature extends Entity{
 		MovingY = 0;
 		InvincibilityFrames = 3;
 		IFCount = 0;
+		AttackDelay = 5;
+		CDelay = 0;
+	}
+	
+	public int GetX(){
+		return Position.GetX();
+	}
+	
+	public int GetY(){
+		return Position.GetY();
+	}
+	
+	public void SetX(int x){
+		Position.SetX(x);
+	}
+	
+	public void SetY(int y){
+		Position.SetY(y);
 	}
 	
 	public int GetHealth(){

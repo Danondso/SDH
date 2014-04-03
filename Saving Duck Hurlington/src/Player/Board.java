@@ -1,6 +1,7 @@
 package Player;
 
-import java.awt.Canvas;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -11,6 +12,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -29,15 +32,19 @@ public class Board extends JPanel implements ActionListener {
         addKeyListener(new TAdapter());
         setFocusable(true);
 
+        
         //the map draws here
         b.createMap();
         b.clearDoors();
         b.genBorders();
         Map = b.loadTile();
         
-         
+        //setLayout(new BorderLayout());  
+        //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
+        //setLayout(new FlowLayout());
         
-        
+ //       JLabel background = new JLabel(new ImageIcon(Map[0][0]));
+//        add(background);
         setDoubleBuffered(true);
        
         craft = new Craft();
@@ -51,33 +58,16 @@ public class Board extends JPanel implements ActionListener {
     	
     }
      
-    public void paintComponent(Graphics g, Graphics d) {
-        super.paintComponent(g);
-
-        super.paintComponent(d);
-        
-      
-        Graphics2D g2d = (Graphics2D)g;
-
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);      
        
-
-        
-        // b.repaint();
-        // b.update(g2d);
-        
-/*       // if(mapdraw == false){
-        	for(int i = 0; i < b.tilerow; i++)
-        	{
- 		       for(int j = 0; j < b.tilecolumn;j++)
- 		       {
- */       	
-/* 		       }
-        	}
-*/        
-          mapdraw = true;
-       // }
-        if (craft.getDX() == 1) {
-        	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
+        Graphics2D g2d = (Graphics2D)g;
+   
+       
+          //mapdraw = true;
+ 
+          if (craft.getDX() == 1) {
+        	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),null);
         }
         
         if (craft.getDX() == -1) {
@@ -86,7 +76,7 @@ public class Board extends JPanel implements ActionListener {
         
         else {
         	g2d
-        	.drawImage(craft.getImage(), craft.getX(), craft.getY(), this);
+        	.drawImage(craft.getImage(), craft.getX(), craft.getY(), null);
         }
         
         ArrayList<Missile> ms = craft.getMissiles();

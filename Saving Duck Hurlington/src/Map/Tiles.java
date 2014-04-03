@@ -167,7 +167,7 @@ abstract class Tiles extends Canvas {
 				 int y = j * hrect;
 				 Image temp[][] = loadTile();
 				 
-				 gm.drawImage(temp[i][j], x, y, wrect, hrect, null);
+				 g.drawImage(temp[i][j], x, y, wrect, hrect, null);
 		
 				}
 			}

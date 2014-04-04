@@ -32,7 +32,7 @@ public class Board extends JPanel implements ActionListener {
         addKeyListener(new TAdapter());
         setFocusable(true);
 
-        
+        //h
         //the map draws here
         b.createMap();
         b.clearDoors();

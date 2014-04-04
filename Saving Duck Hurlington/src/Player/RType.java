@@ -13,14 +13,8 @@ public class RType extends JFrame {
 	
     public RType() {
 
-    	m.createMap();
-    	m.addDoors();
-    	m.clearDoors();
-    	m.genBorders();
-    	
-    	Image[][] map = m.loadTile();
-    	
-    	
+  
+      	
     	//JLabel background = new JLabel(new ImageIcon(map[0][0]));
     	
     	//add(background, 0);

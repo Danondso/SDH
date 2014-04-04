@@ -34,8 +34,7 @@ abstract class Tiles extends Canvas {
 		
 		//These allow the tiles to reload based on adding values of 
 		//  16, 32, and 48
-		private int rowcoord = 0;
-		private int colcoord = 0;
+	    protected Image[][] displaytile;
 				
 		//This will be used for the entity collision 
 		private boolean issolid = false;
@@ -44,16 +43,27 @@ abstract class Tiles extends Canvas {
 		//Will consist of the tiles
 		protected Image[][] totalmap = new Image[row][column];
 		
-		protected Image[][] level = new Image[4][4];
-		
+		//protected Image[][] level;
+
 		//The subclass array of asset strings will be passed into this
 		protected Image[] terrain;
 		//Randomize the terrain object
 		protected Random rand = new Random();
         //single 16 X 16 tile array
-		private Image[][] tile = new Image[tilerow][tilecolumn];
+		public Image[][] tile1, tile2, tile3, tile4,
+		                    tile5, tile6, tile7, tile8,
+		                    tile9, tile10, tile11, tile12,
+		                    tile13, tile14, tile15, tile16 
+		                    = new Image[tilerow][tilecolumn];
+			
+		
+		protected Image[][] tile;
+		
+		//protected String[][] arrays = { array1, array2, array3, array4, array5 };
+		protected Image[][][] choose;
+		
 	
-		protected Image[][] displaytile;
+		
 		
 		public Tiles(String[] texture) {
 				
@@ -63,13 +73,10 @@ abstract class Tiles extends Canvas {
 			textures = texture;	
 			//instantiates the terrain array 
 			this.terrain = new Image[textures.length];
+			this.tile = new Image[tilerow][tilecolumn];
+		
 			
-			//instantiates the temptile that is displayed on the map
-			this.displaytile = new Image[tilerow][tilecolumn];
-			//testing to make sure Strings pass
-		//	for(int i = 0; i < textures.length; i++)
-			//   System.out.println(textures[i]);
-				
+			
 			
 			//string for textures
 			name = new String[textures.length];
@@ -80,9 +87,8 @@ abstract class Tiles extends Canvas {
 				
 				for(int i = 0; i < textures.length; i++){
 				   terrain[i] = ImageIO.read(Tiles.class.getResourceAsStream(textures[i])); 				   
-			}
-			}
-			
+			       }
+			  }
 			catch(IOException e){System.out.println("Error: " + e);}
 			
 		  //  setPreferredSize(new Dimension(800,800));
@@ -91,6 +97,8 @@ abstract class Tiles extends Canvas {
 		}
 
 
+
+	
 		//Randomizes the terrain of the entire 64 X 64 map
 		public void createMap(){
 			
@@ -118,20 +126,7 @@ abstract class Tiles extends Canvas {
 				}
 			}
 			
-		}
-		
-		
-		public void clearTile(){
-			
-			for(int i = 0; i < tilerow; i++) 
-			{
-				for(int j = 0; j < tilecolumn; j++){
-					
-					tile[i][j] = null;
-				}
-			}
-		}
-		
+		}	
        //This method creates the doors 	
 		public void addDoors(){
 			
@@ -149,91 +144,45 @@ abstract class Tiles extends Canvas {
 			}  
 			
 		}
-		//Returns the entire array, I suppose it's not needed
-		
-        //Perhaps make one that would return the entire map array, or have it divide then return
 
 		
-		//Draws the map in the total 64 X 64 array	
-		
-		public void paint(Graphics g){
-				
-			super.paint(g);
-			
-			Graphics2D gm = (Graphics2D)g;
-			
-			int wrect = getWidth() / tilerow;
-			int hrect = getHeight() / tilecolumn;
-			for(int i = 0;i < tilerow; i++)
-			{
-				for(int j = 0; j < tilecolumn; j++)
-				{
-				 int x = i * wrect;
-				 int y = j * hrect;
-				 Image temp[][] = loadTile();
-				 
-				 g.drawImage(temp[i][j], x, y, wrect, hrect, this);
-		
-				}
-			}
-		}
-		
-		
-		public int getCurrentX(){
-			
-			//need to get filled in with the 
-			//player position or something that returns the X
-			return 0;
-			
-		}
-		
-		
-		public int getCurrentY(){
-		
-			//need to get filled in with the 
-			//player position or something that returns the Y
-			return 0;
-		}
 		
 		//loads a tile to display on the map
-		public Image[][] loadTile(){
-			
-			int x = getCurrentX();
-			int y = getCurrentY();
-			
+		public Image[][] loadTile(int r, int c){
+				
 			for(int i = 0; i < tilerow; i++){
 		       for(int j = 0; j < tilecolumn;j++){
 					
-		    	   tile[i][j] = totalmap[(i + rowcoord)][(j + colcoord)];
+		    	   tile[i][j] = totalmap[(i + r)][(j + c)];		    	 
 				}
-			}
-			displaytile = tile;
-			return displaytile;
+		      
+			}	
+			return tile;
 		}
 		
 		
-
+		//1st row
+		public Image[][] getTile1(){tile1 = loadTile(0,0); return tile1; }
+		public Image[][] getTile2(){tile2 = loadTile(16,0); return tile2;}
+		public Image[][] getTile3(){tile3 = loadTile(32,0); return tile3;}
+		public Image[][] getTile4(){tile4 = loadTile(48,0); return tile4;}
+		//2nd row
+		public Image[][] getTile5(){tile5 = loadTile(0,16); return tile5;}
+		public void getTile6(){tile6 = loadTile(16,16);}
+		public void getTile7(){tile7 = loadTile(32,16);}
+		public void getTile8(){tile8 = loadTile(48,16);}
+		//3rd row
+		public void getTile9(){tile9 = loadTile(0,32);}
+		public void getTile10(){tile10 = loadTile(16,32);}
+		public void getTile11(){tile11 = loadTile(32,32);}
+		public void getTile12(){tile12 = loadTile(32,48);}
+	    //4th row
+		public void getTile13(){tile13 = loadTile(0,48);}
+		public void getTile14(){tile14 = loadTile(16,48);}
+		public void getTile15(){tile15 = loadTile(32,48);}
+		public void getTile16(){tile16 = loadTile(48,48);}
 		
-		public String getImageName(){
-			
-			String imagename = null;
-			
-			return imagename;
-			
-		}
-
-		public boolean navagable()
-		{
-			//player.getposition();
-			//if statement to check to see what the tile is
-			
-			
-			return false;	
-		}
-		
-		//need a function for collision detection 
-		
-
+	
 	public void genBorders() {
 		// TODO Auto-generated method stub
 		//SKELETAL STRUCTURE FOR THE BORDERS OF THE TILES AND THE DOORS

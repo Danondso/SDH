@@ -37,28 +37,25 @@ public class Board extends JPanel implements ActionListener {
         b.createMap();
         b.clearDoors();
         b.genBorders();
-        Map = b.loadTile();
+     //   b.divideMap();
+      //  b.getTile1();
+        //b.getTile2();
+      //  Map = b.tile1;
         
         //setLayout(new BorderLayout());  
         //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
         //setLayout(new FlowLayout());
-        
-        JLabel background = new JLabel(new ImageIcon(Map[4][4]));
-       add(background);
-        setDoubleBuffered(true);
-   
-      
-        
-        
+                
         craft = new Craft();
         timer = new Timer(5, this);
         timer.start();
     }
 
-    public void addlvl(){
+    public Image[][] getTile(){
     	
+    	Image[][] joe = Map;
     	
-    	
+    	return joe;
     }
      
     public void paintComponent(Graphics g) {
@@ -66,8 +63,9 @@ public class Board extends JPanel implements ActionListener {
        
         Graphics2D g2d = (Graphics2D)g;
    
-       // if(mapdraw)
-       // {
+        if(Map == null)
+           Map = b.getTile1();
+            
             int wWin = getWidth() / b.tilerow;
             int hWin = getHeight() / b.tilecolumn;
                
@@ -78,23 +76,11 @@ public class Board extends JPanel implements ActionListener {
                  {
         	       int x = i * wWin;
         	       int y = j * hWin;
+        	       
         	       g2d.drawImage(Map[i][j], x, y, this); 
                  }
              }
-         // mapdraw = false;
-
-         for(int i = 0; i < b.tilerow; i++)
-         {
-          for(int j = 0; j < b.tilecolumn; j++)
-          {
-        	  int x = i * wWin;
-        	  int y = j * hWin;
-        	 g2d.drawImage(Map[i][j], x, y, this); 
-          }
-         }
-       //   mapdraw = false;
-
-       // }
+        
           if (craft.getDX() == 1) {
         	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);
           }
@@ -105,24 +91,30 @@ public class Board extends JPanel implements ActionListener {
           
           if (craft.getX() + craft.getDX() == getWidth()){
         	  //Clear crap
+        	  Map = b.getTile2();
         	  //Change map
         	  craft.setX(0 - craft.getCraftSize());
           }
           
           if (craft.getX() + craft.getDX() + craft.getCraftSize() == 0){
         	  //Clear crap
+        	  Map = b.getTile1();
         	  //Change map
         	  craft.setX(getWidth());
           }
         
           if (craft.getY() + craft.getDY() == getHeight()){
         	  //Clear crap
+        	  Map = b.getTile5();
         	  //Change map
+        	  
+        	  
         	  craft.setY(0 - craft.getCraftSize());
           }
           
           if (craft.getY() + craft.getDY() + craft.getCraftSize() == 0){
         	  //Clear crap
+        	  Map = b.getTile1();
         	  //Change map
         	  craft.setY(getHeight());
           }

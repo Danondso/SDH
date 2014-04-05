@@ -168,19 +168,19 @@ abstract class Tiles extends Canvas {
 		public Image[][] getTile4(){tile4 = loadTile(48,0); return tile4;}
 		//2nd row
 		public Image[][] getTile5(){tile5 = loadTile(0,16); return tile5;}
-		public void getTile6(){tile6 = loadTile(16,16);}
-		public void getTile7(){tile7 = loadTile(32,16);}
-		public void getTile8(){tile8 = loadTile(48,16);}
+		public Image[][] getTile6(){tile6 = loadTile(16,16); return tile6;}
+		public Image[][] getTile7(){tile7 = loadTile(32,16); return tile7;}
+		public Image[][] getTile8(){tile8 = loadTile(48,16); return tile8;}
 		//3rd row
-		public void getTile9(){tile9 = loadTile(0,32);}
-		public void getTile10(){tile10 = loadTile(16,32);}
-		public void getTile11(){tile11 = loadTile(32,32);}
-		public void getTile12(){tile12 = loadTile(32,48);}
+		public Image[][] getTile9(){tile9 = loadTile(0,32); return tile9;}
+		public Image[][] getTile10(){tile10 = loadTile(16,32); return tile10;}
+		public Image[][] getTile11(){tile11 = loadTile(32,32); return tile11;}
+		public Image[][] getTile12(){tile12 = loadTile(32,48); return tile12;}
 	    //4th row
-		public void getTile13(){tile13 = loadTile(0,48);}
-		public void getTile14(){tile14 = loadTile(16,48);}
-		public void getTile15(){tile15 = loadTile(32,48);}
-		public void getTile16(){tile16 = loadTile(48,48);}
+		public Image[][] getTile13(){tile13 = loadTile(0,48);  return tile13;}
+		public Image[][] getTile14(){tile14 = loadTile(16,48); return tile14;}
+		public Image[][] getTile15(){tile15 = loadTile(32,48); return tile15;}
+		public Image[][] getTile16(){tile16 = loadTile(48,48); return tile16;}
 		
 	
 	public void genBorders() {

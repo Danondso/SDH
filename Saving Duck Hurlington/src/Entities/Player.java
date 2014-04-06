@@ -6,7 +6,7 @@ public class Player extends Creature{
 	protected boolean PanicGloves;
 	
 	public Player(Position pos){
-		super(5, 5, 5, 5, 100, pos, "Entities/Rat/Rat.png");
+		super(5, 5, 5, 5, 100, pos, "/Entities/Rat/rat.png");
 		Attack = new Sword(Damage, Damage, Damage, Damage, IsBurned, pos);
 		PanicBoots = false;
 		InvincibilityFrames = 10;

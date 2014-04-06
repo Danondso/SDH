@@ -3,7 +3,7 @@ package Entities;
 public class wilsonowisp extends Creature {
 Player Player;
 	public wilsonowisp(Position pos) {
-		super(100, 100, 3, 10, 100, pos, "Entities/Rat/Rat.png");
+		super(100, 100, 3, 10, 100, pos, "/Entities/Rat/rat.png");
 		// TODO Auto-generated constructor stub
 	}
 

@@ -6,7 +6,7 @@ public class Krabby extends Creature {
 	int x,y,w,h,xslope,yslope;
 	private static Random rand;
 	public Krabby (Position pos,int yin,int xin,int height,int width){
-		super(10,10,3,1, 0,pos, "Entities/Rat/Rat.png");
+		super(10,10,3,1, 0,pos, "/Entities/Rat/rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;

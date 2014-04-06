@@ -6,7 +6,7 @@ public class wolf extends Creature {
  int playerhealth;
  Player Player;
 	public wolf(Position p, Player player){
-	 super(30, 30, 10, 5, 0, p, "Entities/Rat/Rat.png");
+	 super(30, 30, 10, 5, 0, p, "/Entities/Rat/rat.png");
 	 Player = player;
 	 //checking to  see if neal can see this
 	 

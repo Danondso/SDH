@@ -1,7 +1,7 @@
 package Entities;
 public class Position {
-	private int X;
-	private int Y;
+	protected int X;
+	protected int Y;
 	
 	public Position(int x, int y){
 		X = x;

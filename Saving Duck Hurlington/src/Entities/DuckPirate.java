@@ -1,15 +1,15 @@
 package Entities;
-asd
+
 public class DuckPirate extends Creature{
 	 Player Player;
 		public DuckPirate(Position p, Player player){
-		 super(30, 30, 10, 5, 0, p, "Entities/Rat/Rat.png");
+		 super(30, 30, 10, 5, 0, p, "/Entities/Rat/rat.png");
 		 Player = player;
 		 
 	 }
 
 		Projectile Attack() {
-			Sword sword = new Sword(2,2,2,2,Enemy,Position);
+			Sword sword = new Sword(2, 2, 2, 2, Enemy, Position);
 			return sword;
 		}
 		

@@ -18,16 +18,17 @@ abstract class Entity {
 	protected Image Image;
 	
 	public Entity(Position pos, String ImageLocation){
-		//only Players should pass null in
 		Position = pos;
-		Hitbox = new Hitbox(/*Add information once the Hitbox class has been filled out*/);
 		Remove = false;
 		
-		try{ Image = ImageIO.read(Entity.class.getResourceAsStream("/Entities/Rat/rat.png"));}
-		catch(IOException e){System.out.println(e);}
+		try{
+			Image = ImageIO.read(Entity.class.getResourceAsStream(ImageLocation));
+		}
+		catch(IOException e){
+			System.out.println(e);
+		}
 		
-		
-		
+		Hitbox = new Hitbox(pos, Image.getWidth(null), Image.getHeight(null));
 	}
 	
 	public Image getImage() {
@@ -37,11 +38,7 @@ abstract class Entity {
 	abstract void Collide(Entity entity);
 	
 	protected boolean Overlap(Entity entity){
-		/*if(this overlaps entity)
-		 * 	return true;
-		 * else return false;
-		 */
-		return false;
+		return Hitbox.Intersect(entity.Hitbox);
 	}
 	
 	public void Remove(){

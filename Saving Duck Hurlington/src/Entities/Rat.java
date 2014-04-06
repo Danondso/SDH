@@ -1,11 +1,13 @@
+package Entities;
 import java.util.Random;
 
-
-public class Krabby extends Creature {
+public class Rat extends Creature{
 	int x,y,w,h,xslope,yslope;
+	Creature c1;
+	Entity e1;
 	private static Random rand;
-	public Krabby (Position pos,int yin,int xin,int height,int width){
-		super(10,10,3,1, 0,pos, "Entities/Rat/Rat.png");
+	public Rat(Position pos,int yin,int xin,int height,int width){
+		super(10,10,1,1, 0,pos, "Entities/Rat/Rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;
@@ -15,6 +17,7 @@ public class Krabby extends Creature {
 	}
 
 	void Move() {
+		Update();
 		int x = Position.GetX() + xslope;
 		int y = Position.GetY() + yslope;
 		xslope = rand.nextInt(2)*Speed;
@@ -25,12 +28,13 @@ public class Krabby extends Creature {
 		if(y > h) y = 0;
 		Position.SetX(Position.GetX() + xslope);
 		Position.SetY(Position.GetY() + yslope);
-		
+		//RAT MOVEMENT IS NOT FINAL
 	}
 
 	Projectile Attack() {
-		Update();
 		return null;
-		
+		//RAT ATTACKS BY COLLISION
 	}
+	
+	
 }

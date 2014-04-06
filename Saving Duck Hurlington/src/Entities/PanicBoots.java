@@ -1,3 +1,4 @@
+package Entities;
 //Increase speed based on missing health
 public class PanicBoots extends Item{
 

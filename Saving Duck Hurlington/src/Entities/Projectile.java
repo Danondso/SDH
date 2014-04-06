@@ -1,3 +1,4 @@
+package Entities;
 //projectiles may not need collision classes, that may need to be moved to creature, to make the code more simple
 abstract class Projectile extends Entity{
 	protected int Damage;

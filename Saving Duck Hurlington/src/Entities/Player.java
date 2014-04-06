@@ -1,3 +1,4 @@
+package Entities;
 
 public class Player extends Creature{
 	private Projectile Attack;

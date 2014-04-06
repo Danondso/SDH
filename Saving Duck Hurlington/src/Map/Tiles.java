@@ -25,8 +25,15 @@ abstract class Tiles extends Canvas {
 		static int row = 64;
 		static int column = 64;
 		
-
+        protected int x;
+        
+        
+        protected int y;
 		
+        protected int nextX;
+        
+        protected int nextY;
+        
 		//display tile dimensions
 		public static int tilerow = 16;
 		public int tilecolumn = 16;
@@ -74,14 +81,16 @@ abstract class Tiles extends Canvas {
 			//instantiates the terrain array 
 			this.terrain = new Image[textures.length];
 			this.tile = new Image[tilerow][tilecolumn];
-		
-			
-			
-			
 			//string for textures
 			name = new String[textures.length];
 			//string for 
 			id = new int[textures.length];
+		
+			
+			
+			nextX = 0;
+			nextY = 0;
+			
 			
 			try{
 				
@@ -114,6 +123,34 @@ abstract class Tiles extends Canvas {
 				}
 			}
 		}
+		
+		
+		public void genBorders() {
+			// TODO Auto-generated method stub
+			//SKELETAL STRUCTURE FOR THE BORDERS OF THE TILES AND THE DOORS
+		     //sets the borders for the tiles
+			//With how this works, the stone borders have 
+			//to be in the correct array space.	
+			//for the beach, have everything has to have (i > 3)
+			for(int i = 0; i < totalmap.length; i++)
+			{
+			   for(int j = 0; j < totalmap.length; j++)
+			   {
+			    if((i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48 || i == 63 || i == 64))
+			       totalmap[i][j] = terrain[3];
+				
+				if((j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63 || j == 64))
+					totalmap[i][j] = terrain[3];
+			
+				if((i == 0 || i == 63))
+				  totalmap[i][j] = terrain[3];
+				
+				if(j == 0 || j == 63)
+				  totalmap[i][j] = terrain[3];
+			   } 
+			}
+		}
+		
 		
 		public void clearDoors(){
 			for(int i = 0; i < row; i++) 
@@ -154,11 +191,92 @@ abstract class Tiles extends Canvas {
 		       for(int j = 0; j < tilecolumn;j++){
 					
 		    	   tile[i][j] = totalmap[(i + r)][(j + c)];		    	 
-				}
-		      
+				}      
 			}	
 			return tile;
 		}
+		
+		//Will make the initial 
+		
+		public void setNextCoord(int newX, int newY){
+			
+			nextX += newX;
+		    
+			nextY += newY;
+			
+		}
+		
+		public int getX(){
+			
+			return x;
+		}
+		
+		public int getY(){
+			
+			return y;
+		}
+		
+		public void getNextX(){
+			
+		}
+		
+		public void getNextY(){
+			
+			
+			
+		}
+		
+		
+		
+		
+		public Image[][] swapTile(int newX, int newY){
+			
+			if(newX == 0 && newY == 0)
+			{
+				nextX = 0;
+				nextY = 0;
+			}
+			
+			nextX += newX;
+			nextY += newY;
+			
+			if(nextX == 0 && nextY == 0)
+				  return getTile1();
+			if(nextX == 1 && nextY == 0)
+				  return getTile2();
+			if(nextX == 2 && nextY == 0)
+				  return getTile3();
+			if(nextX == 3 && nextY == 0)
+				  return getTile4();
+			if(nextX == 0 && nextY == 1)
+				  return getTile5();
+			if(nextX == 1 && nextY == 1)
+				  return getTile6();
+			if(nextX == 2 && nextY == 1)
+				  return getTile7();
+			if(nextX == 3 && nextY == 1)
+				  return getTile8();
+			if(nextX == 0 && nextY == 2)
+				  return getTile9();
+			if(nextX == 1 && nextY == 2)
+				  return getTile10();
+			if(nextX == 2 && nextY == 2)
+				  return getTile11();
+			if(nextX == 3 && nextY == 2)
+				  return getTile12();
+			if(nextX == 0 && nextY == 3)
+				  return getTile13();
+			if(nextX == 1 && nextY == 3)
+				  return getTile14();
+			if(nextX == 2 && nextY == 3)
+				  return getTile15();
+			if(nextX == 3 && nextY == 3)
+				  return getTile16();
+			
+			
+			return null;
+		}
+		
 		
 		
 		//1st row
@@ -183,32 +301,7 @@ abstract class Tiles extends Canvas {
 		public Image[][] getTile16(){tile16 = loadTile(48,48); return tile16;}
 		
 	
-	public void genBorders() {
-		// TODO Auto-generated method stub
-		//SKELETAL STRUCTURE FOR THE BORDERS OF THE TILES AND THE DOORS
-	     //sets the borders for the tiles
-		//With how this works, the stone borders have 
-		//to be in the correct array space.	
-		//for the beach, have everything has to have (i > 3)
-		for(int i = 0; i < totalmap.length; i++)
-		{
-		   for(int j = 0; j < totalmap.length; j++)
-		   {
-		    if((i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48 || i == 63 || i == 64))
-		       totalmap[i][j] = terrain[3];
-			
-			if((j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63 || j == 64))
-				totalmap[i][j] = terrain[3];
 		
-			if((i == 0 || i == 63))
-			  totalmap[i][j] = terrain[3];
-			
-			if(j == 0 || j == 63)
-			  totalmap[i][j] = terrain[3];
-		   } 
-		}
-	}
-			
 	}
 
 

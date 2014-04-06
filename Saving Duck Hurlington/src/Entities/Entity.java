@@ -1,6 +1,11 @@
+package Entities;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+
+
 
 //This is a rough draft of the Entities class that will encompass all of the entities of the game, we will make sub classes that makes thing more specific later
 abstract class Entity {
@@ -17,7 +22,12 @@ abstract class Entity {
 		Position = pos;
 		Hitbox = new Hitbox(/*Add information once the Hitbox class has been filled out*/);
 		Remove = false;
-		Image = (new ImageIcon(this.getClass().getResource(ImageLocation))).getImage();
+		
+		try{ Image = ImageIO.read(Entity.class.getResourceAsStream("/Entities/Rat/rat.png"));}
+		catch(IOException e){System.out.println(e);}
+		
+		
+		
 	}
 	
 	public Image getImage() {

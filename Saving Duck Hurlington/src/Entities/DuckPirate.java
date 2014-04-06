@@ -1,3 +1,4 @@
+package Entities;
 asd
 public class DuckPirate extends Creature{
 	 Player Player;

@@ -1,3 +1,4 @@
+package Entities;
 
 public class fireball extends Projectile {
 	protected int BurnDamage;

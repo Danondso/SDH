@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import Map.Beach;
-
+import Entities.*;
 public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
@@ -26,22 +26,20 @@ public class Board extends JPanel implements ActionListener {
     private boolean mapdraw = true;
     private Beach b = new Beach();
     private Image[][] Map;
+    private Position pos = new Position(40, 40);
+    private Rat rat = new Rat(pos, 300, 300, 48, 48);
     
     public Board() {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-
+        
         //h
         //the map draws here
         b.createMap();
         b.clearDoors();
         b.genBorders();
-     //   b.divideMap();
-      //  b.getTile1();
-        //b.getTile2();
-      //  Map = b.tile1;
-        
+        Map = b.swapTile(0, 0);
         //setLayout(new BorderLayout());  
         //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
         //setLayout(new FlowLayout());
@@ -53,18 +51,21 @@ public class Board extends JPanel implements ActionListener {
 
     public Image[][] getTile(){
     	
-    	Image[][] joe = Map;
+    	//Map = b.swapTile();
     	
-    	return joe;
+    	return Map;
     }
      
     public void paintComponent(Graphics g) {
         super.paintComponent(g);      
        
         Graphics2D g2d = (Graphics2D)g;
-   
-        if(Map == null)
-           Map = b.getTile1();
+        
+        
+        
+        
+        //if(Map == null)
+        //   Map = b.getTile1();
             
             int wWin = getWidth() / b.tilerow;
             int hWin = getHeight() / b.tilecolumn;
@@ -80,6 +81,7 @@ public class Board extends JPanel implements ActionListener {
         	       g2d.drawImage(Map[i][j], x, y, this); 
                  }
              }
+          
         
           if (craft.getDX() == 1) {
         	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);
@@ -89,32 +91,40 @@ public class Board extends JPanel implements ActionListener {
         	g2d.drawImage(craft.getImage(), craft.getX() + craft.getImage().getWidth(this), craft.getY(), craft.getDX() * craft.getImage().getWidth(this), craft.getImage().getHeight(this), this);
           }
           
+          //When it collides with the far right.
           if (craft.getX() + craft.getDX() == getWidth()){
         	  //Clear crap
-        	  Map = b.getTile2();
+        	 // b.setNextCoord(1, 0);
+        	  Map = b.swapTile(1, 0);
         	  //Change map
         	  craft.setX(0 - craft.getCraftSize());
           }
           
+          //When it collides with the far left
           if (craft.getX() + craft.getDX() + craft.getCraftSize() == 0){
         	  //Clear crap
-        	  Map = b.getTile1();
+        	//  b.setNextCoord((-1), 0);
+        	  Map = b.swapTile((-1), 0);
         	  //Change map
         	  craft.setX(getWidth());
           }
         
+          //When it collides with the bottom.
           if (craft.getY() + craft.getDY() == getHeight()){
         	  //Clear crap
-        	  Map = b.getTile5();
+        	//  b.setNextCoord(0, 1);
+        	  Map = b.swapTile(0, 1);
         	  //Change map
         	  
         	  
         	  craft.setY(0 - craft.getCraftSize());
           }
           
+          //When it collides with the top.
           if (craft.getY() + craft.getDY() + craft.getCraftSize() == 0){
         	  //Clear crap
-        	  Map = b.getTile1();
+        	 
+        	  Map = b.swapTile(0, (-1));  	  
         	  //Change map
         	  craft.setY(getHeight());
           }

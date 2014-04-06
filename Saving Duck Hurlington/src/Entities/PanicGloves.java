@@ -1,3 +1,4 @@
+package Entities;
 //Increase Range based on missing health
 public class PanicGloves extends Item{
 

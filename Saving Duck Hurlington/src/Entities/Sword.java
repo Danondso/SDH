@@ -1,3 +1,4 @@
+package Entities;
 
 public class Sword extends Projectile{
 

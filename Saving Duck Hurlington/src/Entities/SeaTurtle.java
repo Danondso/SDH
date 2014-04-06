@@ -1,11 +1,11 @@
+package Entities;
 import java.util.Random;
 
-public class Rat extends Creature{
+
+public class SeaTurtle extends Creature {
 	int x,y,w,h,xslope,yslope;
-	Creature c1;
-	Entity e1;
 	private static Random rand;
-	public Rat(Position pos,int yin,int xin,int height,int width){
+	public SeaTurtle(Position pos,int yin,int xin,int height,int width){
 		super(10,10,1,1, 0,pos, "Entities/Rat/Rat.png");
 		Position = pos;
 		x = xin;
@@ -16,7 +16,6 @@ public class Rat extends Creature{
 	}
 
 	void Move() {
-		Update();
 		int x = Position.GetX() + xslope;
 		int y = Position.GetY() + yslope;
 		xslope = rand.nextInt(2)*Speed;
@@ -31,9 +30,7 @@ public class Rat extends Creature{
 	}
 
 	Projectile Attack() {
+		Update();
 		return null;
-		//RAT ATTACKS BY COLLISION
-	}
-	
-	
+}
 }

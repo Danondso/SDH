@@ -159,7 +159,17 @@ abstract class Tiles extends Canvas {
 				{
 				//you pretty much subgrid the map so it makes all the entrances and exits nonsolid	
 				  if(i == 7 || j == 6)//add the rest of the i's and j's for the rest of the map
-					totalmap[i][j] = terrain[1];  
+					totalmap[i][j] = terrain[1]; 
+				  
+				  if(i == 15 || j == 17)
+					totalmap[i][j] = terrain[1];
+				  
+				  if(i == 31 || j == 41)
+						totalmap[i][j] = terrain[1];
+				  
+				  if(i == 41 || j == 56)
+						totalmap[i][j] = terrain[1];
+				  
 				}
 			}
 			

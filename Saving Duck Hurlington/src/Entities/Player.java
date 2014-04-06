@@ -37,6 +37,16 @@ public class Player extends Creature{
 			MovingY = y;
 	}
 	
+	void SetXDirection(int x){
+		if(x >= -1 && x <= 1)
+			MovingX = x;
+	}
+	
+	void SetYDirection(int y){
+		if(y >= -1 && y <= 1)
+			MovingY = y;
+	}
+	
 	void Move() {
 		Update();
 		Position.SetX(Position.GetX() + (Speed + (PanicBoots ? MaxHealth - Health : 0)) * MovingX); // if we have PanicBoots then adjust speed based on health missing, Maybe adjust this later to no be insane at hight HP

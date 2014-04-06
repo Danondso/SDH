@@ -2,7 +2,7 @@
 public class PanicGloves extends Item{
 
 	public PanicGloves(Position pos) {
-		super(pos);
+		super(pos, "Entities/Rat/Rat.png");
 		// TODO Auto-generated constructor stub
 	}
 

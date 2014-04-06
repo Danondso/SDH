@@ -1,5 +1,8 @@
 //Creatures need to know what directions they are moving so that they know what to give to their attack functions as far as speed goes
 //Creatures need to have an attack delay if they shoot something, that must be implemented
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
 abstract class Creature extends Entity{
 	protected int Health;
 	protected int MaxHealth;
@@ -17,8 +20,8 @@ abstract class Creature extends Entity{
 	protected int AttackDelay;
 	protected int CDelay;
 	
-	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos){
-		super(pos);
+	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
+		super(pos, ImageLocation);
 		Health = health;
 		MaxHealth = maxhealth;
 		Damage = damage;

@@ -7,8 +7,8 @@ abstract class Projectile extends Entity{
 	protected int DistTraveled;
 	protected boolean Owner;
 	
-	public Projectile(int damage, int speedx, int speedy, int range, boolean ownership, Position pos){
-		super(pos);
+	public Projectile(int damage, int speedx, int speedy, int range, boolean ownership, Position pos, String ImageLocation){
+		super(pos, ImageLocation);
 		Damage = damage;
 		SpeedX = speedx;
 		SpeedY = speedy;

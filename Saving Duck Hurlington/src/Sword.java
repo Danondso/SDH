@@ -3,7 +3,7 @@ public class Sword extends Projectile{
 
 	public Sword(int damage, int speedx, int speedy, int range,
 			boolean ownership, Position pos) {
-		super(damage, speedx, speedy, range, ownership, pos);
+		super(damage, speedx, speedy, range, ownership, pos, "Entities/Rat/Rat.png");
 		// TODO Auto-generated constructor stub
 	}
 

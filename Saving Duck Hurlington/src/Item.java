@@ -1,8 +1,8 @@
 
 public abstract class Item extends Entity {
 
-	public Item(Position pos) {
-		super(pos);
+	public Item(Position pos, String ItemLocation) {
+		super(pos, ItemLocation);
 	}
 
 	@Override

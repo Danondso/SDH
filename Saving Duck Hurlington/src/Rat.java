@@ -6,7 +6,7 @@ public class Rat extends Creature{
 	Entity e1;
 	private static Random rand;
 	public Rat(Position pos,int yin,int xin,int height,int width){
-		super(10,10,1,1, 0,pos);
+		super(10,10,1,1, 0,pos, "Entities/Rat/Rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;

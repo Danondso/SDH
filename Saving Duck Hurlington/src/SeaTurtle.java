@@ -5,7 +5,7 @@ public class SeaTurtle extends Creature {
 	int x,y,w,h,xslope,yslope;
 	private static Random rand;
 	public SeaTurtle(Position pos,int yin,int xin,int height,int width){
-		super(10,10,1,1, 0,pos);
+		super(10,10,1,1, 0,pos, "Entities/Rat/Rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;

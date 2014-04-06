@@ -1,8 +1,8 @@
-
+asd
 public class DuckPirate extends Creature{
 	 Player Player;
 		public DuckPirate(Position p, Player player){
-		 super(30, 30, 10, 5, 0, p);
+		 super(30, 30, 10, 5, 0, p, "Entities/Rat/Rat.png");
 		 Player = player;
 		 
 	 }

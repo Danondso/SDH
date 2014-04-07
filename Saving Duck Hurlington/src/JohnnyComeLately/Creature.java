@@ -1,6 +1,5 @@
-package Entities;
-//Creatures need to know what directions they are moving so that they know what to give to their attack functions as far as speed goes
-//Creatures need to have an attack delay if they shoot something, that must be implemented
+package JohnnyComeLately;
+
 
 import java.awt.Image;
 import javax.swing.ImageIcon;

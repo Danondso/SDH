@@ -1,4 +1,5 @@
-package Entities;
+package JohnnyComeLately;
+
 
 public class Player extends Creature{
 	private Projectile Attack;

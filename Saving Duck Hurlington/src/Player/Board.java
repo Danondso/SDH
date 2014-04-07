@@ -1,7 +1,5 @@
 package Player;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -11,14 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import JohnnyComeLately.Position;
+import JohnnyComeLately.Rat;
 import Map.Beach;
-import Entities.*;
 public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
@@ -26,8 +24,9 @@ public class Board extends JPanel implements ActionListener {
     private boolean mapdraw = true;
     private Beach b = new Beach();
     private Image[][] Map;
-    private Position pos = new Position(40, 40);
-    private Rat rat = new Rat(pos, 300, 300, 48, 48);
+    private Position pos = new Position(800, 800);
+    private Rat rat = new Rat(pos, 100, 100, 100, 100);
+    private Random Rand = new Random();
     
     public Board() {
 
@@ -43,8 +42,11 @@ public class Board extends JPanel implements ActionListener {
         //setLayout(new BorderLayout());  
         //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
         //setLayout(new FlowLayout());
-                
+        //rat.getImage();
+       
         craft = new Craft();
+        
+        rat.Move();
         timer = new Timer(5, this);
         timer.start();
     }
@@ -81,7 +83,14 @@ public class Board extends JPanel implements ActionListener {
         	       g2d.drawImage(Map[i][j], x, y, this); 
                  }
              }
+
           
+            
+            
+               rat.Move();
+         
+               g2d.drawImage(rat.getImage(), rat.upX(), rat.upY(), this);
+            
         
           if (craft.getDX() == 1) {
         	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);

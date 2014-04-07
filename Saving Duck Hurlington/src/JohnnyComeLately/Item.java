@@ -1,4 +1,5 @@
-package Entities;
+package JohnnyComeLately;
+
 
 public abstract class Item extends Entity {
 

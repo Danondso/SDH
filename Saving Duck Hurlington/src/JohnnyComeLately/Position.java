@@ -1,4 +1,5 @@
-package Entities;
+package JohnnyComeLately;
+
 public class Position {
 	protected int X;
 	protected int Y;

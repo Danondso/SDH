@@ -1,12 +1,13 @@
-package Entities;
+package JohnnyComeLately;
+
 import java.util.Random;
 
 
-public class SeaTurtle extends Creature {
+public class Krabby extends Creature {
 	int x,y,w,h,xslope,yslope;
 	private static Random rand;
-	public SeaTurtle(Position pos,int yin,int xin,int height,int width){
-		super(10,10,1,1, 0,pos, "/Entities/Rat/rat.png");
+	public Krabby (Position pos,int yin,int xin,int height,int width){
+		super(10,10,3,1, 0,pos, "/Entities/Rat/rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;
@@ -26,11 +27,12 @@ public class SeaTurtle extends Creature {
 		if(y > h) y = 0;
 		Position.SetX(Position.GetX() + xslope);
 		Position.SetY(Position.GetY() + yslope);
-		//RAT MOVEMENT IS NOT FINAL
+		
 	}
 
 	Projectile Attack() {
 		Update();
 		return null;
-}
+		
+	}
 }

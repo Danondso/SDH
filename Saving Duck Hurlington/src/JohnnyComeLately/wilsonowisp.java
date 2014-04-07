@@ -1,4 +1,5 @@
-package Entities;
+package JohnnyComeLately;
+
 
 public class wilsonowisp extends Creature {
 Player Player;

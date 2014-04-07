@@ -21,7 +21,7 @@ public class RType extends JFrame {
         add(new Board());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(500, 500);
         setLocationRelativeTo(null);
         
         setTitle("R - Type");

@@ -1,4 +1,5 @@
-package Entities;
+package JohnnyComeLately;
+
 
 public class fireball extends Projectile {
 	protected int BurnDamage;

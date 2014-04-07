@@ -1,4 +1,5 @@
-package Entities;
+package JohnnyComeLately;
+
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;

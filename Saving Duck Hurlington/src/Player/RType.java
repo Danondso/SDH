@@ -12,9 +12,7 @@ public class RType extends JFrame {
 	private Beach m = new Beach();
 	
     public RType() {
-
-  
-      	
+     	
     	//JLabel background = new JLabel(new ImageIcon(map[0][0]));
     	
     	//add(background, 0);

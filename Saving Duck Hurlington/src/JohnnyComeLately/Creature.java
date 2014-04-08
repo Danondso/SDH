@@ -3,7 +3,7 @@ package JohnnyComeLately;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-abstract class Creature extends Entity{
+public abstract class Creature extends Entity{
 	protected int Health;
 	protected int MaxHealth;
 	protected int Damage;

@@ -53,7 +53,7 @@ import JohnnyComeLately.*;
 		return Item;
 	}
 	
-	public Rooms CloneNext(){
+	public void CloneNext(){
 		
 		return null;
 	}

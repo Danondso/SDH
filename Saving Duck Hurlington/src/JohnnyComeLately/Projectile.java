@@ -1,7 +1,7 @@
 package JohnnyComeLately;
 
 //projectiles may not need collision classes, that may need to be moved to creature, to make the code more simple
-abstract class Projectile extends Entity{
+public abstract class Projectile extends Entity{
 	protected int Damage;
 	protected int SpeedX;
 	protected int SpeedY;//Speed needs to be X and Y for projectile, enemies won't need but one stat for this because they can change their direction

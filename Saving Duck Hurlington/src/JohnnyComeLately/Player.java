@@ -17,7 +17,7 @@ public class Player extends Creature{
 	Projectile Attack() {
 		if(CDelay == 0){
 			if(Attack instanceof Sword){
-			Projectile sword = new Sword(Damage, Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
+			Projectile sword = new Sword(Damage, /*holy crap no, please no, Matt means SpeedX and SpeedY*/Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
 			return sword;
 		
 			}
@@ -54,7 +54,7 @@ public class Player extends Creature{
 		Position.SetY(Position.GetY() + (Speed + (PanicBoots ? MaxHealth - Health : 0)) * MovingY);
 	}
 
-	public void Collect(Item item){
+j	public void Collect(Item item){
 		//apply changes based on item
 	}
 }

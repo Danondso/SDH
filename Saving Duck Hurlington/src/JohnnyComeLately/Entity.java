@@ -36,6 +36,22 @@ abstract class Entity {
         return Image;
     }
 	
+	public int GetX(){
+		return Position.GetX();
+	}
+	
+	public int GetY(){
+		return Position.GetY();
+	}
+	
+	public void SetX(int x){
+		Position.SetX(x);
+	}
+	
+	public void SetY(int y){
+		Position.SetY(y);
+	}
+	
 	abstract void Collide(Entity entity);
 	
 	protected boolean Overlap(Entity entity){

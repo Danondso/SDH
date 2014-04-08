@@ -53,9 +53,13 @@ import JohnnyComeLately.*;
 		return Item;
 	}
 	
-	public void CloneNext(){
-		
-		return null;
+	public void Clone(Rooms room){
+		//empty projectile array list
+		//empty creature array list
+		//copy item from room to this, reference not hardcopy
+		//copy creature array list from room to this hardcopy not referencey
+		//copy tile from room to this, hardcopy not reference
+		//copy IsCleared from room to this, reference not hardcopy
 	}
 	
 	

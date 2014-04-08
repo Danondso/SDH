@@ -39,21 +39,7 @@ public abstract class Creature extends Entity{
 		CDelay = 0;
 	}
 	
-	public int GetX(){
-		return Position.GetX();
-	}
 	
-	public int GetY(){
-		return Position.GetY();
-	}
-	
-	public void SetX(int x){
-		Position.SetX(x);
-	}
-	
-	public void SetY(int y){
-		Position.SetY(y);
-	}
 	
 	public int GetHealth(){
 		return Health;

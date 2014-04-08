@@ -24,7 +24,7 @@ public class Board extends JPanel implements ActionListener {
     private boolean mapdraw = true;
     private Beach b = new Beach();
     private Image[][] Map;
-    private Position pos = new Position(800, 800);
+    private Position pos = new Position(250, 250);
     private Rat rat = new Rat(pos, 100, 100, 100, 100);
     private Random Rand = new Random();
     
@@ -57,6 +57,7 @@ public class Board extends JPanel implements ActionListener {
     	
     	return Map;
     }
+    
      
     public void paintComponent(Graphics g) {
         super.paintComponent(g);      
@@ -88,8 +89,7 @@ public class Board extends JPanel implements ActionListener {
             
             
                rat.Move();
-         
-               g2d.drawImage(rat.getImage(), rat.upX(), rat.upY(), this);
+               g2d.drawImage(rat.getImage(), rat.GetX(), rat.GetY(), this);
             
         
           if (craft.getDX() == 1) {

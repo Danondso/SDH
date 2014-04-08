@@ -9,7 +9,7 @@ public class Rat extends Creature{
 	private static Random rand = new Random();
 	
 	public Rat(Position pos,int yin,int xin,int height,int width){
-		super(100 , 100 , 100 , 100, 100, pos, "/Entities/Rat/rat.png");
+		super(5, 5, 5, 1, 5, pos, "/Entities/Rat/rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;
@@ -26,11 +26,11 @@ public class Rat extends Creature{
 	
 	public void Move() {
 		
-		int x = Position.GetX() + xslope;
-		int y = Position.GetY() + yslope;
-		xslope = rand.nextInt(2)*Speed;
-		yslope = rand.nextInt(2)*Speed;
-		if(x<0) x = w;
+		x = Position.GetX() + xslope;
+	    y = Position.GetY() + yslope;
+		xslope = (rand.nextInt(3) - 1) * Speed;
+		yslope = (rand.nextInt(3) - 1) * Speed;
+		if(x < 0) x = w;
 		if(x > w) x = 0;
 		if(y < 0) y = h;
 		if(y > h) y = 0;

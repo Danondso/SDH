@@ -20,6 +20,7 @@ public abstract class Creature extends Entity{
 	protected int IFCount; //IFCount counts how many invincibility frames remain on a creature
 	protected int AttackDelay;
 	protected int CDelay;
+	protected int ShotSpeed = 10;
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);

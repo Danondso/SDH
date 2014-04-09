@@ -10,26 +10,16 @@ public class Player extends Creature{
 	
 	public Player(Position pos){
 		super(5, 5, 5, 5, 100, pos, "/Entities/Rat/rat.png");
-		Attack = new Sword(Damage, Speed, Speed, Range, Player, pos);
+		Attack = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range, Player, pos);
 		PanicBoots = false;
 		InvincibilityFrames = 10;
 	}
 
-	@Override
-	Projectile Attack() {
-		if(CDelay == 0){
-			if(Attack instanceof Sword){
+	Projectile AttackMethod() {
+		if(Attack instanceof Sword){
 			Projectile sword = new Sword(Damage, /*holy crap no, please no, Matt means SpeedX and SpeedY*/Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
 			return sword;
-		
-			}
-			CDelay = AttackDelay;
 		}
-		else{
-			CDelay--;
-		}
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	void SetShotDirection(int x, int y){

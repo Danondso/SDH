@@ -9,7 +9,7 @@ public class DuckPirate extends Creature{
 		 
 	 }
 
-		Projectile Attack() {
+		Projectile AttackMethod() {
 			Sword sword = new Sword(2, 2, 2, 2, Enemy, Position);
 			return sword;
 		}

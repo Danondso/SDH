@@ -13,7 +13,7 @@ public class wolf extends Creature {
 	 
  }
 
-	Projectile Attack() {
+	Projectile AttackMethod() {
 		return null;
 	}
 	

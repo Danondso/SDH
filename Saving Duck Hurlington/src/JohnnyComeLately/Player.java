@@ -3,12 +3,14 @@ package JohnnyComeLately;
 
 public class Player extends Creature{
 	private Projectile Attack;
+	private int ShotX = 0;
+	private int ShotY = 0;
 	protected boolean PanicBoots;
 	protected boolean PanicGloves;
 	
 	public Player(Position pos){
 		super(5, 5, 5, 5, 100, pos, "/Entities/Rat/rat.png");
-		Attack = new Sword(Damage, Damage, Damage, Damage, IsBurned, pos);
+		Attack = new Sword(Damage, Speed, Speed, Range, Player, pos);
 		PanicBoots = false;
 		InvincibilityFrames = 10;
 	}
@@ -30,6 +32,24 @@ public class Player extends Creature{
 		return null;
 	}
 
+	void SetShotDirection(int x, int y){
+		if(x >= -1 && x <= 1)
+			ShotX = x;
+		
+		if(y >= -1 && y <= 1)
+			ShotY = y;
+	}
+	
+	void SetShotXDirection(int x){
+		if(x >= -1 && x <= 1)
+			ShotX = x;
+	}
+	
+	void SetShotYDirection(int y){
+		if(y >= -1 && y <= 1)
+			ShotY = y;
+	}
+	
 	void SetDirection(int x, int y){
 		if(x >= -1 && x <= 1)
 			MovingX = x;

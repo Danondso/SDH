@@ -40,7 +40,7 @@ public class Rat extends Creature{
 		//RAT MOVEMENT IS NOT FINAL
 	}
 
-	public Projectile Attack() {
+	Projectile AttackMethod() {
 		return null;
 		//RAT ATTACKS BY COLLISION
 	}

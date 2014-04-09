@@ -9,7 +9,7 @@ Player Player;
 	}
 
 	@Override
-	Projectile Attack() {
+	Projectile AttackMethod() {
 		fireball fire = new fireball(Damage, 5, 256, Range, Enemy, Position);
 		return fire;
 		

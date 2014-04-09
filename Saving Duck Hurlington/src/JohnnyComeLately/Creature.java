@@ -2,6 +2,7 @@ package JohnnyComeLately;
 
 
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 public abstract class Creature extends Entity{
 	protected int Health;
@@ -125,6 +126,17 @@ public abstract class Creature extends Entity{
 		//More Update stuff, maybe add poison or regeneration over time or something later
 	}
 	
-	abstract Projectile Attack();
+	public Projectile Attack(){
+		if(CDelay == 0){
+			CDelay = AttackDelay;
+			return AttackMethod();
+		}
+		else{
+			CDelay--;
+		}
+		return null;
+	}
+	
+	abstract Projectile AttackMethod();
 	abstract void Move();
 }

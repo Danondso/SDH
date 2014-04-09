@@ -30,7 +30,7 @@ public class SeaTurtle extends Creature {
 		//RAT MOVEMENT IS NOT FINAL
 	}
 
-	Projectile Attack() {
+	Projectile AttackMethod() {
 		Update();
 		return null;
 }

@@ -30,7 +30,7 @@ public class Krabby extends Creature {
 		
 	}
 
-	Projectile Attack() {
+	Projectile AttackMethod() {
 		Update();
 		return null;
 		

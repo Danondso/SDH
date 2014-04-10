@@ -1,23 +1,25 @@
 
-	import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import JohnnyComeLately.*;
 import Map.*;
 import Player.*;
 	public class Main
-	{
-	    public static void main(String[] args)
+	{	
+		public static void main(String[] args)
 	    {
-	    	String gameState = play; //this will need to be changed to startMenu when that is implemented
+	    	new RType();
+	    	/*
+	    	//String gameState = play; //this will need to be changed to startMenu when that is implemented
 	    	List<Projectile> projectiles = new ArrayList<Projectile>();
 	    	List<Creature> creatures = new ArrayList<Creature>();//need array of these so I can just pass each one to mason as needed
 	    	List<Item> items = new ArrayList<Item>();
 	    	List<Item> spawnableItems = new ArrayList<Item>();
 	    	//List<Tiles> tiles = new ArrayList<Tiles>();
-	    	Player player = new Player();
+	    	//Player player = new Player();
 
-	    	Scanner in = new Scanner(new file(/*filepath*/));
+	    	Scanner in = new Scanner(new file(filepath));
 	    		//read things in from unlock file
 	    	in.close();
 	    	
@@ -56,15 +58,15 @@ import Player.*;
 	    		
 	    		//not sure how the removing things from the array list is working ask Matt
 	    		
-	    		/*if(player == dead || player == victory){
+	    		if(player == dead || player == victory){
 	    			gameState = startMenu;
 	    			check unlocks
 	    			save unlocks
-	    		  }*/
+	    		  }
 	    	}
 	    		//while(gameState == "pause"){
 	    			//display pause menu
-	    			/*if(button pressed to resume){
+	    			if(button pressed to resume){
 	    			 	gameState = play;
 	    			 	jump to start of code
 	    			 }
@@ -72,8 +74,8 @@ import Player.*;
 	    			 	gameState = startMenu;
 	    			 }
 	    			 
-	    			 }*/
-	    	}
+	    			 }
+	    	}*/
 	    		   	
-	    }  
+	    }
 	}

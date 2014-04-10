@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import Map.Beach;
 public class RType extends JFrame {
 
-	private Beach m = new Beach();
+	//private Beach m = new Beach();
 	
     public RType() {
      	
@@ -25,9 +25,5 @@ public class RType extends JFrame {
         setTitle("R - Type");
         setResizable(false);
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new RType();
     }
 }

@@ -25,27 +25,14 @@ import Map.*;
 	{
 		
 		
-		  private int MapSize = 4;  
-		  private Rooms[][] blueprint = new Rooms[MapSize][MapSize];
+		 // private int MapSize = 4;  
+		//  private Rooms[][] blueprint = new Rooms[MapSize][MapSize];
 		  
 		  private Beach b = new Beach();
 		  private Forest f = new Forest();
 		  private Mountain m = new Mountain();
 		  
-		public Main(){
-			
-			
-			
-			
-		}
 		
-		public Rooms[][] createLevel(){
-			
-			
-			
-			
-			return blueprint;
-		}
 		
 	    public static void main(String[] args)
 	    {

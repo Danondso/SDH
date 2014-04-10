@@ -3,12 +3,16 @@ package Map;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import JohnnyComeLately.*;
+import JohnnyComeLately.Creature;
+import JohnnyComeLately.Item;
+import JohnnyComeLately.Projectile;
  
   public class Rooms {
 	
+    
 	private Image[][] display;
-    // private Beach beach;
+  
+	// private Beach beach;
     // private Forest forest;
     // private Mountain mountain;
 	private ArrayList<Creature> Creatures;
@@ -19,12 +23,22 @@ import JohnnyComeLately.*;
 	private int x;
 	private int y;
 	
-	public Rooms(Tiles t, Player p, int xIn, int yIn){
+	Tiles tile;
+	
+	//I forgot why the X and Y values are in there D:<
+	public Rooms(Tiles t, int xIn, int yIn){
 		
+		tile = t;
 		LoadMap(t);
+		display = setTile(xIn, yIn);
+		
 
 	}
 	
+	public Image[][] setTile(int x, int y){
+		
+		return tile.swapTile(x, y);
+	}
 	
 	public Tiles LoadMap(Tiles t){
 		
@@ -35,7 +49,14 @@ import JohnnyComeLately.*;
 		
 		return t;
 	}
+
+	public void CreateRooms(){
 		
+		//for(int i = 0; int i < MapSize; i++)
+           		
+	}
+	
+	
 	public ArrayList<Projectile> getProArray(){
 		return Projectiles;
 		

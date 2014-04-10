@@ -3,18 +3,20 @@ package JohnnyComeLately;
 import java.util.Random;
 
 public class Rat extends Creature{
-	int x,y,w,h,xslope,yslope;
+	int x,y,xslope,yslope;
 	Creature c1;
 	Entity e1;
+	int movecounter = 0;
+	int movecountermax = 10;
 	private static Random rand = new Random();
 	
-	public Rat(Position pos,int yin,int xin,int height,int width){
-		super(5, 5, 5, 1, 5, pos, "/Entities/Rat/rat.png");
+	public Rat(Position pos,int yin,int xin){
+		super(5, 5, 5, 	1, 5, pos, "/Entities/Rat/rat.png");
 		Position = pos;
 		x = xin;
 		y = yin;
-		w = width;
-		h = height;
+		
+	
 		
 	}
 	
@@ -26,19 +28,22 @@ public class Rat extends Creature{
 	
 	public void Move() {
 		
-		x = Position.GetX() + xslope;
-	    y = Position.GetY() + yslope;
-		xslope = (rand.nextInt(3) - 1) * Speed;
-		yslope = (rand.nextInt(3) - 1) * Speed;
-		if(x < 0) x = w;
-		if(x > w) x = 0;
-		if(y < 0) y = h;
-		if(y > h) y = 0;
+	    if(movecounter == 0){
+	    	xslope = (rand.nextInt(3) - 1) * Speed;
+	    	yslope = (rand.nextInt(3) - 1) * Speed;
+	    	movecounter = movecountermax;
+	    }
+	    else{
+	    	movecounter--;
+	    }
 		Position.SetX(Position.GetX() + xslope);
 		Position.SetY(Position.GetY() + yslope);
 		Update();
+	    }
+	
+	    
 		//RAT MOVEMENT IS NOT FINAL
-	}
+	
 
 	Projectile AttackMethod() {
 		return null;

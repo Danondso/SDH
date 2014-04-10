@@ -241,14 +241,15 @@ abstract class Tiles extends Canvas {
 		
 		public Image[][] swapTile(int newX, int newY){
 			
+			//4/10/2014 this may need to get changed to accommodate room.
 			if(newX == 0 && newY == 0)
 			{
 				nextX = 0;
 				nextY = 0;
 			}
 			
-			nextX += newX;
-			nextY += newY;
+			nextX = newX;
+			nextY = newY;
 			
 			if(nextX == 0 && nextY == 0)
 				  return getTile1();

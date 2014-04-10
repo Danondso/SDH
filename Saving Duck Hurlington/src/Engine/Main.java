@@ -1,17 +1,56 @@
+package Engine;
 
+<<<<<<< HEAD:Saving Duck Hurlington/src/Main.java
+=======
+	import java.io.File;
+>>>>>>> e006757825e66b261535d9c72fa5b9d4d221067d:Saving Duck Hurlington/src/Engine/Main.java
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import JohnnyComeLately.*;
+
+import JohnnyComeLately.Creature;
+import JohnnyComeLately.Item;
+import JohnnyComeLately.Player;
+import JohnnyComeLately.Projectile;
 import Map.*;
-import Player.*;
 	public class Main
+<<<<<<< HEAD:Saving Duck Hurlington/src/Main.java
 	{	
 		public static void main(String[] args)
 	    {
 	    	new RType();
 	    	/*
 	    	//String gameState = play; //this will need to be changed to startMenu when that is implemented
+=======
+	{
+		
+		
+		  private int MapSize = 4;  
+		  private Rooms[][] blueprint = new Rooms[MapSize][MapSize];
+		  
+		  private Beach b = new Beach();
+		  private Forest f = new Forest();
+		  private Mountain m = new Mountain();
+		  
+		public Main(){
+			
+			
+			
+			
+		}
+		
+		public Rooms[][] createLevel(){
+			
+			
+			
+			
+			return blueprint;
+		}
+		
+	    public static void main(String[] args)
+	    {
+	    	String gameState = "play"; //this will need to be changed to startMenu when that is implemented
+>>>>>>> e006757825e66b261535d9c72fa5b9d4d221067d:Saving Duck Hurlington/src/Engine/Main.java
 	    	List<Projectile> projectiles = new ArrayList<Projectile>();
 	    	List<Creature> creatures = new ArrayList<Creature>();//need array of these so I can just pass each one to mason as needed
 	    	List<Item> items = new ArrayList<Item>();
@@ -19,7 +58,11 @@ import Player.*;
 	    	//List<Tiles> tiles = new ArrayList<Tiles>();
 	    	//Player player = new Player();
 
+<<<<<<< HEAD:Saving Duck Hurlington/src/Main.java
 	    	Scanner in = new Scanner(new file(filepath));
+=======
+	    	Scanner in = new Scanner(new File("/Unlocked Items/Unlocked.txt"));
+>>>>>>> e006757825e66b261535d9c72fa5b9d4d221067d:Saving Duck Hurlington/src/Engine/Main.java
 	    		//read things in from unlock file
 	    	in.close();
 	    	

@@ -11,12 +11,17 @@ public class ItemPool implements Comparator<ItemPoolNode>{
 		Random rand = new Random();
 		Pool.add(new ItemPoolNode(new PanicBoots(new Position(250, 250)), rand.nextDouble()));
 		Pool.add(new ItemPoolNode(new PanicGloves(new Position(250, 250)), rand.nextDouble()));
+		//add more as more items added
 	}
 
 	public Item NextItem(){
 		return (Pool.poll()).GetItem();
 	}
 
+	public Item GetHealthPotion(){
+		return new HealthPotion(new Position(250, 250));
+	}
+	
 	@Override
 	public int compare(ItemPoolNode node1, ItemPoolNode node2) {
 		if(node1.GetValue() < node2.GetValue())

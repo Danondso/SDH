@@ -61,9 +61,14 @@ public class Map {
 				   //bossroom gets an item
 				   
 				   //I need to write ifs to set up two more items 
-				   
-				   if(i == 3 && j == 3){
+			       if(i == 0 && j == 0)
+				     RoomItem = items.NextItem();	   
+			       else if(i == 3 && j == 3){
 				     RoomItem = items.NextItem();
+				     else if(i == 2 && j == 3)
+				    	 RoomItem = items.NextItem();
+				     else
+				    	RoomItem = items.HeartItem();
 				      
 				   //every room besides the item rooms have a 1/3 chance of a heart spawn
 				   
@@ -110,64 +115,21 @@ public class Map {
 	public void MapUpdate(){
 		
 		//player l
-	/*
-	 if(left == true){
-		int nextX = 0;
-		int nextY = 0;
+	
+		 
+		
+		
+	 //if the player leaves then this will change it
+	
 		//use the room logic from the board class, make a swap room like swaptile
-		Room[][] blueprint = getBluePrint();
-		
-		
-		if(newX == 0 && newY == 0)
-		{
-			nextX = 0;
-			nextY = 0;
-		}
-		
-		nextX += newX;
-		nextY += newY;
-		
-		if(nextX == 0 && nextY == 0)
-			  room.clone(blueprint[0][0]);
-		if(nextX == 1 && nextY == 0)
-			  return getTile2();
-		if(nextX == 2 && nextY == 0)
-			  return getTile3();
-		if(nextX == 3 && nextY == 0)
-			  return getTile4();
-		if(nextX == 0 && nextY == 1)
-			  return getTile5();
-		if(nextX == 1 && nextY == 1)
-			  return getTile6();
-		if(nextX == 2 && nextY == 1)
-			  return getTile7();
-		if(nextX == 3 && nextY == 1)
-			  return getTile8();
-		if(nextX == 0 && nextY == 2)
-			  return getTile9();
-		if(nextX == 1 && nextY == 2)
-			  return getTile10();
-		if(nextX == 2 && nextY == 2)
-			  return getTile11();
-		if(nextX == 3 && nextY == 2)
-			  return getTile12();
-		if(nextX == 0 && nextY == 3)
-			  return getTile13();
-		if(nextX == 1 && nextY == 3)
-			  return getTile14();
-		if(nextX == 2 && nextY == 3)
-			  return getTile15();
-		if(nextX == 3 && nextY == 3)
-			  return getTile16();
-		
-		
-		return null;
-		*/
 		
 		//checks to see if room is cleared
+	//	if(Creatures.isEmpty())
+	//	  room.spawnItem();
+		
 		
 		//need to check if the player moves out of the room
-		
+		//Until a player is on a screen within the engine, I'm not doing anything with it.
 		//if we leave room call room.Clone(RoomWeMovedInto)
 		
 		

@@ -13,5 +13,11 @@ public abstract class Item extends Entity {
 		
 	}
 
+	
+	public void HeartItem(){
+		
+		return Heart;
+	}
+	
 	abstract void Collect(Player player);
 }

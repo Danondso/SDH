@@ -31,9 +31,7 @@ import JohnnyComeLately.Projectile;
 		tile = t;
 		//somethings about room spawn
 		
-		
 		display = setTile(xIn, yIn);
-		
 
 	}
 	

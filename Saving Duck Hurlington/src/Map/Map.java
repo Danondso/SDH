@@ -1,4 +1,6 @@
 package Map;
+import java.util.Random;
+
 import JohnnyComeLately.Item;
 import JohnnyComeLately.ItemPool;
 import JohnnyComeLately.Player;
@@ -18,8 +20,8 @@ public class Map {
 	private Beach b = new Beach();
 	private Forest f = new Forest();
 	private Mountain m = new Mountain();
-	
-	
+	private Random rand = new Random();
+	private int counter = 0;
 	public Map(Rooms r, Player p)
 	{
 		//nested for loop generating the room array;
@@ -35,10 +37,6 @@ public class Map {
 		
 		
 	}
-	
-	
-	
-	
 	//method to switch the working blueprint
 	public void loadMap(Tiles t){
 		
@@ -51,7 +49,7 @@ public class Map {
 	
 	private Rooms[][] createBlueprint(Tiles t, ItemPool items){
 		
-        Item RoomItem;		
+        Item RoomItem = null;		
  		
 		for(int i = 0; i < MapSize; i ++)	
 		   {
@@ -63,13 +61,18 @@ public class Map {
 				   //I need to write ifs to set up two more items 
 				   
 				   if(i == 3 && j == 3){
+				     RoomItem = items.NextItem();}
+				   if(SpawnItem(i, j))
 				     RoomItem = items.NextItem();
-				      
-				   //every room besides the item rooms have a 1/3 chance of a heart spawn
 				   
+				   //every room besides the item rooms have a 1/3 chance of a heart spawn
+				   int r = rand.nextInt(3);
+				   if(r == 1 && RoomItem == null)
+				     RoomItem = items.GetHealthPotion();
+				     
 				  blueprint[i][j] = new Rooms(t, i, j, RoomItem); 
 				   
-				  
+				  RoomItem = null;
 			   }
 		   }
 			
@@ -88,7 +91,31 @@ public class Map {
 		  
 		  return null;
 	}
-
+	
+	private boolean SpawnItem(int i, int j){
+		
+		int r = rand.nextInt(i + 10) % 2;
+		int s = rand.nextInt(j + 10) % 2;		
+		
+	
+		
+		if(counter < 2 && r == 0 && s == 0){
+		
+			counter ++;
+			
+			return true;
+		}
+		  
+		
+		
+			
+		if(counter == 2)
+		  return false;	
+		
+		return false;
+		
+	}
+		
 	public Rooms[][] getBluePrint(Tiles t){
 		
 		 if(t instanceof Beach)

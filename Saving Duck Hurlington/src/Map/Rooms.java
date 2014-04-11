@@ -29,9 +29,7 @@ import JohnnyComeLately.Projectile;
 	public Rooms(Tiles t, int xIn, int yIn, Item item){
 		
 		tile = t;
-		//somethings about room spawn
-		
-		
+		//somethings about room spawn		
 		display = setTile(xIn, yIn);
 		
 

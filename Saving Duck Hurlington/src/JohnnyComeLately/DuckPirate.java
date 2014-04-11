@@ -6,6 +6,7 @@ public class DuckPirate extends Creature{
 		public DuckPirate(Position p, Player player){
 		 super(30, 30, 10, 5, 0, p, "/Entities/Rat/rat.png");
 		 Player = player;
+		 Position = p;
 		 
 	 }
 
@@ -14,7 +15,7 @@ public class DuckPirate extends Creature{
 			return sword;
 		}
 		
-		void Move() {
+		public void Move() {
 			Update();
 			// TODO Auto-generated method stub
 	    	if(Player.Position.GetX()> Position.GetX()){
@@ -29,6 +30,11 @@ public class DuckPirate extends Creature{
 	    	else if (Player.Position.GetY()<Position.GetY()){
 	    		Position.AdjustY(-Speed);
 	    	}
+		}
+
+		@Override
+		public Creature clone() {
+			return new DuckPirate(Position, Player);
 		}
 
 	}

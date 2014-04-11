@@ -10,6 +10,7 @@ public class woodelf extends Creature {
     
 	public woodelf(Position p){
 		super(6,6,6,2, 3, p,"/Entities/Rat/rat.png");
+		Position = p;
 	}
 	@Override
 	Projectile AttackMethod() {
@@ -18,7 +19,8 @@ public class woodelf extends Creature {
 	}
 
 	@Override
-	void Move() {
+
+	public void Move() {
 		if(movecounter == 0){
 	    	xslope = (rand.nextInt(3) - 1) * Speed;
 	    	yslope = (rand.nextInt(3) - 1) * Speed;
@@ -31,7 +33,11 @@ public class woodelf extends Creature {
 		Position.SetY(Position.GetY() + yslope);
 		Update();
 	    }
+	@Override
+	public Creature clone() {
+		return new woodelf(Position);
+	}
 		
 	}
 
-}
+

@@ -12,9 +12,14 @@ public class Troll extends Creature {
 	}
 
 	@Override
-	void Move() {
+	public void Move() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Creature clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

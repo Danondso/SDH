@@ -3,9 +3,9 @@ package JohnnyComeLately;
 
 public class wilsonowisp extends Creature {
 Player Player;
-	public wilsonowisp(Position pos) {
+	public wilsonowisp(Position pos, Player p) {
 		super(100, 100, 3, 10, 100, pos, "/Entities/Rat/rat.png");
-		// TODO Auto-generated constructor stub
+		Player = p;
 	}
 
 	@Override
@@ -16,7 +16,7 @@ Player Player;
 	}
 
 	@Override
-	void Move() {
+	public void Move() {
 		Update();
 		// TODO Auto-generated method stub
     	if(Player.Position.GetX()> Position.GetX()){
@@ -31,6 +31,11 @@ Player Player;
     	else if (Player.Position.GetY()<Position.GetY()){
     		Position.AdjustY(-Speed);
     	}
+	}
+
+	@Override
+	public Creature clone() {
+		return new wilsonowisp(Position, Player);
 	}
 
 }

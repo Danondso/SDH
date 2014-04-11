@@ -137,7 +137,18 @@ public abstract class Creature extends Entity{
 		}
 		return null;
 	}
+	abstract public Creature clone();
+		
+			
+		
 	
 	abstract Projectile AttackMethod();
-	abstract void Move();
+	abstract  public void Move();
+
+
+
+	public Creature Clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

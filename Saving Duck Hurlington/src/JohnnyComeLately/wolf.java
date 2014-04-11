@@ -17,7 +17,7 @@ public class wolf extends Creature {
 		return null;
 	}
 	
-	void Move() {
+	public void Move() {
 		Update();
 		// TODO Auto-generated method stub
     	if(Player.Position.GetX()> Position.GetX()){
@@ -32,6 +32,11 @@ public class wolf extends Creature {
     	else if (Player.Position.GetY()>Position.GetY()){
     		Position.AdjustY(-Speed);
     	}
+	}
+
+	@Override
+	public Creature clone() {
+		return new wolf(Position, Player);
 	}
 
 }

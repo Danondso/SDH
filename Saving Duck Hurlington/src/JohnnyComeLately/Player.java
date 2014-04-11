@@ -20,6 +20,7 @@ public class Player extends Creature{
 			Projectile sword = new Sword(Damage, /*holy crap no, please no, Matt means SpeedX and SpeedY*/Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
 			return sword;
 		}
+		return null;
 	}
 
 	void SetShotDirection(int x, int y){
@@ -58,13 +59,19 @@ public class Player extends Creature{
 			MovingY = y;
 	}
 	
-	void Move() {
+	public void Move() {
 		Update();
 		Position.SetX(Position.GetX() + (Speed + (PanicBoots ? MaxHealth - Health : 0)) * MovingX); // if we have PanicBoots then adjust speed based on health missing, Maybe adjust this later to no be insane at hight HP
 		Position.SetY(Position.GetY() + (Speed + (PanicBoots ? MaxHealth - Health : 0)) * MovingY);
 	}
 
-j	public void Collect(Item item){
+	public void Collect(Item item){
 		//apply changes based on item
 	}
+
+@Override
+public Creature clone() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

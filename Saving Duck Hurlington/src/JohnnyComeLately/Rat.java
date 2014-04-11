@@ -10,11 +10,9 @@ public class Rat extends Creature{
 	int movecountermax = 10;
 	private static Random rand = new Random();
 	
-	public Rat(Position pos,int yin,int xin){
+	public Rat(Position pos){
 		super(5, 5, 5, 	1, 5, pos, "/Entities/Rat/rat.png");
 		Position = pos;
-		x = xin;
-		y = yin;
 		
 	
 		
@@ -50,5 +48,18 @@ public class Rat extends Creature{
 		//RAT ATTACKS BY COLLISION
 	}
 	
+	
+
+
+
+	@Override
+	public Creature clone() {
+		// TODO Auto-generated method stub
+		return new Rat(Position);
+		
+	}
+
+
+
 	
 }

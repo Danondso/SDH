@@ -1,9 +1,10 @@
 package JohnnyComeLately;
 
 public class Pattyogoose extends Creature {
-	
-	public Pattyogoose(Position pos){
+	Player player;
+	public Pattyogoose(Position pos, Player p){
 		super(6,6,6,2, 3, pos,"/Entities/Rat/rat.png");
+		player = p;
 	}
 
 	@Override
@@ -13,9 +14,26 @@ public class Pattyogoose extends Creature {
 	}
 
 	@Override
-	void Move() {
-		// TODO Auto-generated method stub
-		
+	
+	 public void Move() {
+		Update();
+		if(player.Position.GetX()>Position.GetX()){
+			Position.AdjustX(Speed);
+		}
+		else if(player.Position.GetX()<Position.GetX()){
+		    Position.AdjustX(Speed);	
+		}
+		if(player.Position.GetY()>Position.GetY()){
+			Position.AdjustY(Speed);
+		}
+		else if(player.Position.GetX()<Position.GetY()){
+			Position.AdjustY(Speed);
+		}
+	}
+
+	@Override
+	public Creature clone() {
+		return new Pattyogoose(Position,player);
 	}
 
 }

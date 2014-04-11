@@ -25,7 +25,7 @@ public class Board extends JPanel implements ActionListener {
     private Beach b = new Beach();
     private Image[][] Map;
     private Position pos = new Position(250, 250);
-    private Rat rat = new Rat(pos, 100, 100);
+    private Rat rat = new Rat(pos);
     private Random Rand = new Random();
     
     public Board() {

@@ -1,7 +1,9 @@
 package Engine;
 
-
+<<<<<<< HEAD:Saving Duck Hurlington/src/Main.java
+=======
 	import java.io.File;
+>>>>>>> e006757825e66b261535d9c72fa5b9d4d221067d:Saving Duck Hurlington/src/Engine/Main.java
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,10 +13,8 @@ import JohnnyComeLately.Item;
 import JohnnyComeLately.Player;
 import JohnnyComeLately.Projectile;
 import Map.*;
-    import Player.*; 	
-
-public class Main
-
+	public class Main
+<<<<<<< HEAD:Saving Duck Hurlington/src/Main.java
 	{	
 		public static void main(String[] args)
 	    {

@@ -11,7 +11,5 @@ public class PanicBoots extends Item{
 	@Override
 	void Collect(Player player) {
 		player.PanicBoots = true;
-		// TODO Auto-generated method stub
-		
 	}
 }

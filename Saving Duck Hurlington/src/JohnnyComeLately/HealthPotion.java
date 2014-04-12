@@ -9,5 +9,7 @@ public class HealthPotion extends Item {
 
 	void Collect(Player player) {
 		player.Health += 20;
+		if(player.Health > player.MaxHealth)
+			player.Health = player.MaxHealth;
 	}
 }

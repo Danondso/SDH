@@ -8,5 +8,6 @@ public class WellCookedSteak extends Item{
 
 	void Collect(Player player) {
 		player.MaxHealth += 10;
+		player.Health += 10;
 	}
 }

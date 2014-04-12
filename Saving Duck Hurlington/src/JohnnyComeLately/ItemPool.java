@@ -12,6 +12,7 @@ public class ItemPool implements Comparator<ItemPoolNode>{
 		Pool.add(new ItemPoolNode(new PanicBoots(new Position(250, 250)), rand.nextDouble()));
 		Pool.add(new ItemPoolNode(new PanicGloves(new Position(250, 250)), rand.nextDouble()));
 		Pool.add(new ItemPoolNode(new WellCookedSteak(new Position(250, 250)), rand.nextDouble()));
+		Pool.add(new ItemPoolNode(new GlassCannon(new Position(250, 250)), rand.nextDouble()));
 		//add more as more items added
 	}
 

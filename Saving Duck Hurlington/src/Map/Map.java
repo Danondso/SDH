@@ -22,6 +22,7 @@ public class Map {
 	private Mountain m = new Mountain();
 	private Random rand = new Random();
 	private int counter = 0;
+	
 	public Map(Rooms r, Player p)
 	{
 		//nested for loop generating the room array;
@@ -89,6 +90,10 @@ public class Map {
 		  //blueprintMountain = blueprint;
 		   //  return blueprintMountain;}
 		  
+		  //allows for multiple method calls so the other biomes
+		  //can have items.
+		  counter = 0;
+		  
 		  return null;
 	}
 	
@@ -98,17 +103,13 @@ public class Map {
 		int s = rand.nextInt(j + 10) % 2;		
 		
 	
-		
+		//gives a room an item based upon these conditions. 
+		//increments the counter so it will only allow two
 		if(counter < 2 && r == 0 && s == 0){
-		
 			counter ++;
-			
 			return true;
-		}
-		  
-		
-		
-			
+          }
+		//if both items spawn it stops it from giving it another one. 
 		if(counter == 2)
 		  return false;	
 		
@@ -143,57 +144,30 @@ public class Map {
 		int nextY = 0;
 		//use the room logic from the board class, make a swap room like swaptile
 		Room[][] blueprint = getBluePrint();
-		
-		
-		if(newX == 0 && newY == 0)
-		{
-			nextX = 0;
-			nextY = 0;
-		}
-		
-		nextX += newX;
-		nextY += newY;
-		
-		if(nextX == 0 && nextY == 0)
-			  room.clone(blueprint[0][0]);
-		if(nextX == 1 && nextY == 0)
-			  return getTile2();
-		if(nextX == 2 && nextY == 0)
-			  return getTile3();
-		if(nextX == 3 && nextY == 0)
-			  return getTile4();
-		if(nextX == 0 && nextY == 1)
-			  return getTile5();
-		if(nextX == 1 && nextY == 1)
-			  return getTile6();
-		if(nextX == 2 && nextY == 1)
-			  return getTile7();
-		if(nextX == 3 && nextY == 1)
-			  return getTile8();
-		if(nextX == 0 && nextY == 2)
-			  return getTile9();
-		if(nextX == 1 && nextY == 2)
-			  return getTile10();
-		if(nextX == 2 && nextY == 2)
-			  return getTile11();
-		if(nextX == 3 && nextY == 2)
-			  return getTile12();
-		if(nextX == 0 && nextY == 3)
-			  return getTile13();
-		if(nextX == 1 && nextY == 3)
-			  return getTile14();
-		if(nextX == 2 && nextY == 3)
-			  return getTile15();
-		if(nextX == 3 && nextY == 3)
-			  return getTile16();
-		
-		
-		return null;
 		*/
 		
-		//checks to see if room is cleared
+		//the entire setup for the ifs will be cleaned once a method for making the items visible is created
 		
+		//checks to see if room is cleared
+		if(room.cleared)
+		{
+		  //checks to see if an item has spawned yet
+		  if(room.itemSpawn)
+		  {
+			  //checks to see if an item exists for this room
+			  if(room.Item != null)
+			  {
+				  //make the item appear
+			  }
+				
+		    }
+		}
+			  
 		//need to check if the player moves out of the room
+		
+		//Logic for room move can be here but MapUpdate should take in the 
+		//current X and Y, MapUpdate needs parameters and an if statement around it
+		//so the room doesn't try to reload when it's not needed.
 		
 		//if we leave room call room.Clone(RoomWeMovedInto)
 		

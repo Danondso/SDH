@@ -9,7 +9,7 @@ public class woodelf extends Creature {
     public static Random rand = new Random();
     
 	public woodelf(Position p){
-		super(6,6,6,2, 3, p,"/Entities/Rat/rat.png");
+		super(6,6,6,2, 3, p,"/Entities/Placeholder/placeholder.png");
 		Position = p;
 	}
 	@Override

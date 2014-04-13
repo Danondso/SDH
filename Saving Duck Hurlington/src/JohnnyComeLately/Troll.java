@@ -3,7 +3,7 @@ package JohnnyComeLately;
 public class Troll extends Creature {
     
 	public Troll(Position pos){
-	super(6,6,6,2, 3, pos,"/Entities/Rat/rat.png");
+	super(6,6,6,2, 3, pos,"/Entities/Placeholder/placeholder.png");
 	}
 	@Override
 	Projectile AttackMethod() {

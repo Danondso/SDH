@@ -4,7 +4,7 @@ package JohnnyComeLately;
 public class PanicBoots extends Item{
 
 	public PanicBoots(Position pos) {
-		super(pos, "/Entities/Rat/rat.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 		// TODO Auto-generated constructor stub
 	}
 

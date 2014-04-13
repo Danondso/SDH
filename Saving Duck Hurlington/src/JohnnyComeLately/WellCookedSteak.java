@@ -3,7 +3,7 @@ package JohnnyComeLately;
 public class WellCookedSteak extends Item{
 
 	public WellCookedSteak(Position pos) {
-		super(pos, "/Entities/Rat/rat.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 	}
 
 	void Collect(Player player) {

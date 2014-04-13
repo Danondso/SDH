@@ -9,7 +9,7 @@ public class SeaTurtle extends Creature {
 	int movecountermax = 10;
 	private static Random rand;
 	public SeaTurtle(Position pos){
-		super(10,10,1,1, 0,pos, "/Entities/Rat/rat.png");
+		super(10,10,1,1, 0,pos, "/Entities/Placeholder/placeholder.png");
 		Position = pos;
 		
 		

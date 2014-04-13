@@ -4,7 +4,7 @@ package JohnnyComeLately;
 public class DuckPirate extends Creature{
 	 Player Player;
 		public DuckPirate(Position p, Player player){
-		 super(30, 30, 10, 5, 0, p, "/Entities/Rat/rat.png");
+		 super(30, 30, 10, 5, 0, p, "/Entities/Placeholder/placeholder.png");
 		 Player = player;
 		 Position = p;
 		 

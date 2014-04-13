@@ -3,7 +3,7 @@ package JohnnyComeLately;
 public class GlassCannon extends Item {
 
 	public GlassCannon(Position pos){
-		super(pos, "/Entities/Rat/rat.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 		// TODO Auto-generated constructor stub
 	}
 

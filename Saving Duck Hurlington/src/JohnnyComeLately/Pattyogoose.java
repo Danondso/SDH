@@ -3,7 +3,7 @@ package JohnnyComeLately;
 public class Pattyogoose extends Creature {
 	Player player;
 	public Pattyogoose(Position pos, Player p){
-		super(6,6,6,2, 3, pos,"/Entities/Rat/rat.png");
+		super(6,6,6,2, 3, pos,"/Entities/Placeholder/placeholder.png");
 		player = p;
 	}
 

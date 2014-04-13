@@ -16,9 +16,11 @@ public class Player extends Creature{
 	}
 
 	Projectile AttackMethod() {
-		if(Attack instanceof Sword){
+		if(ShotX != 0 && ShotY != 0){
+			if(Attack instanceof Sword){
 			Projectile sword = new Sword(Damage, /*holy crap no, please no, Matt means SpeedX and SpeedY*/Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
 			return sword;
+			}
 		}
 		return null;
 	}

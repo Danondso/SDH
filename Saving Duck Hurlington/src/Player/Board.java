@@ -36,9 +36,12 @@ public class Board extends JPanel implements ActionListener {
         //h
         //the map draws here
         b.createMap();
-        b.clearDoors();
+        //b.clearDoors();
         b.genBorders();
-        Map = b.swapTile(0, 0);
+        b.clearDoors();
+        b.sealBorders();
+        b.addWater();
+        Map = b.swapTile(3, 2);
         //setLayout(new BorderLayout());  
         //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
         //setLayout(new FlowLayout());

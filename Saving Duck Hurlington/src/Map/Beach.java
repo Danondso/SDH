@@ -48,10 +48,10 @@ import javax.imageio.ImageIO;
 		{
 		   for(int j = 0; j < totalmap.length; j++)
 		   {
-		    if((i > 3) && (i == 15 ||i == 31 || i == 32 || i == 47 || i == 48 || i == 63 || i == 64))
+		    if((i > 3) && (i == 15 || i == 16 ||i == 31 || i == 32 || i == 47 || i == 48 || i == 63))
 		    	totalmap[i][j] = terrain[2];
 			
-			if((i > 3) && (j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63 || j == 64))
+			if((i > 3) && (j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63))
 				totalmap[i][j] = terrain[2];
 		
 			if(i > 3 && (i == 0 || i == 63))
@@ -61,31 +61,39 @@ import javax.imageio.ImageIO;
 				totalmap[i][j] = terrain[2];
 		 /////////////////////////////////////////////////////////////////
 		 //Adds the doors
-			   if((i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48))
-		         if((j == 6 ||  j == 24 || j == 41 || j == 56)) 		   
+			   if((i == 15 || i == 16 || i == 31 || i == 32 || i == 46 || i == 48))
+		         if((j == 7 ||  j == 23 || j == 39 || j == 55)) 		   
 		        	 totalmap[i][j] = terrain[3];
 			   if((j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48))
-			         if((i == 7 || i == 24 || i == 41 || i == 56)) 	
+			         if((i == 7 || i == 23 || i == 39 || i == 55)) 	
 			        	 totalmap[i][j] = terrain[3];
+			    
 	     /////////////////////////////////////////////////////////////////
 		   }
 		}  
 		
-		for(int i = 0; i < totalmap.length; i++)
-		{
-		   for(int j = 0; j < totalmap.length; j++)
-		   {
-			   if(i < 3)
-			      totalmap[i][j] = terrain[4];
-		   }
-		}
+		
+		
 		
 		
 	}	
 
-
-
-
+	
+	public void addWater(){
+		
+		//adds the water
+				for(int i = 0; i < totalmap.length; i++)
+				{
+				   for(int j = 0; j < totalmap.length; j++)
+				   {
+					   if(i < 3)
+					      totalmap[i][j] = terrain[4];
+				   }
+				}
+				
+		
+	}
+	
 }
 	
 

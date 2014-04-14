@@ -26,4 +26,12 @@ public class RType extends JFrame {
         setResizable(false);
         setVisible(true);
     }
+    
+    public static void main(String[] args){
+    	
+    	new RType();
+    	
+    }
+    
+    
 }

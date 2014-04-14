@@ -1,4 +1,4 @@
-package Entities_and_Player;
+package JohnnyComeLately;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

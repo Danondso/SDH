@@ -1,4 +1,4 @@
-package Entities_and_Player;
+package JohnnyComeLately;
 
 
 public class Player extends Creature{
@@ -25,7 +25,7 @@ public class Player extends Creature{
 		return null;
 	}
 
-	void SetShotDirection(int x, int y){
+	public void SetShotDirection(int x, int y){
 		if(x >= -1 && x <= 1)
 			ShotX = x;
 		
@@ -33,17 +33,17 @@ public class Player extends Creature{
 			ShotY = y;
 	}
 	
-	void SetShotXDirection(int x){
+	public void SetShotXDirection(int x){
 		if(x >= -1 && x <= 1)
 			ShotX = x;
 	}
 	
-	void SetShotYDirection(int y){
+	public void SetShotYDirection(int y){
 		if(y >= -1 && y <= 1)
 			ShotY = y;
 	}
 	
-	void SetDirection(int x, int y){
+	public void SetDirection(int x, int y){
 		if(x >= -1 && x <= 1)
 			MovingX = x;
 		
@@ -51,12 +51,12 @@ public class Player extends Creature{
 			MovingY = y;
 	}
 	
-	void SetXDirection(int x){
+	public void SetXDirection(int x){
 		if(x >= -1 && x <= 1)
 			MovingX = x;
 	}
 	
-	void SetYDirection(int y){
+	public void SetYDirection(int y){
 		if(y >= -1 && y <= 1)
 			MovingY = y;
 	}

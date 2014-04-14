@@ -1,5 +1,5 @@
 package Player;
-
+//coopoawasdlfkjew
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,12 +14,21 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import Entities_and_Player.Position;
-import Entities_and_Player.Rat;
+import JohnnyComeLately.Position;
+import JohnnyComeLately.*;
+import Map.*;
+import Player.*;
 import Map.Beach;
 public class Board extends JPanel implements ActionListener {
 
-    private Timer timer;
+	  //Make variables move these to top so it doesnt break
+    Rooms currentRoom = new Rooms();
+    Player player = new Player(new Position(250,250));
+    Map theMap = new Map(currentRoom, player);
+    ArrayList<Creature> creature = currentRoom.getCreArray();
+    ArrayList<Projectile> projectile = currentRoom.getProArray();
+    Item item = currentRoom.getItem();
+	private Timer timer;
     private Craft craft;
     private boolean mapdraw = true;
     private Beach b = new Beach();
@@ -29,7 +38,8 @@ public class Board extends JPanel implements ActionListener {
     private Random Rand = new Random();
     
     public Board() {
-
+    	
+    	
         addKeyListener(new TAdapter());
         setFocusable(true);
         
@@ -189,10 +199,131 @@ public class Board extends JPanel implements ActionListener {
 
         public void keyReleased(KeyEvent e) {
             craft.keyReleased(e);
+            //Player move release
+            if(e.getKeyChar() == 'w'){
+            	player.SetY(0);
+            }
+            if(e.getKeyChar() == 'a'){
+            	player.SetX(0);
+            }
+            if(e.getKeyChar() == 's'){
+            	player.SetY(0);
+            }
+            if(e.getKeyChar() == 'd'){
+            	player.SetX(0);
+            }
+            
+          //shooting things release
+            if(e.getKeyCode() == KeyEvent.VK_UP){
+            	player.SetShotYDirection(0);
+            }
+            if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            	player.SetShotXDirection(0);
+            }
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            	player.SetShotYDirection(0);
+            }
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            	player.SetShotXDirection(0);
+            }
         }
 
         public void keyPressed(KeyEvent e) {
             craft.keyPressed(e);
+            //Player Movement
+            if(e.getKeyChar() == 'w'){
+            	player.SetYDirection(1);
+            }
+            if(e.getKeyChar() == 'a'){
+            	player.SetXDirection(-1);
+            }
+            if(e.getKeyChar() == 's'){
+            	player.SetYDirection(-1);
+            }
+            if(e.getKeyChar() == 'd'){
+            	player.SetXDirection(1);
+            }
+            
+            //shooting things
+            if(e.getKeyCode() == KeyEvent.VK_UP){
+            	player.SetShotYDirection(1);
+            }
+            if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            	player.SetShotXDirection(-1);
+            }
+            if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            	player.SetShotYDirection(-1);
+            }
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            	player.SetShotXDirection(1);
+            }
         }
     }   
+    
+    
+    //Zac's stuff dont delete it
+
+    //Movement function
+    public void moveAllTheThings(){
+    	for(Creature i: creature){
+    		i.Move();
+    	}
+    	player.Move();
+    	for(Projectile j: projectile){
+    		j.Move();
+    	}
+    }
+    
+    //Collision Function
+    public void collisions(){
+    	//player and creatures hitting each other
+    	for(Creature i: creature){
+    		i.Collide(player);
+    		player.Collide(i);
+    		//creatures hitting projectiles
+    		for(Projectile j: projectile){
+    			i.Collide(j);
+    		}
+    	}
+    	//player hitting projectile
+    	for(Projectile k: projectile){
+    		player.Collide(k);
+    	}
+    	//Player hit the item
+    	player.Collide(item);
+    }
+    
+    //Attack Function
+    public void attack(){
+    	//creature attack
+    	for(Creature i: creature){
+    		projectile.add(i.Attack());
+    	}
+    	//player attack
+    	projectile.add(player.Attack());
+    }
+    
+    //Remove Stuff
+    public void removeSomeOfTheThings(){
+    	//Check remove creatures
+    	for(Creature i: creature){
+    		if(i.ShouldRemove()){
+    			creature.remove(i);
+    		}
+    	}
+    	//Check remove projectiles
+    	for(Projectile j: projectile){
+    		if(j.ShouldRemove()){
+    			projectile.remove(j);
+    		}
+    	}
+    	//Check remove item how to do this??
+    	if(item.ShouldRemove()){
+    		item = null;
+    	}
+    	//Check remove player
+    	if(player.ShouldRemove()){
+    		//gameState = "dead";
+    	}    	
+    }
 }

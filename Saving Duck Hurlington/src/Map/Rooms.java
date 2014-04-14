@@ -3,9 +3,9 @@ package Map;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import JohnnyComeLately.Creature;
-import JohnnyComeLately.Item;
-import JohnnyComeLately.Projectile;
+import Entities_and_Player.Creature;
+import Entities_and_Player.Item;
+import Entities_and_Player.Projectile;
  
   public class Rooms {
 	

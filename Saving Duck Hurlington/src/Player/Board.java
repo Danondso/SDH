@@ -14,8 +14,8 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import JohnnyComeLately.Position;
-import JohnnyComeLately.Rat;
+import Entities_and_Player.Position;
+import Entities_and_Player.Rat;
 import Map.Beach;
 public class Board extends JPanel implements ActionListener {
 

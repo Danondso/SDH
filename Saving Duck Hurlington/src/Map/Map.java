@@ -1,9 +1,9 @@
 package Map;
 import java.util.Random;
 
-import JohnnyComeLately.Item;
-import JohnnyComeLately.ItemPool;
-import JohnnyComeLately.Player;
+import Entities_and_Player.Item;
+import Entities_and_Player.ItemPool;
+import Entities_and_Player.Player;
 
 public class Map {
 

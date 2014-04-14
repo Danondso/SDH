@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import JohnnyComeLately.Creature;
-import JohnnyComeLately.Item;
-import JohnnyComeLately.Player;
-import JohnnyComeLately.Projectile;
+import Entities_and_Player.Creature;
+import Entities_and_Player.Item;
+import Entities_and_Player.Player;
+import Entities_and_Player.Projectile;
 import Map.*;
 	public class Main
 <<<<<<< HEAD:Saving Duck Hurlington/src/Main.java

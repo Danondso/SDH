@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 //This is a rough draft of the Entities class that will encompass all of the entities of the game, we will make sub classes that makes thing more specific later
 abstract class Entity {
+	protected static int AttackDelayCap = 25;
 	static boolean Player = true;
 	static boolean Enemy = false;
 	protected Position Position;

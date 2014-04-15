@@ -9,16 +9,16 @@ public class Player extends Creature{
 	protected boolean PanicGloves;
 	
 	public Player(Position pos){
-		super(5, 5, 5, 5, 100, pos, "/Player/player_male.png");
+		super(5, 5, 5, 1, 100, pos, "/Player/player_male.png");
 		Attack = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range, Player, pos);
 		PanicBoots = false;
 		InvincibilityFrames = 10;
 	}
 
 	Projectile AttackMethod() {
-		if(ShotX != 0 && ShotY != 0){
+		if(ShotX != 0 || ShotY != 0){
 			if(Attack instanceof Sword){
-			Projectile sword = new Sword(Damage, /*holy crap no, please no, Matt means SpeedX and SpeedY*/Speed, Speed, Range + (PanicGloves ? MaxHealth - Health : 0), Player, Position);
+			Projectile sword = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range + (PanicGloves ? MaxHealth - Health : 0), Player, new Position(Position.X, Position.Y));
 			return sword;
 			}
 		}

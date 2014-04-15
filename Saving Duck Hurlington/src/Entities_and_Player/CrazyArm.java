@@ -10,7 +10,7 @@ public class CrazyArm extends Item {
 	@Override
 	void Collect(Player player) {
 		// TODO Auto-generated method stub
-		player.AttackDelay = 2;
+		player.AttackDelay = AttackDelayCap;
 		player.Range /= 2;
 		if(player.Range < 32)
 			player.Range = 32;

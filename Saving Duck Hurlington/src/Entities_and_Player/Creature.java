@@ -20,7 +20,7 @@ public abstract class Creature extends Entity{
 	protected int IFCount; //IFCount counts how many invincibility frames remain on a creature
 	protected int AttackDelay;
 	protected int CDelay;
-	protected int ShotSpeed = 10;
+	protected int ShotSpeed = 2;
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);
@@ -37,7 +37,7 @@ public abstract class Creature extends Entity{
 		MovingY = 0;
 		InvincibilityFrames = 3;
 		IFCount = 0;
-		AttackDelay = 5;
+		AttackDelay = 100;
 		CDelay = 0;
 	}
 	
@@ -129,8 +129,10 @@ public abstract class Creature extends Entity{
 	
 	public Projectile Attack(){
 		if(CDelay == 0){
-			CDelay = AttackDelay;
-			return AttackMethod();
+			Projectile Return = AttackMethod();
+			if(Return != null)
+				CDelay = AttackDelay;
+			return Return;
 		}
 		else{
 			CDelay--;

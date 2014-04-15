@@ -80,9 +80,7 @@ abstract class Tiles{
 			//string for textures
 			name = new String[textures.length];
 			//string for 
-			id = new int[textures.length];
-		
-			
+
 			
 			nextX = 0;
 			nextY = 0;

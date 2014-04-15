@@ -1,4 +1,4 @@
-package JohnnyComeLately;
+package Entities_and_Player;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -14,6 +14,7 @@ public class ItemPool implements Comparator<ItemPoolNode>{
 		Pool.add(new ItemPoolNode(new WellCookedSteak(new Position(250, 250)), rand.nextDouble()));
 		Pool.add(new ItemPoolNode(new GlassCannon(new Position(250, 250)), rand.nextDouble()));
 		Pool.add(new ItemPoolNode(new SwiftBoots(new Position(250, 250)), rand.nextDouble()));
+		Pool.add(new ItemPoolNode(new CrazyArm(new Position(250, 250)), rand.nextDouble()));
 		//add more as more items added
 	}
 

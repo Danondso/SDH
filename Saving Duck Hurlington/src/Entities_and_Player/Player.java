@@ -1,4 +1,4 @@
-package JohnnyComeLately;
+package Entities_and_Player;
 
 
 public class Player extends Creature{

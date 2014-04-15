@@ -88,7 +88,7 @@ import Entities_and_Player.Projectile;
 		Item = room.Item;
 		
 		//copy creature array list from room to this hardcopy not referencey
-		if(room.cleared == false){
+		if(!room.cleared){
 			for(Creature C : room.Creatures)
 				room.Creatures.add(C.Clone());
 	 	}

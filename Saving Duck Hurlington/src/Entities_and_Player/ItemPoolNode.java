@@ -2,7 +2,7 @@ package Entities_and_Player;
 
 import java.util.Comparator;
 
-public class ItemPoolNode{
+public class ItemPoolNode implements Comparable{
 	private Item Item;
 	private double Value;
 	
@@ -18,4 +18,17 @@ public class ItemPoolNode{
 	protected double GetValue(){
 		return Value;
 	}
+
+	@Override
+	public int compareTo(Object node) {
+		// TODO Auto-generated method stub
+		if(Value < ((ItemPoolNode)node).GetValue())
+			return -1;
+			
+		if(Value > ((ItemPoolNode)node).GetValue())
+			return 1;
+		
+		return 0;
+	}
 }
+

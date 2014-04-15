@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 public class ItemPool implements Comparator<ItemPoolNode>{
-	private PriorityQueue<ItemPoolNode> Pool;
+	private PriorityQueue<ItemPoolNode> Pool = new PriorityQueue<ItemPoolNode>();
 	
 	public ItemPool(){
 		Random rand = new Random();

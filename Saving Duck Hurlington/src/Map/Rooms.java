@@ -88,9 +88,10 @@ import Entities_and_Player.Projectile;
 		Item = room.Item;
 		
 		//copy creature array list from room to this hardcopy not referencey
-		for(Creature C : room.Creatures)
-			room.Creatures.add(C.Clone());
-		
+		if(room.cleared == false){
+			for(Creature C : room.Creatures)
+				room.Creatures.add(C.Clone());
+	 	}
 		//copy tile from room to this, reference not hardcopy
 	    display = room.display;
 	    

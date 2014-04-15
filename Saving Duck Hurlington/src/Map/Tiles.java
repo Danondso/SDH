@@ -80,10 +80,7 @@ abstract class Tiles{
 			//string for textures
 			name = new String[textures.length];
 			//string for 
-			id = new int[textures.length];
-		
-			
-			
+				
 			nextX = 0;
 			nextY = 0;
 			
@@ -136,16 +133,22 @@ abstract class Tiles{
 			   for(int j = 0; j < totalmap.length; j++)
 			   {
 			    if((i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48 || i == 63 || i == 64))
-			       totalmap[i][j] = terrain[4];
-				
+			    { totalmap[i][j] = terrain[4];
+			      identity[i][j].clearRect(0, 0, 32, 32);
+			    }
 				if((j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63 || j == 64))
-					totalmap[i][j] = terrain[4];
-			
-		     	if((i == 0 || i == 63))
-				  totalmap[i][j] = terrain[4];
+				{	totalmap[i][j] = terrain[4];
+				identity[i][j].clearRect(0, 0, 32, 32);
+				}
 				
+		     	if((i == 0 || i == 63))
+		     	{
+		     		totalmap[i][j] = terrain[4];
+		     		identity[i][j].clearRect(0, 0, 32, 32);
+		     	}
 				if(j == 0 || j == 63)
 				  totalmap[i][j] = terrain[4];
+				identity[i][j].clearRect(0, 0, 32, 32);
 			   } 
 			}
 		}
@@ -159,18 +162,21 @@ abstract class Tiles{
 					
 				//you pretty much subgrid the map so it makes all the entrances and exits nonsolid	
 				  if(i == 7 || j == 7)//add the rest of the i's and j's for the rest of the map
-					totalmap[i][j] = terrain[1]; 
-				  
+					{
+					 totalmap[i][j] = terrain[1]; 
+					}
 				  if(i == 23 || j == 23)
+				  {
 					totalmap[i][j] = terrain[1];
-				  
+				  }
 				  if(i == 39 || j == 39)
-						totalmap[i][j] = terrain[1];
-				  
+				  {
+				    totalmap[i][j] = terrain[1];
+				  }
 				  if(i == 55 || j == 55)
-						totalmap[i][j] = terrain[1];
-				  
-				
+				  {
+				    totalmap[i][j] = terrain[1];
+				  }
 				}
 			}
 			
@@ -183,16 +189,27 @@ abstract class Tiles{
 				{
 			
 			  if(j == 63 && i <= 63)
-				  totalmap[i][j] = terrain[2];
+				  {totalmap[i][j] = terrain[2];
+				   identity[i][j].clearRect(0, 0, 32, 32);
+				  }
 			  
 			  if(i == 63 && j <= 63)
-					  totalmap[i][j] = terrain[2];
+			  {
+			   totalmap[i][j] = terrain[2];
+			   identity[i][j].clearRect(0, 0, 32, 32);
+			  }
 			  
 			  if(j == 0 && i <= 63)
-				  totalmap[i][j] = terrain[2];
+			  {
+			   totalmap[i][j] = terrain[2];
+			   identity[i][j].clearRect(0, 0, 32, 32);
+			  }
 			  
 			  if(j == 0 && i <= 63)
-				  totalmap[i][j] = terrain[2];
+			  {
+			   totalmap[i][j] = terrain[2];
+			   identity[i][j].clearRect(0, 0, 32, 32);
+			  }
 			  
 				}
 			}

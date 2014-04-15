@@ -1,6 +1,7 @@
 package Map;
 import java.util.Random;
 
+import Entities_and_Player.Creature;
 import Entities_and_Player.Item;
 import Entities_and_Player.ItemPool;
 import Entities_and_Player.Player;
@@ -145,25 +146,50 @@ public class Map {
 		//use the room logic from the board class, make a swap room like swaptile
 		Room[][] blueprint = getBluePrint();
 		*/
+
 		
-		//the entire setup for the ifs will be cleaned once a method for making the items visible is created
-		
-		//checks to see if room is cleared
-		if(room.cleared)
+		//checks to see if a creature moved out of the room
+		if(!room.getCreArray().isEmpty())
 		{
-		  //checks to see if an item has spawned yet
-		  if(room.itemSpawn)
-		  {
-			  //checks to see if an item exists for this room
-			  if(room.Item != null)
-			  {
-				  //make the item appear
-			  }
-				
-		    }
+	    	for(Creature cr : room.getCreArray()){
+			if(cr.GetX() < 0)
+				cr.SetX(0);
+			if(cr.GetX() + cr.getImage().getHeight(null) > 32 * 16)
+				cr.SetX(32 * 16 - cr.getImage().getHeight(null));
+			
+			if(cr.GetY() < 0)
+				cr.SetY(0);
+			if(cr.GetY() + cr.getImage().getWidth(null) > 32 * 16)
+				cr.SetY(32 * 16 - cr.getImage().getWidth(null));
 		}
-			  
-		//need to check if the player moves out of the room
+		
+		}
+		else{ room.cleared = true;  }
+		//checks to see if the player moved out of the room
+		if(player.GetX() < 0){
+			X--;
+			room.Clone(blueprint[X][Y]);
+			player.SetX(32 * 16 - player.getImage().getHeight(null));
+		}
+		else if(player.GetX() + player.getImage().getHeight(null) > 32 * 16)
+		{
+			X++;
+			room.Clone(blueprint[X][Y]);
+			player.SetX(0);
+		}
+		else if(player.GetY() < 0){
+			Y--;
+			room.Clone(blueprint[X][Y]);
+			player.SetY(0);
+		}
+		else if(player.GetY() + player.getImage().getWidth(null) > 32 * 16)
+			
+			Y++;
+		    room.Clone(blueprint[X][Y]);
+			player.SetY(32 * 16 - player.getImage().getWidth(null));
+		
+		
+		
 		
 		//Logic for room move can be here but MapUpdate should take in the 
 		//current X and Y, MapUpdate needs parameters and an if statement around it

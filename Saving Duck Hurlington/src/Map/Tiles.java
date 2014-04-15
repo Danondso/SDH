@@ -15,6 +15,9 @@ abstract class Tiles{
 	
 		private String[] name;
 		protected boolean issolid = false;
+		
+		
+		
 		//entire generated map dimensions
 		static int row = 64;
 		static int column = 64;
@@ -40,16 +43,17 @@ abstract class Tiles{
 		//This will be used for the entity collision 
 		
 		
+	    
+	    
 		//This creates the map for the levels
 		//Will consist of the tiles
 		protected Image[][] totalmap = new Image[row][column];
 		
 		//protected Image[][] level;
 
-		protected Graphics g;
-
 		
-		
+		protected Graphics[][] identity = new Graphics[row][column];
+		protected Graphics[][] roomID = new Graphics[tilerow][tilecolumn];
 		//The subclass array of asset strings will be passed into this
 		protected Image[] terrain;
 		//Randomize the terrain object
@@ -63,12 +67,6 @@ abstract class Tiles{
 			
 		
 		protected Image[][] tile;
-		
-		//protected String[][] arrays = { array1, array2, array3, array4, array5 };
-		protected Image[][][] choose;
-		
-	
-		
 		
 		public Tiles(String[] texture) {
 				
@@ -115,9 +113,12 @@ abstract class Tiles{
 				{
 			    
 			     int r = rand.nextInt(terrain.length);
+		
+			        if(r == 2 || r == 4)
+			         identity[i][j].clearRect(0, 0, 32, 32);
 			     
 			     	totalmap[i][j] = terrain[r];
-			     	
+		            
 				}
 			}
 		}

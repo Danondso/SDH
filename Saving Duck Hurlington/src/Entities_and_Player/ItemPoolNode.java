@@ -1,4 +1,4 @@
-package JohnnyComeLately;
+package Entities_and_Player;
 
 import java.util.Comparator;
 

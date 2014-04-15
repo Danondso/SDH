@@ -1,5 +1,4 @@
 package Player;
-//coopoawasdlfkjew
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,8 +13,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import JohnnyComeLately.Position;
-import JohnnyComeLately.*;
+import Entities_and_Player.*;
 import Map.*;
 import Player.*;
 import Map.Beach;

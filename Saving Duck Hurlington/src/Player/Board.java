@@ -14,11 +14,20 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import JohnnyComeLately.Position;
-import JohnnyComeLately.*;
-import Map.*;
-import Player.*;
+import Entities_and_Player.Creature;
+import Entities_and_Player.Item;
+import Entities_and_Player.Player;
+import Entities_and_Player.Position;
+import Entities_and_Player.Projectile;
+import Entities_and_Player.Rat;
+import Entities_and_Player.Item;
+import Entities_and_Player.Player;
+import Entities_and_Player.Position;
+import Entities_and_Player.Projectile;
+import Entities_and_Player.Rat;
 import Map.Beach;
+import Map.Map;
+import Map.Rooms;
 public class Board extends JPanel implements ActionListener {
 
 	  //Make variables move these to top so it doesnt break
@@ -36,14 +45,14 @@ public class Board extends JPanel implements ActionListener {
     private Position pos = new Position(250, 250);
     private Rat rat = new Rat(pos);
     private Random Rand = new Random();
-    
+   
     public Board() {
     	
     	
         addKeyListener(new TAdapter());
         setFocusable(true);
         
-        //h
+       
         //the map draws here
         b.createMap();
         //b.clearDoors();
@@ -52,14 +61,11 @@ public class Board extends JPanel implements ActionListener {
         b.sealBorders();
         b.addWater();
         Map = b.swapTile(3, 2);
-        //setLayout(new BorderLayout());  
-        //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
-        //setLayout(new FlowLayout());
-        //rat.getImage();
+    
        
         craft = new Craft();
         
-        rat.Move();
+       
         timer = new Timer(5, this);
         timer.start();
     }

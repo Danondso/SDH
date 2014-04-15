@@ -8,10 +8,10 @@ import Entities_and_Player.Player;
 public class Map {
 
 	private int MapSize = 4;
-	private Rooms[][] blueprint;
-	private Rooms[][] blueprintBeach;
-	private Rooms[][] blueprintForest;
-	private Rooms[][] blueprintMountain;
+	private Rooms[][] blueprint = new Rooms[MapSize][MapSize];
+	private Rooms[][] blueprintBeach = new Rooms[MapSize][MapSize];
+	private Rooms[][] blueprintForest = new Rooms[MapSize][MapSize];
+	private Rooms[][] blueprintMountain = new Rooms[MapSize][MapSize];
 	private Player player;
 	private Rooms room;
 	int X = 0;

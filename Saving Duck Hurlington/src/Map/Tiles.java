@@ -1,26 +1,20 @@
 package Map;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.util.Random;
 
-import javax.swing.JPanel;
 import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import Player.Board;
-
-import java.util.*;
-import java.io.*;
-import java.lang.reflect.Array;
 
 
-abstract class Tiles extends Canvas {
+abstract class Tiles{
 	
 		private String[] textures;
-		private int[] id;
+	
 		private String[] name;
-		
+		protected boolean issolid = false;
 		//entire generated map dimensions
 		static int row = 64;
 		static int column = 64;
@@ -44,7 +38,7 @@ abstract class Tiles extends Canvas {
 	    protected Image[][] displaytile;
 				
 		//This will be used for the entity collision 
-		private boolean issolid = false;
+		
 		
 		//This creates the map for the levels
 		//Will consist of the tiles
@@ -52,6 +46,10 @@ abstract class Tiles extends Canvas {
 		
 		//protected Image[][] level;
 
+		protected Graphics g;
+
+		
+		
 		//The subclass array of asset strings will be passed into this
 		protected Image[] terrain;
 		//Randomize the terrain object

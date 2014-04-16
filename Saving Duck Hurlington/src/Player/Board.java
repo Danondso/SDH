@@ -27,6 +27,14 @@ public class Board extends JPanel implements ActionListener {
     Map theMap = new Map(currentRoom, player);
     ArrayList<Creature> creature = currentRoom.getCreArray();
     ArrayList<Projectile> projectile = currentRoom.getProArray();
+    boolean W = false;
+    boolean A = false;
+    boolean S = false;
+    boolean D = false;
+    boolean Up = false;
+    boolean Left = false;
+    boolean Down = false;
+    boolean Right = false;
     Item item = currentRoom.getItem();
     boolean confirmation = false;
 	private Timer timer;
@@ -194,12 +202,38 @@ public class Board extends JPanel implements ActionListener {
                 m.move();
             else ms.remove(i);
         }
-
-     	  moveAllTheThings();
-     	  attack();
-     	  collisions();
-     	  removeSomeOfTheThings();
-     	 rat.Move();
+        
+        if(!D && !A)
+        	player.SetXDirection(0);
+        if(!W && !S)
+        	player.SetYDirection(0);
+        if(W)
+        	player.SetYDirection(-1);
+        if(A)
+        	player.SetXDirection(-1);
+        if(S)
+        	player.SetYDirection(1);
+        if(D)
+        	player.SetXDirection(1);
+        
+        if(!Right && !Left)
+        	player.SetShotXDirection(0);
+        if(!Up && !Down)
+        	player.SetShotYDirection(0);
+        if(Up)
+        	player.SetShotYDirection(-1);
+        if(Left)
+        	player.SetShotXDirection(-1);
+        if(Down)
+        	player.SetShotYDirection(1);
+        if(Right)
+        	player.SetShotXDirection(1);
+        
+     	moveAllTheThings();
+     	attack();
+     	collisions();
+     	removeSomeOfTheThings();
+     	rat.Move();
         //craft.move();
         repaint();  
     }
@@ -214,30 +248,46 @@ public class Board extends JPanel implements ActionListener {
 	            craft.keyReleased(e);
 	            //Player move release
 	            if(e.getKeyChar() == 'w'){
-	            	player.SetYDirection(0);
+	            	//if(!S)
+	            		//player.SetYDirection(0);
+	            	W = false;
 	            }
 	            if(e.getKeyChar() == 'd'){
-	            	player.SetXDirection(0);
+	            	//if(!A)
+	            		//player.SetXDirection(0);
+	            	D = false;
 	            }
 	            if(e.getKeyChar() == 's'){
-	            	player.SetYDirection(0);
+	            	//if(!W)
+	            		//player.SetYDirection(0);
+	            	S = false;
 	            }
 	            if(e.getKeyChar() == 'a'){
-	            	player.SetXDirection(0);
+	            	//if(!D)
+	            		//player.SetXDirection(0);
+	            	A = false;
 	            }
 	            
 	          //shooting things release
 	            if(e.getKeyCode() == KeyEvent.VK_UP){
-	            	player.SetShotYDirection(0);
+	            	//if(!Down)
+	            		//player.SetShotYDirection(0);
+	            	Up = false;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_LEFT){
-	            	player.SetShotXDirection(0);
+	            	//if(!Right)
+	            		//player.SetShotXDirection(0);
+	            	Left = false;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-	            	player.SetShotYDirection(0);
+	            	//if(!Up)
+	            		//player.SetShotYDirection(0);
+	            	Down = false;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-	            	player.SetShotXDirection(0);
+	            	//if(!Left)
+	            		//player.SetShotXDirection(0);
+	            	Right = false;
 	            }
         	}
         	else if(GameState == "Pause"){
@@ -271,30 +321,46 @@ public class Board extends JPanel implements ActionListener {
 	            craft.keyPressed(e);
 	            //Player Movement
 	            if(e.getKeyChar() == 'w'){
-	            	player.SetYDirection(-1);
+	            	//if(!S)
+	            		//player.SetYDirection(-1);
+	            	W = true;
 	            }
 	            if(e.getKeyChar() == 's'){
-	            	player.SetYDirection(1);
+	            	//if(!W)
+	            		//player.SetYDirection(1);
+	            	S = true;
 	            }
 	            if(e.getKeyChar() == 'a'){
-	            	player.SetXDirection(-1);
+	            	//if(!D)
+	            		//player.SetXDirection(-1);
+	            	A = true;
 	            }
 	            if(e.getKeyChar() == 'd'){
-	            	player.SetXDirection(1);
+	            	//if(!A)
+	            		//player.SetXDirection(1);
+	            	D = true;
 	            }
 	            
 	            //shooting things
 	            if(e.getKeyCode() == KeyEvent.VK_UP){
-	            	player.SetShotYDirection(-1);
+	            	//if(!Down)
+	            		//player.SetShotYDirection(-1);
+	            	Up = true;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-	            	player.SetShotYDirection(1);
+	            	//if(!Up)
+	            		//player.SetShotYDirection(1);
+	            	Down = true;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_LEFT){
-	            	player.SetShotXDirection(-1);
+	            	//if(!Right)
+	            		//player.SetShotXDirection(-1);
+	            	Left = true;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-	            	player.SetShotXDirection(1);
+	            	//if(!Left)
+	            		//player.SetShotXDirection(1);
+	            	Right = true;
 	            }
 	            
 	            //Pause game

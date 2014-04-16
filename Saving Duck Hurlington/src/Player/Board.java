@@ -42,7 +42,7 @@ public class Board extends JPanel implements ActionListener {
     private Beach b = new Beach();
     private Image[][] Map;
     private Position pos = new Position(250, 250);
-    private Rat rat = new Rat(pos);
+    //private Rat rat = new Rat(pos);
     private Random Rand = new Random();
     private String GameState = "Play";
     
@@ -51,7 +51,7 @@ public class Board extends JPanel implements ActionListener {
     	
         addKeyListener(new TAdapter());
         setFocusable(true);
-        
+        creature.add(new Rat(pos));
         //h
         //the map draws here
         b.createMap();
@@ -68,7 +68,7 @@ public class Board extends JPanel implements ActionListener {
        
         craft = new Craft();
         
-        rat.Move();
+        //rat.Move();
         timer = new Timer(5, this);
         timer.start();
     }
@@ -106,10 +106,14 @@ public class Board extends JPanel implements ActionListener {
 	        }
 	
 	        //Draw the rat
-	        g2d.drawImage(rat.getImage(), rat.GetX(), rat.GetY(), this);
+	        //g2d.drawImage(rat.getImage(), rat.GetX(), rat.GetY(), this);
 
 	        //Draw player, not craft
 	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
+	        
+	        for(Creature c : creature)
+	        	if(c != null)
+	        		g2d.drawImage(c.getImage(), c.GetX(), c.GetY(), this);
 	          
 	       	for(Projectile p : projectile)
 	       		if(p != null)
@@ -222,7 +226,7 @@ public class Board extends JPanel implements ActionListener {
      	attack();
      	collisions();
      	removeSomeOfTheThings();
-     	rat.Move();
+     	//rat.Move();
         //craft.move();
         repaint();  
     }
@@ -392,7 +396,8 @@ public class Board extends JPanel implements ActionListener {
 	    		player.Collide(i);
 	    		//creatures hitting projectiles
 	    		for(Projectile j: projectile){
-	    			i.Collide(j);
+	    			if(j != null)
+	    				i.Collide(j);
 	    		}
     		}
     	}
@@ -430,14 +435,16 @@ public class Board extends JPanel implements ActionListener {
 
     	while(itrCreature.hasNext()){
     	   	Creature t = itrCreature.next();
-    	   	if(t.ShouldRemove())
-        		itrCreature.remove();
+    	   	if(t != null)
+	    	   	if(t.ShouldRemove())
+	        		itrCreature.remove();
         }
     	//Check remove projectiles
-    	while(itrCreature.hasNext()){
+    	while(itrProjectile.hasNext()){
     	   	Projectile t = itrProjectile.next();
-    	   	if(t.ShouldRemove())
-        		itrProjectile.remove();
+    	   	if(t != null)
+    	   		if(t.ShouldRemove())
+    	   			itrProjectile.remove();
         }
     	//Check remove item how to do this??
     	if(item != null){

@@ -128,6 +128,9 @@ public abstract class Creature extends Entity{
 			}
 		}
 		
+		if(Health <= 0)
+			Remove();
+		
 		if(IFCount > 0)
 			IFCount--;
 		//More Update stuff, maybe add poison or regeneration over time or something later

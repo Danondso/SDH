@@ -41,7 +41,13 @@ public abstract class Creature extends Entity{
 		CDelay = 0;
 	}
 	
+	public int GetMovingX(){
+		return MovingX;
+	}
 	
+	public int GetMovingY(){
+		return MovingY;
+	}
 	
 	public int GetHealth(){
 		return Health;

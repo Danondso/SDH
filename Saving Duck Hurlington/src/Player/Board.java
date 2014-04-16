@@ -16,7 +16,6 @@ import javax.swing.Timer;
 
 import Entities_and_Player.*;
 import Map.*;
-import Player.*;
 import Map.Beach;
 
 public class Board extends JPanel implements ActionListener {
@@ -91,81 +90,68 @@ public class Board extends JPanel implements ActionListener {
 	        //if(Map == null)
 	        //   Map = b.getTile1();
 	            
-	            int wWin = getWidth() / b.tilerow;
-	            int hWin = getHeight() / b.tilecolumn;
+        	int wWin = getWidth() / b.tilerow;
+	        int hWin = getHeight() / b.tilecolumn;
 	               
 	
-	            for(int i = 0; i < b.tilerow; i++)
-	             {
-	               for(int j = 0; j < b.tilecolumn; j++)
-	                 {
-	        	       int x = i * wWin;
-	        	       int y = j * hWin;
+	        for(int i = 0; i < b.tilerow; i++)
+	        {
+	        	for(int j = 0; j < b.tilecolumn; j++)
+	            {
+	        		int x = i * wWin;
+	        	    int y = j * hWin;
 	        	       
-	        	       g2d.drawImage(Map[i][j], x, y, this); 
-	                 }
-	             }
-	
-	               
-	          g2d.drawImage(rat.getImage(), rat.GetX(), rat.GetY(), this);
-
-	          if (craft.getDX() == 1) {
-	        	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),this);
-	          }
-	        
-	          if (craft.getDX() == -1) {
-	        	g2d.drawImage(craft.getImage(), craft.getX() + craft.getImage().getWidth(this), craft.getY(), craft.getDX() * craft.getImage().getWidth(this), craft.getImage().getHeight(this), this);
-	          }
-
-	          //Draw player, not craft
-	       	  g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
-	          
-	       	  for(Projectile p : projectile)
-	       		  if(p != null)
-	       			  g2d.drawImage(p.getImage(), p.GetX(), p.GetY(), this);
-	       	  
-	          //When it collides with the far right.
-	          if (craft.getX() + craft.getDX() == getWidth()){
-	        	  //Clear crap
-	        	 // b.setNextCoord(1, 0);
-	        	  Map = b.swapTile(1, 0);
-	        	  //Change map
-	        	  craft.setX(0 - craft.getCraftSize());
-	          }
-	          
-	          //When it collides with the far left
-	          if (craft.getX() + craft.getDX() + craft.getCraftSize() == 0){
-	        	  //Clear crap
-	        	//  b.setNextCoord((-1), 0);
-	        	  Map = b.swapTile((-1), 0);
-	        	  //Change map
-	        	  craft.setX(getWidth());
-	          }
-	        
-	          //When it collides with the bottom.
-	          if (craft.getY() + craft.getDY() == getHeight()){
-	        	  //Clear crap
-	        	//  b.setNextCoord(0, 1);
-	        	  Map = b.swapTile(0, 1);
-	        	  //Change map
-	        	  
-	        	  
-	        	  craft.setY(0 - craft.getCraftSize());
-	          }
-	          
-	          //When it collides with the top.
-	          if (craft.getY() + craft.getDY() + craft.getCraftSize() == 0){
-	        	  //Clear crap
-	        	 
-	        	  Map = b.swapTile(0, (-1));  	  
-	        	  //Change map
-	        	  craft.setY(getHeight());
-	          }
-	        
-	        else {
-	        	g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(), null);
+	        	    g2d.drawImage(Map[i][j], x, y, this); 
+	            }
 	        }
+	
+	        //Draw the rat
+	        g2d.drawImage(rat.getImage(), rat.GetX(), rat.GetY(), this);
+
+	        //Draw player, not craft
+	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
+	          
+	       	for(Projectile p : projectile)
+	       		if(p != null)
+	       			g2d.drawImage(p.getImage(), p.GetX(), p.GetY(), this);
+	       	  
+	        //When player collides with the far right.
+	       	if (player.GetX() + player.GetMovingX() == getWidth()){
+	       		//Clear crap
+	       		// b.setNextCoord(1, 0);
+	       		Map = b.swapTile(1, 0);
+	       		//Change map
+	       		player.SetX(0 - player.getImage().getWidth(null));
+	        }
+	          
+	        //When player collides with the far left
+	       	if (player.GetX() + player.GetMovingX() + player.getImage().getWidth(null) == 0){
+	       		//Clear crap
+	        	// b.setNextCoord(1, 0);
+	        	Map = b.swapTile((-1), 0);
+	        	//Change map
+	        	player.SetX(getWidth());
+	       	}
 	        
+	        //When player collides with the bottom.
+	       	if (player.GetY() + player.GetMovingY() == getHeight()){
+	       		//Clear crap
+	        	//  b.setNextCoord(0, 1);
+	        	Map = b.swapTile(0, 1);
+	        	//Change map        	  
+	        	player.SetY(0 - player.getImage().getHeight(null));
+	       	}
+
+	       	//When player collides with the top.
+	        if (player.GetY() + player.GetMovingY() + player.getImage().getHeight(null) == 0){
+	        	//Clear crap
+	        	//  b.setNextCoord(0, 1);
+	        	Map = b.swapTile(0, (-1));
+	        	//Change map        	  
+	        	player.SetY(getHeight());
+	        }
+
+	        /* This orients the projectiles so they are facing the right direction
 	        ArrayList<Missile> ms = craft.getMissiles();
 	
 	        for (int i = 0; i < ms.size(); i++ ) {
@@ -185,7 +171,7 @@ public class Board extends JPanel implements ActionListener {
 	            if(m.getVY() == 1){
 	                g2d.drawImage(m.getImage(), m.getX() + craft.getCraftSize() / 2, m.getY() + craft.getCraftSize() / 2, -m.getVY() * m.getImage().getWidth(this), -m.getImage().getHeight(this), this);
 	             }
-	        }
+	        }*/
 	
 	        Toolkit.getDefaultToolkit().sync();
 	        g.dispose();
@@ -207,14 +193,17 @@ public class Board extends JPanel implements ActionListener {
         	player.SetXDirection(0);
         if(!W && !S)
         	player.SetYDirection(0);
+        if(D && A)
+        	player.SetXDirection(0);
         if(W)
         	player.SetYDirection(-1);
-        if(A)
-        	player.SetXDirection(-1);
         if(S)
         	player.SetYDirection(1);
+        if(A)
+        	player.SetXDirection(-1);      
         if(D)
         	player.SetXDirection(1);
+        
         
         if(!Right && !Left)
         	player.SetShotXDirection(0);
@@ -252,11 +241,6 @@ public class Board extends JPanel implements ActionListener {
 	            		//player.SetYDirection(0);
 	            	W = false;
 	            }
-	            if(e.getKeyChar() == 'd'){
-	            	//if(!A)
-	            		//player.SetXDirection(0);
-	            	D = false;
-	            }
 	            if(e.getKeyChar() == 's'){
 	            	//if(!W)
 	            		//player.SetYDirection(0);
@@ -267,6 +251,12 @@ public class Board extends JPanel implements ActionListener {
 	            		//player.SetXDirection(0);
 	            	A = false;
 	            }
+	            if(e.getKeyChar() == 'd'){
+	            	//if(!A)
+	            		//player.SetXDirection(0);
+	            	D = false;
+	            }
+	            
 	            
 	          //shooting things release
 	            if(e.getKeyCode() == KeyEvent.VK_UP){

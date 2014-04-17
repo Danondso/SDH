@@ -21,7 +21,7 @@ public class Map {
 	private Beach b = new Beach();
 	private Forest f = new Forest();
 	private Mountain m = new Mountain();
-	private Random rand = new Random();
+	private Random rand = new Random(System.currentTimeMillis());
 	private int counter = 0;
 	
 	public Map(Rooms r, Player p)
@@ -36,18 +36,28 @@ public class Map {
 		blueprintBeach = createBlueprint(b, itemPool);
 		//blueprintForest = createBluePrint(f, itemPool);
 		//blueprintMountain = createBluePrint(m, itemPool);
-		
+		room.Clone(blueprintBeach[X][Y]);
 		
 	}
 	//method to switch the working blueprint
 	public void loadMap(Tiles t){
 		
-		t.createMap();
-		t.clearDoors();
-		t.genBorders();
-		t.addDoors();
-		
+		if(t instanceof Beach)
+		{
+			t.createMap();
+			t.clearDoors();
+			((Beach) t).addWater();
+			t.genBorders();
+			t.sealBorders();
+		}
+		else{
+			t.createMap();
+			t.clearDoors();
+			t.genBorders();
+			t.addDoors();
+		}
 	}
+	
 	
 	private Rooms[][] createBlueprint(Tiles t, ItemPool items){
 		
@@ -61,20 +71,24 @@ public class Map {
 				   //bossroom gets an item
 				   
 				   //I need to write ifs to set up two more items 
-				   
-				   if(i == 3 && j == 3){
-				     RoomItem = items.NextItem();}
-				   if(SpawnItem(i, j))
-				     RoomItem = items.NextItem();
-				   
 				   //every room besides the item rooms have a 1/3 chance of a heart spawn
 				   int r = rand.nextInt(3);
 				   if(r == 1 && RoomItem == null)
 				     RoomItem = items.GetHealthPotion();
-				     
-				  blueprint[i][j] = new Rooms(t, i, j, RoomItem); 
 				   
-				  RoomItem = null;
+				   if(i == 3 && j == 3)
+				     RoomItem = items.NextItem();
+				   
+				   else if(SpawnItem(i, j))
+				     RoomItem = items.NextItem();
+				   
+				   if(RoomItem != null)
+				   		blueprint[i][j] = new Rooms(t, i, j, RoomItem.Clone());
+				   else
+				   		blueprint[i][j] = new Rooms(t, i, j, null);
+				   RoomItem = null;
+				   if(blueprint[i][j] == null)
+					   System.out.printf("What is this even\n");
 			   }
 		   }
 			
@@ -154,40 +168,51 @@ public class Map {
 	    	for(Creature cr : room.getCreArray()){
 			if(cr.GetX() < 0)
 				cr.SetX(0);
+			
 			if(cr.GetX() + cr.getImage().getHeight(null) > 32 * 16)
 				cr.SetX(32 * 16 - cr.getImage().getHeight(null));
 			
 			if(cr.GetY() < 0)
 				cr.SetY(0);
+			
 			if(cr.GetY() + cr.getImage().getWidth(null) > 32 * 16)
 				cr.SetY(32 * 16 - cr.getImage().getWidth(null));
-		}
+	    	}	
 		
 		}
 		else{ room.cleared = true;  }
 		//checks to see if the player moved out of the room
-		if(player.GetX() < 0){
+		if(player.GetX() + player.getImage().getWidth(null) < 0){
 			X--;
+			if(X < 0)
+				X = 0;
 			room.Clone(blueprint[X][Y]);
-			player.SetX(32 * 16 - player.getImage().getHeight(null));
+			player.SetX(32 * 16 - player.getImage().getWidth(null));
 		}
-		else if(player.GetX() + player.getImage().getHeight(null) > 32 * 16)
+		else if(player.GetX() > 32 * 16)
 		{
 			X++;
+			if(X > 3)
+				X = 3;
 			room.Clone(blueprint[X][Y]);
 			player.SetX(0);
 		}
-		else if(player.GetY() < 0){
+		else if(player.GetY() + player.getImage().getHeight(null) < 0){
 			Y--;
+			if(Y < 0)
+				Y = 0;
 			room.Clone(blueprint[X][Y]);
-			player.SetY(0);
+			player.SetY(32 * 16 - player.getImage().getHeight(null));
 		}
-		else if(player.GetY() + player.getImage().getWidth(null) > 32 * 16)
+		else if(player.GetY() + player.getImage().getHeight(null) > 32 * 16){
 			
 			Y++;
+			if(Y > 3)
+				Y = 3;
 		    room.Clone(blueprint[X][Y]);
-			player.SetY(32 * 16 - player.getImage().getWidth(null));
-		
+		    player.SetY(0);
+		}
+		System.out.printf("Current room is X: %d Y: %d\n", X, Y);
 		
 		
 		

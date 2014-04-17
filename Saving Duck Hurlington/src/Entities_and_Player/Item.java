@@ -13,6 +13,6 @@ public abstract class Item extends Entity {
 		
 	}
 
-	
+	abstract public Item Clone();
 	abstract void Collect(Player player);
 }

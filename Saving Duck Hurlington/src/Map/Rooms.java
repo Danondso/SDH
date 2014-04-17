@@ -31,8 +31,6 @@ import Entities_and_Player.Projectile;
 		tile = t;
 		//somethings about room spawn		
 		display = setTile(xIn, yIn);
-		
-
 	}
 	
 	public Rooms(){
@@ -48,36 +46,26 @@ import Entities_and_Player.Projectile;
 		Creatures = new ArrayList<Creature>();
 		Projectiles = new ArrayList<Projectile>();
 		Item = null;
-		
 	}
 	
-
 	public Image[][] setTile(int x, int y){
 		
 		return tile.swapTile(x, y);
 	}
 
-	
 	public ArrayList<Projectile> getProArray(){
 		return Projectiles;
-		
 	}
 	
 	public ArrayList<Creature> getCreArray(){
-		
 		return Creatures;
-		
-		
 	}
 	
-	public Item getItem(){
-		
+	public Item getItem(){	
 		return Item;
 	}
 	
 	public void Clone(Rooms room){
-		
-		
 		//empty projectile array list
 		Projectiles.clear();
 		
@@ -89,19 +77,24 @@ import Entities_and_Player.Projectile;
 		
 		//copy creature array list from room to this hardcopy not referencey
 		if(!room.cleared){
-			for(Creature C : room.Creatures)
-				room.Creatures.add(C.Clone());
+			if(room.Creatures != null)
+				for(Creature C : room.Creatures)
+					if(C != null)
+						room.Creatures.add(C.Clone());
 	 	}
 		//copy tile from room to this, reference not hardcopy
-	    display = room.display;
+		//if(room != null)
+			//if(room.display != null)
+		display = room.display.clone();
 	    
 		//copy IsCleared from room to this, reference not hardcopy
 	    cleared = room.cleared; 
-	    
-	    
-	    
+    
 	}
 	
+	public Image[][] GetDisplay(){
+		return display.clone();
+	}
 	
 
 }

@@ -12,4 +12,9 @@ public class PanicBoots extends Item{
 	void Collect(Player player) {
 		player.PanicBoots = true;
 	}
+
+	@Override
+	public Item Clone() {
+		return new PanicBoots(Position);
+	}
 }

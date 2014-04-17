@@ -60,7 +60,7 @@ public class Board extends JPanel implements ActionListener {
         b.clearDoors();
         b.sealBorders();
         b.addWater();
-        Map = b.swapTile(3, 2);
+        Map = b.swapTile(0, 0);
         //setLayout(new BorderLayout());  
         //setContentPane(new JLabel(new ImageIcon(Map[0][0])));
         //setLayout(new FlowLayout());
@@ -101,7 +101,9 @@ public class Board extends JPanel implements ActionListener {
 	        		int x = i * wWin;
 	        	    int y = j * hWin;
 	        	       
-	        	    g2d.drawImage(Map[i][j], x, y, this); 
+	        	    try{
+	        	    	g2d.drawImage(currentRoom.GetDisplay()[i][j], x, y, this);
+	        	    }catch(Exception e){}
 	            }
 	        }
 	
@@ -120,7 +122,7 @@ public class Board extends JPanel implements ActionListener {
 	       			g2d.drawImage(p.getImage(), p.GetX(), p.GetY(), this);
 	       	  
 	        //When player collides with the far right.
-	       	if (player.GetX() + player.GetMovingX() == getWidth()){
+/*	       	if (player.GetX() + player.GetMovingX() == getWidth()){
 	       		//Clear crap
 	       		// b.setNextCoord(1, 0);
 	       		Map = b.swapTile(1, 0);
@@ -154,7 +156,7 @@ public class Board extends JPanel implements ActionListener {
 	        	//Change map        	  
 	        	player.SetY(getHeight());
 	        }
-
+			
 	        /* This orients the projectiles so they are facing the right direction
 	        ArrayList<Missile> ms = craft.getMissiles();
 	
@@ -226,6 +228,7 @@ public class Board extends JPanel implements ActionListener {
      	attack();
      	collisions();
      	removeSomeOfTheThings();
+     	theMap.MapUpdate();
      	//rat.Move();
         //craft.move();
         repaint();  

@@ -16,4 +16,9 @@ public class CrazyArm extends Item {
 			player.Range = 32;
 	}
 
+	@Override
+	public Item Clone() {
+		return new CrazyArm(Position);
+	}
+
 }

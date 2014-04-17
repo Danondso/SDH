@@ -12,4 +12,9 @@ public class SwiftBoots extends Item {
 		// TODO Auto-generated method stub
 		player.Speed += 1;
 	}
+
+	@Override
+	public Item Clone() {
+		return new SwiftBoots(Position);
+	}
 }

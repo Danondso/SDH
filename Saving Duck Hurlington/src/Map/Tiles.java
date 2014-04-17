@@ -57,14 +57,24 @@ abstract class Tiles{
 		//The subclass array of asset strings will be passed into this
 		protected Image[] terrain;
 		//Randomize the terrain object
-		protected Random rand = new Random();
+		protected Random rand = new Random(System.currentTimeMillis());
         //single 16 X 16 tile array
-		public Image[][] tile1, tile2, tile3, tile4,
-		                    tile5, tile6, tile7, tile8,
-		                    tile9, tile10, tile11, tile12,
-		                    tile13, tile14, tile15, tile16 
-		                    = new Image[tilerow][tilecolumn];
-			
+		public Image[][] tile1 = new Image[tilerow][tilecolumn], 
+						 tile2 = new Image[tilerow][tilecolumn], 
+						 tile3 = new Image[tilerow][tilecolumn], 
+						 tile4 = new Image[tilerow][tilecolumn],
+		                 tile5 = new Image[tilerow][tilecolumn], 
+		                 tile6 = new Image[tilerow][tilecolumn], 
+		                 tile7 = new Image[tilerow][tilecolumn], 
+		                 tile8 = new Image[tilerow][tilecolumn],
+		                 tile9 = new Image[tilerow][tilecolumn], 
+		                 tile10 = new Image[tilerow][tilecolumn], 
+		                 tile11 = new Image[tilerow][tilecolumn], 
+		                 tile12 = new Image[tilerow][tilecolumn],
+		                 tile13 = new Image[tilerow][tilecolumn], 
+		                 tile14 = new Image[tilerow][tilecolumn], 
+		                 tile15 = new Image[tilerow][tilecolumn], 
+		                 tile16 = new Image[tilerow][tilecolumn];
 		
 		protected Image[][] tile;
 		
@@ -190,25 +200,25 @@ abstract class Tiles{
 			
 			  if(j == 63 && i <= 63)
 				  {totalmap[i][j] = terrain[2];
-				   identity[i][j].clearRect(0, 0, 32, 32);
+//				   identity[i][j].clearRect(0, 0, 32, 32);
 				  }
 			  
 			  if(i == 63 && j <= 63)
 			  {
 			   totalmap[i][j] = terrain[2];
-			   identity[i][j].clearRect(0, 0, 32, 32);
+//			   identity[i][j].clearRect(0, 0, 32, 32);
 			  }
 			  
 			  if(j == 0 && i <= 63)
 			  {
 			   totalmap[i][j] = terrain[2];
-			   identity[i][j].clearRect(0, 0, 32, 32);
+//			   identity[i][j].clearRect(0, 0, 32, 32);
 			  }
 			  
 			  if(j == 0 && i <= 63)
 			  {
 			   totalmap[i][j] = terrain[2];
-			   identity[i][j].clearRect(0, 0, 32, 32);
+//			   identity[i][j].clearRect(0, 0, 32, 32);
 			  }
 			  
 				}
@@ -236,49 +246,16 @@ abstract class Tiles{
 		
 		
 		//loads a tile to display on the map
-		public Image[][] loadTile(int r, int c){
+		public Image[][] loadTile(int r, int c, Image[][] inTile){
 				
 			for(int i = 0; i < tilerow; i++){
-		       for(int j = 0; j < tilecolumn;j++){
+		       for(int j = 0; j < tilecolumn; j++){
 					
-		    	   tile[i][j] = totalmap[(i + r)][(j + c)];		    	 
+		    	   inTile[i][j] = totalmap[(i + r)][(j + c)]; 
 				}      
 			}	
-			return tile;
+			return inTile;
 		}
-		
-		//Will make the initial 
-		
-		public void setNextCoord(int newX, int newY){
-			
-			nextX += newX;
-		    
-			nextY += newY;
-			
-		}
-		
-		public int getX(){
-			
-			return x;
-		}
-		
-		public int getY(){
-			
-			return y;
-		}
-		
-		public void getNextX(){
-			
-		}
-		
-		public void getNextY(){
-			
-			
-			
-		}
-		
-		
-		
 		
 		public Image[][] swapTile(int newX, int newY){
 			
@@ -289,68 +266,68 @@ abstract class Tiles{
 				nextY = 0;
 			}
 			
-			nextX += newX;
-			nextY += newY;
+			nextX = newX;
+			nextY = newY;
 			
 			if(nextX == 0 && nextY == 0)
-				  return getTile1();
+				  return getTile1().clone();
 			if(nextX == 1 && nextY == 0)
-				  return getTile2();
+				  return getTile2().clone();
 			if(nextX == 2 && nextY == 0)
-				  return getTile3();
+				  return getTile3().clone();
 			if(nextX == 3 && nextY == 0)
-				  return getTile4();
+				  return getTile4().clone();
 			if(nextX == 0 && nextY == 1)
-				  return getTile5();
+				  return getTile5().clone();
 			if(nextX == 1 && nextY == 1)
-				  return getTile6();
+				  return getTile6().clone();
 			if(nextX == 2 && nextY == 1)
-				  return getTile7();
+				  return getTile7().clone();
 			if(nextX == 3 && nextY == 1)
-				  return getTile8();
+				  return getTile8().clone();
 			if(nextX == 0 && nextY == 2)
-				  return getTile9();
+				  return getTile9().clone();
 			if(nextX == 1 && nextY == 2)
-				  return getTile10();
+				  return getTile10().clone();
 			if(nextX == 2 && nextY == 2)
-				  return getTile11();
+				  return getTile11().clone();
 			if(nextX == 3 && nextY == 2)
-				  return getTile12();
+				  return getTile12().clone();
 			if(nextX == 0 && nextY == 3)
-				  return getTile13();
+				  return getTile13().clone();
 			if(nextX == 1 && nextY == 3)
-				  return getTile14();
+				  return getTile14().clone();
 			if(nextX == 2 && nextY == 3)
-				  return getTile15();
+				  return getTile15().clone();
 			if(nextX == 3 && nextY == 3)
-				  return getTile16();
+				  return getTile16().clone();
 			
-			
+			System.out.printf("do we ever get here?\n");
 			return null;
 		}
 		
 		
 		
 		//1st row
-		public Image[][] getTile1(){tile1 = loadTile(0,0); return tile1; }
-		public Image[][] getTile2(){tile2 = loadTile(16,0); return tile2;}
-		public Image[][] getTile3(){tile3 = loadTile(32,0); return tile3;}
-		public Image[][] getTile4(){tile4 = loadTile(48,0); return tile4;}
+		public Image[][] getTile1(){tile1 = loadTile(0,0, tile1); return tile1; }
+		public Image[][] getTile2(){tile2 = loadTile(16,0, tile2); return tile2;}
+		public Image[][] getTile3(){tile3 = loadTile(32,0, tile3); return tile3;}
+		public Image[][] getTile4(){tile4 = loadTile(48,0, tile4); return tile4;}
 		//2nd row
-		public Image[][] getTile5(){tile5 = loadTile(0,16); return tile5;}
-		public Image[][] getTile6(){tile6 = loadTile(16,16); return tile6;}
-		public Image[][] getTile7(){tile7 = loadTile(32,16); return tile7;}
-		public Image[][] getTile8(){tile8 = loadTile(48,16); return tile8;}
+		public Image[][] getTile5(){tile5 = loadTile(0,16, tile5); return tile5;}
+		public Image[][] getTile6(){tile6 = loadTile(16,16, tile6); return tile6;}
+		public Image[][] getTile7(){tile7 = loadTile(32,16, tile7); return tile7;}
+		public Image[][] getTile8(){tile8 = loadTile(48,16, tile8); return tile8;}
 		//3rd row
-		public Image[][] getTile9(){tile9 = loadTile(0,32); return tile9;}
-		public Image[][] getTile10(){tile10 = loadTile(16,32); return tile10;}
-		public Image[][] getTile11(){tile11 = loadTile(32,32); return tile11;}
-		public Image[][] getTile12(){tile12 = loadTile(32,48); return tile12;}
+		public Image[][] getTile9(){tile9 = loadTile(0,32, tile9); return tile9;}
+		public Image[][] getTile10(){tile10 = loadTile(16,32, tile10); return tile10;}
+		public Image[][] getTile11(){tile11 = loadTile(32,32, tile11); return tile11;}
+		public Image[][] getTile12(){tile12 = loadTile(32,48, tile12); return tile12;}
 	    //4th row
-		public Image[][] getTile13(){tile13 = loadTile(0,48);  return tile13;}
-		public Image[][] getTile14(){tile14 = loadTile(16,48); return tile14;}
-		public Image[][] getTile15(){tile15 = loadTile(32,48); return tile15;}
-		public Image[][] getTile16(){tile16 = loadTile(48,48); return tile16;}
+		public Image[][] getTile13(){tile13 = loadTile(0,48, tile13);  return tile13;}
+		public Image[][] getTile14(){tile14 = loadTile(16,48, tile14); return tile14;}
+		public Image[][] getTile15(){tile15 = loadTile(32,48, tile15); return tile15;}
+		public Image[][] getTile16(){tile16 = loadTile(48,48, tile16); return tile16;}
 		
 	
 		

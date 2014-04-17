@@ -10,4 +10,9 @@ public class WellCookedSteak extends Item{
 		player.MaxHealth += 10;
 		player.Health += 10;
 	}
+
+	@Override
+	public Item Clone() {
+		return new WellCookedSteak(Position);
+	}
 }

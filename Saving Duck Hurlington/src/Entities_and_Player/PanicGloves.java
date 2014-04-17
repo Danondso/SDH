@@ -12,4 +12,8 @@ public class PanicGloves extends Item{
 		player.PanicGloves = true;
 	}
 
+	@Override
+	public Item Clone() {
+		return new PanicGloves(Position);
+	}
 }

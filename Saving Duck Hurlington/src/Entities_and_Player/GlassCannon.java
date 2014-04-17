@@ -14,4 +14,9 @@ public class GlassCannon extends Item {
 		if(player.Health > player.MaxHealth)
 			player.Health = player.MaxHealth;
 	}
+
+	@Override
+	public Item Clone() {
+		return new GlassCannon(Position);
+	}
 }

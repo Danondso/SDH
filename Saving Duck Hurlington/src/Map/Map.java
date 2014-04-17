@@ -212,7 +212,7 @@ public class Map {
 		    room.Clone(blueprint[X][Y]);
 		    player.SetY(0);
 		}
-		System.out.printf("Current room is X: %d Y: %d\n", X, Y);
+		//System.out.printf("Current room is X: %d Y: %d\n", X, Y);
 		
 		
 		

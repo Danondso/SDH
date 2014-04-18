@@ -161,7 +161,6 @@ public class Map {
 		//use the room logic from the board class, make a swap room like swaptile
 		Room[][] blueprint = getBluePrint();
 		*/
-
 		
 		//checks to see if a creature moved out of the room
 		if(!room.getCreArray().isEmpty())

@@ -104,7 +104,12 @@ public class Board extends JPanel implements ActionListener {
 	        	       
 	        	    try{
 	        	    	g2d.drawImage(currentRoom.GetDisplay()[i][j], x, y, this);
-	        	    		 	
+	        	    		
+	        	    	if(currentRoom.GetCollision()[i][j] == null)
+	        	    	  currentRoom.GetCollision()[i][j].setBounds(x, y, 32, 32);
+	   
+	        	    	
+	        	    	  
 	        	    }catch(Exception e){}
 	            }
 	        }

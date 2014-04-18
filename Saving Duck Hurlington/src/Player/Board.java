@@ -45,6 +45,7 @@ public class Board extends JPanel implements ActionListener {
     //private Rat rat = new Rat(pos);
     private Random Rand = new Random();
     private String GameState = "Play";
+
     
     public Board() {
     	
@@ -103,6 +104,7 @@ public class Board extends JPanel implements ActionListener {
 	        	       
 	        	    try{
 	        	    	g2d.drawImage(currentRoom.GetDisplay()[i][j], x, y, this);
+	        	    		 	
 	        	    }catch(Exception e){}
 	            }
 	        }
@@ -113,6 +115,9 @@ public class Board extends JPanel implements ActionListener {
 	        //Draw player, not craft
 	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
 	        
+	        
+	        
+	        
 	        for(Creature c : creature)
 	        	if(c != null)
 	        		g2d.drawImage(c.getImage(), c.GetX(), c.GetY(), this);
@@ -120,6 +125,8 @@ public class Board extends JPanel implements ActionListener {
 	       	for(Projectile p : projectile)
 	       		if(p != null)
 	       			g2d.drawImage(p.getImage(), p.GetX(), p.GetY(), this);
+	       	
+	       	
 	       	  
 	        //When player collides with the far right.
 /*	       	if (player.GetX() + player.GetMovingX() == getWidth()){

@@ -44,6 +44,7 @@ public class Map {
 		
 		if(t instanceof Beach)
 		{
+			t.fillIdentity();
 			t.createMap();
 			t.clearDoors();
 			((Beach) t).addWater();

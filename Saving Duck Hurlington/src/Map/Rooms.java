@@ -1,6 +1,7 @@
 package Map;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import Entities_and_Player.Creature;
@@ -11,6 +12,7 @@ import Entities_and_Player.Projectile;
 	
     
 	private Image[][] display = new Image[16][16];
+	private Rectangle[][]Collision = new Rectangle[16][16];
   
 	// private Beach beach;
     // private Forest forest;
@@ -31,6 +33,7 @@ import Entities_and_Player.Projectile;
 		tile = t;
 		//somethings about room spawn		
 		display = setTile(xIn, yIn);
+		Collision = setRect(xIn, yIn);
 	}
 	
 	public Rooms(){
@@ -40,6 +43,7 @@ import Entities_and_Player.Projectile;
 			for(int j = 0; j < 16; j++)
 			{
 				display[i][j] = null;
+				Collision[i][j] = null;
 			}
 		}
 		//clears the Creatures and Projectiles array
@@ -51,6 +55,10 @@ import Entities_and_Player.Projectile;
 	public Image[][] setTile(int x, int y){
 		
 		return tile.swapTile(x, y);
+	}
+	
+	public Rectangle[][]setRect(int x, int y){
+		return tile.swapRect(x, y);
 	}
 
 	public ArrayList<Projectile> getProArray(){
@@ -86,6 +94,8 @@ import Entities_and_Player.Projectile;
 		//if(room != null)
 			//if(room.display != null)
 		display = room.display.clone();
+		
+		Collision = room.Collision.clone();
 	    
 		//copy IsCleared from room to this, reference not hardcopy
 	    cleared = room.cleared; 
@@ -96,5 +106,10 @@ import Entities_and_Player.Projectile;
 		return display.clone();
 	}
 	
-
+    public Rectangle[][] GetCollision(){
+    	return Collision.clone();
+    }
+	
+	
+	
 }

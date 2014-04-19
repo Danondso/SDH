@@ -10,9 +10,9 @@ import Entities_and_Player.Projectile;
  
   public class Rooms {
 	
-    
-	private Image[][] display = new Image[16][16];
-	private Rectangle[][]Collision = new Rectangle[16][16];
+    int roomSize = 16;
+	private Image[][] display = new Image[roomSize][roomSize];
+	private Rectangle[][]Collision = new Rectangle[roomSize][roomSize];
   
 	// private Beach beach;
     // private Forest forest;

@@ -153,14 +153,16 @@ public class Map {
 	
 	public void MapUpdate(){
 		
-		//player l
-	/*
-	 if(left == true){
-		int nextX = 0;
-		int nextY = 0;
-		//use the room logic from the board class, make a swap room like swaptile
-		Room[][] blueprint = getBluePrint();
-		*/
+
+		
+		for(int i = 0; i < room.roomSize; i ++)	
+		   {
+			   for(int j = 0; j < 16; j ++)
+			   {
+			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(player.GetX(), player.GetY(), player.GetX(), player.GetY()))	   
+			       System.out.println("yes" + "Rectangle" + i + ", " + j);
+			   }
+		   }
 		
 		//checks to see if a creature moved out of the room
 		if(!room.getCreArray().isEmpty())

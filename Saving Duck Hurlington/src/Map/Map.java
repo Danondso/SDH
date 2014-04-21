@@ -163,20 +163,18 @@ public class Map {
 			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(player.GetX(), player.GetY(), player.getImage().getWidth(null), player.getImage().getHeight(null)))	   
 			     {
 			    	 System.out.println("yes" + "Rectangle" + i + ", " + j);
-			      
 			    	
-			    	 
-			    	player.SetX(room.GetCollision()[i][j].x + player.getImage().getWidth(null) - player.getImage().getHeight(null));
-			    	player.SetY(room.GetCollision()[i][j].y + player.getImage().getHeight(null) - player.getImage().getWidth(null));
-
-			      
-			      
-			        	
-			     
+			    	if(player.getImage().getWidth(null) <= room.GetCollision()[i][j].x)	
+			    	{
+			    		 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null)); 	
+			        }
+			    //	else if(player.getImage().getWidth(null) + 25 <= room.GetCollision()[i][j].x + room.GetCollision()[i][j].width)
+			    //	{
+			    	//	player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width - player.getImage().getWidth(null));
+			    //	}
 			     }
-			   }
+		   }  
 		   }
-		
 		//checks to see if a creature moved out of the room
 		if(!room.getCreArray().isEmpty())
 		{
@@ -227,21 +225,6 @@ public class Map {
 		    room.Clone(blueprint[X][Y]);
 		    player.SetY(0);
 		}
-		//System.out.printf("Current room is X: %d Y: %d\n", X, Y);
-		
-		
-		
-		//Logic for room move can be here but MapUpdate should take in the 
-		//current X and Y, MapUpdate needs parameters and an if statement around it
-		//so the room doesn't try to reload when it's not needed.
-		
-		//if we leave room call room.Clone(RoomWeMovedInto)
-		
-		
-		
-		
-		
-		
-		
+		//System.out.printf("Current room is X: %d Y: %d\n", X, Y);		
 	}
 }

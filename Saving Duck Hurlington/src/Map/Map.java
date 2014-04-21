@@ -159,8 +159,21 @@ public class Map {
 		   {
 			   for(int j = 0; j < 16; j ++)
 			   {
-			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(player.GetX(), player.GetY(), player.GetX(), player.GetY()))	   
-			       System.out.println("yes" + "Rectangle" + i + ", " + j);
+				  
+			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(player.GetX(), player.GetY(), player.getImage().getWidth(null), player.getImage().getHeight(null)))	   
+			     {
+			    	 System.out.println("yes" + "Rectangle" + i + ", " + j);
+			      
+			    	
+			    	 
+			    	player.SetX(room.GetCollision()[i][j].x + player.getImage().getWidth(null) - player.getImage().getHeight(null));
+			    	player.SetY(room.GetCollision()[i][j].y + player.getImage().getHeight(null) - player.getImage().getWidth(null));
+
+			      
+			      
+			        	
+			     
+			     }
 			   }
 		   }
 		

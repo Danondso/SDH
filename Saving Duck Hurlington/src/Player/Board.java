@@ -22,7 +22,7 @@ public class Board extends JPanel implements ActionListener {
 
 	  //Make variables move these to top so it doesnt break
     Rooms currentRoom = new Rooms();
-    Player player = new Player(new Position(250,250));
+    Player player = new Player(new Position(256 - 25,256 - 25));
     Map theMap = new Map(currentRoom, player);
     ArrayList<Creature> creature = currentRoom.getCreArray();
     ArrayList<Projectile> projectile = currentRoom.getProArray();
@@ -106,9 +106,10 @@ public class Board extends JPanel implements ActionListener {
 	        	    	g2d.drawImage(currentRoom.GetDisplay()[i][j], x, y, this);
 	        	    		
 	        	    	if(currentRoom.GetCollision()[i][j] != null)
-	        	    	   currentRoom.GetCollision()[i][j].setBounds(x, y, 32, 32);
-	   
-	        	    	
+	        	    	{
+	        	    		currentRoom.GetCollision()[i][j].setBounds(x, y, 32, 32);
+	                    //   g2d.draw(currentRoom.GetCollision()[i][j]);
+	        	    	}
 	        	    	  
 	        	    }catch(Exception e){}
 	            }

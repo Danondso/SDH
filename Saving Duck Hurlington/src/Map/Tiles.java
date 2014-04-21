@@ -184,18 +184,22 @@ abstract class Tiles{
 				  if(i == 7 || j == 7)//add the rest of the i's and j's for the rest of the map
 					{
 					 totalmap[i][j] = terrain[1]; 
+					 identity[i][j] = null;
 					}
 				  if(i == 23 || j == 23)
 				  {
 					totalmap[i][j] = terrain[1];
+					identity[i][j] = null;
 				  }
 				  if(i == 39 || j == 39)
 				  {
 				    totalmap[i][j] = terrain[1];
+				    identity[i][j] = null;
 				  }
 				  if(i == 55 || j == 55)
 				  {
 				    totalmap[i][j] = terrain[1];
+				    identity[i][j] = null;
 				  }
 				}
 			}
@@ -245,9 +249,16 @@ abstract class Tiles{
 				for(int j = 0; j < totalmap.length; j++)
 				{
 			    if(i == 15 || i == 23 || i == 31 || i == 32 || i == 47 || i == 48 && j == 6 ||  j == 19 || j == 41 || j == 54) 		   
-			            totalmap[i][j] = terrain[4];
+			    {  totalmap[i][j] = terrain[4];
+			       identity[i][j] = null; 
+			    
+			    }
 				   if(j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 && i == 7 || i == 23 || i == 41 || i == 54) 	
-				        totalmap[i][j] = terrain[4];
+				   {
+					   totalmap[i][j] = terrain[4];
+				       identity[i][j] = null;
+				   }    
+				   
 			   }
 			}  
 			

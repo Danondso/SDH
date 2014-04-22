@@ -164,15 +164,28 @@ public class Map {
 			     {
 			    	 System.out.println("yes" + "Rectangle" + i + ", " + j);
 			      
-			    	
+			    	//four if statements
 			    	 
-			    	player.SetX(room.GetCollision()[i][j].x + player.getImage().getWidth(null) - player.getImage().getHeight(null));
-			    	player.SetY(room.GetCollision()[i][j].y + player.getImage().getHeight(null) - player.getImage().getWidth(null));
+			    	 if(player.GetX() < room.GetCollision()[i][j].x + 16 && player.GetMovingX() > 0)
+			    		player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
+			    	 
 
-			      
-			      
-			        	
-			     
+			    	 if(player.GetX() + player.getImage().getWidth(null) > room.GetCollision()[i][j].x + 16 && player.GetMovingX() < 0)
+			    		player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+			    	 
+			    	 
+			    	 if(player.GetY() < room.GetCollision()[i][j].y - 16 && player.GetMovingY() > 0)
+			    		player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
+			    	 
+			    	 if(player.GetY() + player.getImage().getHeight(null) > room.GetCollision()[i][j].y - 16 && player.GetMovingY() < 0)
+			    		player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
+			    	 //if(player.getImage().getWidth(null) == room.GetCollision()[i][j].x + 32)
+				    	//	player.SetX(player.GetX() + player.getImage().getWidth(null));
+			    	 
+			    	//player.SetX(player.GetX() + (room.GetCollision()[i][j].y - player.getImage().getWidth(null)));
+			    	//player.SetY(player.GetY());
+			    	 
+			 
 			     }
 			   }
 		   }

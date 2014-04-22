@@ -155,41 +155,113 @@ public class Map {
 		
 
 		
+		boolean xFirst = false;
+		
 		for(int i = 0; i < room.roomSize; i ++)	
 		   {
-			   for(int j = 0; j < 16; j ++)
+			   for(int j = 0; j < room.roomSize; j ++)
 			   {
 				  
 			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(player.GetX(), player.GetY(), player.getImage().getWidth(null), player.getImage().getHeight(null)))	   
 			     {
-			    	 System.out.println("yes" + "Rectangle" + i + ", " + j);
-			      
+			    	// System.out.println("yes" + "Rectangle" + i + ", " + j);
+			     
 			    	//four if statements
-			    	 
-			    	 if(player.GetX() < room.GetCollision()[i][j].x + 16 && player.GetMovingX() > 0)
-			    		player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
-			    	 
+			       int RockX = room.GetCollision()[i][j].x;
+			       int RockY = room.GetCollision()[i][j].y;
+			       int RockW = room.GetCollision()[i][j].width;
+			       int RockH = room.GetCollision()[i][j].height;
+			       int PlayerW = player.getImage().getWidth(null);
+			       int PlayerH = player.getImage().getHeight(null);
+			       int xPoint = player.GetX() + (PlayerW * (player.GetMovingX() + 1) / 2);
+			       int yPoint = player.GetY() + (PlayerH * (player.GetMovingY() + 1) / 2);
+			       char side = 'Q';
+			       int shallow = Integer.MIN_VALUE;
+			    	
+			       if(RockX - (player.GetX() + PlayerW) < 0 && RockX - (player.GetX() + PlayerW) >= shallow)
+			       {
+			    	   side = 'L';
+			    	   	shallow = RockX - (player.GetX() + PlayerW);
+			       }
+			      
+			       if(player.GetY() - (RockY + RockH) < 0 && player.GetY() - (RockY + RockH) >= shallow)
+			       {
+			    	   side = 'D';
+			    	   	shallow = player.GetY() - (RockY + RockH);
+			       }
+			       
+			       if(player.GetX() - (RockX + RockW) < 0 && player.GetX() - (RockX + RockW) >= shallow)
+			       {
+			    	   side = 'R';
+			    	   	shallow = player.GetX() - (RockX + RockW);
+			       }
 
-			    	 if(player.GetX() + player.getImage().getWidth(null) > room.GetCollision()[i][j].x + 16 && player.GetMovingX() < 0)
-			    		player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+			       if(RockY - (player.GetY() + PlayerW) < 0 && RockY - (player.GetY() + PlayerW) >= shallow)
+			       {
+			    	   side = 'U';
+			    	   	shallow = RockY - (player.GetY() + PlayerW);
+			       }
+			       
+			       
+			       switch(side){
+			       
+			       case 'U':
+			    	   System.out.println(side);
+						 player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
+
+			       break;
+			    	   
+			       case 'D':
+			 		  player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
+			    	   System.out.println(side);
+
+
+			       break;
+			       
+			       case 'L':
+					
+						 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
+				    	   System.out.println(side);
+
+
+			       break;
+			       
+			       case 'R':
+			    		
+			  		 player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+			    	   System.out.println(side);
+
+			   	   break;
+			    	   
+			    	   default:
+			    		   
+			   	   break;
+			       
+			       }
+			       /*
+				      if(xFirst)
+				      {
+				    	 XCheck(i, j);
+				    	 YCheck(i, j);
+				      }
+	
+				      else  if(!xFirst)
+				      {
+				    	 YCheck(i, j);
+				    	 XCheck(i, j);
+				     }
 			    	 
 			    	 
-			    	 if(player.GetY() < room.GetCollision()[i][j].y - 16 && player.GetMovingY() > 0)
-			    		player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
-			    	 
-			    	 if(player.GetY() + player.getImage().getHeight(null) > room.GetCollision()[i][j].y - 16 && player.GetMovingY() < 0)
-			    		player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
-			    	 //if(player.getImage().getWidth(null) == room.GetCollision()[i][j].x + 32)
-				    	//	player.SetX(player.GetX() + player.getImage().getWidth(null));
-			    	 
-			    	//player.SetX(player.GetX() + (room.GetCollision()[i][j].y - player.getImage().getWidth(null)));
-			    	//player.SetY(player.GetY());
-			    	 
-			 
+			    	
+			    	
+			    	*/ 
+			       side = 'Q';
+			       shallow = Integer.MIN_VALUE;
 			     }
+			    
 			   }
+		   
 		   }
-		
 		//checks to see if a creature moved out of the room
 		if(!room.getCreArray().isEmpty())
 		{
@@ -256,5 +328,66 @@ public class Map {
 		
 		
 		
+	}
+	
+	private void XCheck(int i, int j){
+		
+		if(player.GetX() < room.GetCollision()[i][j].x + 16 && player.GetMovingX() > 0)
+		 {	
+			//LEFT
+			 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
+	        
+			 if(player.GetPrevY() > room.GetCollision()[i][j].y + room.GetCollision()[i][j].height)
+				 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
+			 else if(player.GetY() + player.getImage().getHeight(null) > room.GetCollision()[i][j].y - 16 && player.GetMovingY() < 0)
+				 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
+	
+		 }	 
+	
+	else if(player.GetX() + player.getImage().getWidth(null) > room.GetCollision()[i][j].x + 16 && player.GetMovingX() < 0)
+	{
+		//RIGHT
+		 player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+	
+		 if(player.GetPrevY() > room.GetCollision()[i][j].y + room.GetCollision()[i][j].height)
+			 player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+	
+			 else if(player.GetY() + player.getImage().getHeight(null) > room.GetCollision()[i][j].y - 16 && player.GetMovingY() < 0)
+	   		 player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+		
+	}
+	
+
+	}
+	
+	private void YCheck(int i, int j){
+		if(player.GetY() < room.GetCollision()[i][j].y - 16 && player.GetMovingY() > 0)
+		 { 
+			//up
+			 player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
+	 
+			 if(player.GetX() < room.GetCollision()[i][j].x + 16 && player.GetMovingX() > 0)
+   			 player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
+
+			 else if(player.GetX() + player.getImage().getWidth(null) > room.GetCollision()[i][j].x + 16 && player.GetMovingX() < 0)
+   			 player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
+			
+			
+	
+	  else if(player.GetY() + player.getImage().getHeight(null) > room.GetCollision()[i][j].y - 16 && player.GetMovingY() < 0)
+	  {
+		  //down
+		  player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
+	
+   		 if(player.GetX() < room.GetCollision()[i][j].x + 16 && player.GetMovingX() > 0)
+	    		  player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
+
+   		 else if(player.GetX() + player.getImage().getWidth(null) > room.GetCollision()[i][j].x + 16 && player.GetMovingX() < 0)
+	    		  player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
+
+   		
+	  }
+	 
+		 }
 	}
 }

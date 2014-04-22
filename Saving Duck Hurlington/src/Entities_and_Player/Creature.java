@@ -165,6 +165,14 @@ public abstract class Creature extends Entity{
 		return null;
 	}
 	
+	public int GetPrevX(){
+		return PreviousPos.X;
+	}
+	
+	public int GetPrevY(){
+		return PreviousPos.Y;
+	}
+	
 	protected void SetPrevious(){
 		PreviousPos.X = Position.X;
 		PreviousPos.Y = Position.Y;

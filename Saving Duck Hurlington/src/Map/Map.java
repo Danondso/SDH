@@ -164,14 +164,21 @@ public class Map {
 			     {
 			    	 System.out.println("yes" + "Rectangle" + i + ", " + j);
 			    	
-			    	if(player.getImage().getWidth(null) <= room.GetCollision()[i][j].x)	
+			    	if(player.getImage().getWidth(null) <= room.GetCollision()[i][j].x )	
 			    	{
 			    		 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null)); 	
 			        }
-			    //	else if(player.getImage().getWidth(null) + 25 <= room.GetCollision()[i][j].x + room.GetCollision()[i][j].width)
-			    //	{
-			    	//	player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width - player.getImage().getWidth(null));
-			    //	}
+			    	//if(player.getImage().getHeight(null) <= room.GetCollision()[i][j].height)
+			         //Notes for working out IF statement parts
+			    	
+			    	//comparators for the collisions, I need the inside logic and have them work correctly together so they don't make him 
+			    	//jump around
+			    	//player.getX() <= room.GetCollision()[i][j].width
+			    	
+			    	//player.getImage().getHeight(null) <= room.GetCollision()[i][j].y
+			    	
+			    	//player.GetY() <= room.GetCollision()[i][j].height
+			    
 			     }
 		   }  
 		   }

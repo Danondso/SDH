@@ -5,6 +5,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 public abstract class Creature extends Entity{
+	protected Position PreviousPos;
 	protected int Health;
 	protected int MaxHealth;
 	protected int Damage;
@@ -24,6 +25,7 @@ public abstract class Creature extends Entity{
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);
+		PreviousPos = new Position(pos.X, pos.Y);
 		Health = health;
 		MaxHealth = maxhealth;
 		Damage = damage;
@@ -154,12 +156,17 @@ public abstract class Creature extends Entity{
 		
 	
 	abstract Projectile AttackMethod();
-	abstract  public void Move();
+	abstract public void Move();
 
 
 
 	public Creature Clone() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	protected void SetPrevious(){
+		PreviousPos.X = Position.X;
+		PreviousPos.Y = Position.Y;
 	}
 }

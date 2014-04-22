@@ -28,4 +28,12 @@ public abstract class Projectile extends Entity{
 	public int GetDamage(){
 		return Damage;
 	}
+	
+	public int GetSpeedX(){
+		return SpeedX;
+	}
+	
+	public int GetSpeedY(){
+		return SpeedY;
+	}
 }

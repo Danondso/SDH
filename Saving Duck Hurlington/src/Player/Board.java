@@ -3,20 +3,28 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Iterator;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.Timer;
+import javax.swing.ImageIcon;
 
 import Entities_and_Player.*;
 import Map.*;
-import Map.Beach;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -45,18 +53,33 @@ public class Board extends JPanel implements ActionListener {
     //private Rat rat = new Rat(pos);
     private Random Rand = new Random();
     private String GameState = "Play";
+    private String PauseMenuLoc = "/Menus/BlankPanel-2.png";
+	double locationX, locationY, rotationRequired;
+	AffineTransform tx;
+	AffineTransformOp op;
+	
 
     
+    ImageIcon ii = new ImageIcon(this.getClass().getResource(PauseMenuLoc));
+    private Image PauseMenu = ii.getImage();    
+    
+    Font MenuHeader = new Font("Helvetica", Font.BOLD, 24);
+    FontMetrics MenuHeadMetr = this.getFontMetrics(MenuHeader);
+    
+    Font MenuContent = new Font("Helvetica", Font.BOLD, 14);
+    FontMetrics MenuContMetr = this.getFontMetrics(MenuContent);
+    
+    AffineTransform identity = new AffineTransform();
+      
     public Board() {
     	
     	
         addKeyListener(new TAdapter());
         setFocusable(true);
         creature.add(new Rat(pos));
-        //h
+        
         //the map draws here
         b.createMap();
-        //b.clearDoors();
         b.genBorders();
         b.clearDoors();
         b.sealBorders();
@@ -67,9 +90,7 @@ public class Board extends JPanel implements ActionListener {
         //setLayout(new FlowLayout());
         //rat.getImage();
        
-        craft = new Craft();
-        
-        //rat.Move();
+        //craft = new Craft();
         timer = new Timer(5, this);
         timer.start();
     }
@@ -85,9 +106,11 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);      
        
+        AffineTransform trans = new AffineTransform();
         Graphics2D g2d = (Graphics2D)g;
+        Graphics2D g2dRot = (Graphics2D)g;
         
-        if(GameState == "Play"){
+        if(GameState == "Play" || GameState == "Pause"){
 	        //if(Map == null)
 	        //   Map = b.getTile1();
 	            
@@ -121,19 +144,73 @@ public class Board extends JPanel implements ActionListener {
 	        //Draw player, not craft
 	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
 	        
-	        
-	        
-	        
 	        for(Creature c : creature)
 	        	if(c != null)
 	        		g2d.drawImage(c.getImage(), c.GetX(), c.GetY(), this);
 	          
 	       	for(Projectile p : projectile)
-	       		if(p != null)
-	       			g2d.drawImage(p.getImage(), p.GetX(), p.GetY(), this);
+	       		if(p != null){
+	       			locationX = p.getImage().getWidth(null) / 2;
+       				locationY = p.getImage().getHeight(null) / 2;
+	       			if(p.GetSpeedX() > 0 && p.GetSpeedY() == 0){ //right
+	       				rotationRequired = Math.toRadians(90);
+	       			}
+	       			else if(p.GetSpeedX() > 0 && p.GetSpeedY() < 0){ //right up
+	       				rotationRequired = Math.toRadians(45);     				   				
+	       			}
+	       			else if(p.GetSpeedX() == 0 && p.GetSpeedY() < 0){ //up
+	       				rotationRequired = Math.toRadians(0);     				   				
+	       			}
+	       			else if(p.GetSpeedX() < 0 && p.GetSpeedY() < 0){ // up left
+	       				rotationRequired = Math.toRadians(315);     				   				
+	       			}
+	       			else if(p.GetSpeedX() < 0 && p.GetSpeedY() == 0){ //left
+	       				rotationRequired = Math.toRadians(270);     				   				
+	       			}
+	       			else if(p.GetSpeedX() < 0 && p.GetSpeedY() > 0){ // left down
+	       				rotationRequired = Math.toRadians(225);     				   				
+	       			}
+	       			else if(p.GetSpeedX() == 0 && p.GetSpeedY() > 0){ //down
+	       				rotationRequired = Math.toRadians(180);     				   				
+	       			}
+	       			else if(p.GetSpeedX() > 0 && p.GetSpeedY() > 0){ //right down
+	       				rotationRequired = Math.toRadians(135);     				   				
+	       			}
+	       			
+	       			tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+	       			op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+       				g2d.drawImage(op.filter(toBufferedImage(p.getImage()), null), p.GetX(), p.GetY(), null);
+
+	       		}
 	       	
 	       	
-	       	  
+	       	if(GameState == "Pause"){
+	       		g2d.drawImage(PauseMenu, getWidth()/2 - PauseMenu.getWidth(null)/2, getHeight()/2 - PauseMenu.getHeight(null)/2, null);
+      		
+	       		g2d.setColor(Color.BLACK);
+	       		g2d.setFont(MenuHeader);
+	       		
+	       		String MenuMsg = "Pause";
+	       		g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5);
+	       		
+	       		g2d.setFont(MenuContent);
+	       		MenuMsg = "'Enter' - Resume";
+	       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 25);
+	       		
+	       		MenuMsg = "'Esc' - Exit Game";
+	       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 50);
+
+	       		if(confirmation){
+	       			g2d.setColor(Color.RED);
+	       			g2d.setFont(MenuHeader);
+	       			MenuMsg = "Are you sure? y/n";
+	       			g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 100);
+	       		}
+	       		//MenuMsg = "'s' - Show Player Stats";
+	       		//g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 75);
+
+	       	}
 	        //When player collides with the far right.
 /*	       	if (player.GetX() + player.GetMovingX() == getWidth()){
 	       		//Clear crap
@@ -199,51 +276,51 @@ public class Board extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
     	 //THIS IS MAIN LOOP
-        ArrayList<Missile> ms = craft.getMissiles();
+        //ArrayList<Missile> ms = craft.getMissiles();
 
-        for (int i = 0; i < ms.size(); i++) {
-            Missile m = (Missile) ms.get(i);
-            if (m.isVisible()) 
-                m.move();
-            else ms.remove(i);
+        if(GameState == "Play"){
+	        /*for (int i = 0; i < ms.size(); i++) {
+	            Missile m = (Missile) ms.get(i);
+	            if (m.isVisible()) 
+	                m.move();
+	            else ms.remove(i);
+	        }*/
+	        
+	        if(!D && !A)
+	        	player.SetXDirection(0);
+	        if(!W && !S)
+	        	player.SetYDirection(0);
+	        if(D && A)
+	        	player.SetXDirection(0);
+	        if(W)
+	        	player.SetYDirection(-1);
+	        if(S)
+	        	player.SetYDirection(1);
+	        if(A)
+	        	player.SetXDirection(-1);      
+	        if(D)
+	        	player.SetXDirection(1);
+	        
+	        
+	        if(!Right && !Left)
+	        	player.SetShotXDirection(0);
+	        if(!Up && !Down)
+	        	player.SetShotYDirection(0);
+	        if(Up)
+	        	player.SetShotYDirection(-1);
+	        if(Left)
+	        	player.SetShotXDirection(-1);
+	        if(Down)
+	        	player.SetShotYDirection(1);
+	        if(Right)
+	        	player.SetShotXDirection(1);
+	        
+	     	moveAllTheThings();
+	     	attack();
+	     	collisions();
+	     	removeSomeOfTheThings();
+	     	theMap.MapUpdate();
         }
-        
-        if(!D && !A)
-        	player.SetXDirection(0);
-        if(!W && !S)
-        	player.SetYDirection(0);
-        if(D && A)
-        	player.SetXDirection(0);
-        if(W)
-        	player.SetYDirection(-1);
-        if(S)
-        	player.SetYDirection(1);
-        if(A)
-        	player.SetXDirection(-1);      
-        if(D)
-        	player.SetXDirection(1);
-        
-        
-        if(!Right && !Left)
-        	player.SetShotXDirection(0);
-        if(!Up && !Down)
-        	player.SetShotYDirection(0);
-        if(Up)
-        	player.SetShotYDirection(-1);
-        if(Left)
-        	player.SetShotXDirection(-1);
-        if(Down)
-        	player.SetShotYDirection(1);
-        if(Right)
-        	player.SetShotXDirection(1);
-        
-     	moveAllTheThings();
-     	attack();
-     	collisions();
-     	removeSomeOfTheThings();
-     	theMap.MapUpdate();
-     	//rat.Move();
-        //craft.move();
         repaint();  
     }
 
@@ -254,62 +331,61 @@ public class Board extends JPanel implements ActionListener {
         		//Start Menu Stuff
         	}
         	else if(GameState == "Play"){
-	            craft.keyReleased(e);
+	            //craft.keyReleased(e);
 	            //Player move release
 	            if(e.getKeyChar() == 'w'){
-	            	//if(!S)
-	            		//player.SetYDirection(0);
 	            	W = false;
 	            }
 	            if(e.getKeyChar() == 's'){
-	            	//if(!W)
-	            		//player.SetYDirection(0);
 	            	S = false;
 	            }
 	            if(e.getKeyChar() == 'a'){
-	            	//if(!D)
-	            		//player.SetXDirection(0);
 	            	A = false;
 	            }
 	            if(e.getKeyChar() == 'd'){
-	            	//if(!A)
-	            		//player.SetXDirection(0);
 	            	D = false;
 	            }
 	            
 	            
 	          //shooting things release
 	            if(e.getKeyCode() == KeyEvent.VK_UP){
-	            	//if(!Down)
-	            		//player.SetShotYDirection(0);
 	            	Up = false;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_LEFT){
-	            	//if(!Right)
-	            		//player.SetShotXDirection(0);
 	            	Left = false;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-	            	//if(!Up)
-	            		//player.SetShotYDirection(0);
 	            	Down = false;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-	            	//if(!Left)
-	            		//player.SetShotXDirection(0);
 	            	Right = false;
 	            }
         	}
         	else if(GameState == "Pause"){
+        		W = false;
+        		S = false;
+        		A = false;
+        		D = false;
+        		Up = false;
+        		Left = false;
+        		Down = false;
+        		Right = false;
         		//Pause Menu Stuff
         	}
         }
 
         public void keyPressed(KeyEvent e) {
-        	if(GameState == "StartMenu"){
+        	if(GameState == "Pause"){
+        		if(confirmation){
+        			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
+        				System.exit(0);
+        			}
+        			if(Character.toLowerCase(e.getKeyChar()) == 'n')
+        				confirmation = false;
+        		}
         		//Start Menu Stuff
         		if(e.getKeyCode() == KeyEvent.VK_ENTER){
-        			System.out.println("ENTER PRESSED");
+        		//	System.out.println("ENTER PRESSED");
         			GameState = "Play";
         		}
         		if(e.getKeyChar() == 'u'){
@@ -328,56 +404,38 @@ public class Board extends JPanel implements ActionListener {
         	}
         	
         	else if(GameState == "Play"){
-	            craft.keyPressed(e);
+	            //craft.keyPressed(e);
 	            //Player Movement
 	            if(e.getKeyChar() == 'w'){
-	            	//if(!S)
-	            		//player.SetYDirection(-1);
 	            	W = true;
 	            }
 	            if(e.getKeyChar() == 's'){
-	            	//if(!W)
-	            		//player.SetYDirection(1);
 	            	S = true;
 	            }
 	            if(e.getKeyChar() == 'a'){
-	            	//if(!D)
-	            		//player.SetXDirection(-1);
 	            	A = true;
 	            }
 	            if(e.getKeyChar() == 'd'){
-	            	//if(!A)
-	            		//player.SetXDirection(1);
 	            	D = true;
 	            }
 	            
 	            //shooting things
 	            if(e.getKeyCode() == KeyEvent.VK_UP){
-	            	//if(!Down)
-	            		//player.SetShotYDirection(-1);
 	            	Up = true;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_DOWN){
-	            	//if(!Up)
-	            		//player.SetShotYDirection(1);
 	            	Down = true;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_LEFT){
-	            	//if(!Right)
-	            		//player.SetShotXDirection(-1);
 	            	Left = true;
 	            }
 	            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-	            	//if(!Left)
-	            		//player.SetShotXDirection(1);
 	            	Right = true;
 	            }
 	            
 	            //Pause game
 	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	player.SetXDirection(0);
-	            	player.SetYDirection(0);
-	            	GameState = "StartMenu";
+	            	GameState = "Pause";
 	            }
 	        }
         	else if(GameState == "Pause"){
@@ -478,5 +536,22 @@ public class Board extends JPanel implements ActionListener {
     	
     }
     
-    
+    public static BufferedImage toBufferedImage(Image img)
+    {
+        if (img instanceof BufferedImage)
+        {
+            return (BufferedImage) img;
+        }
+
+        // Create a buffered image with transparency
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        // Return the buffered image
+        return bimage;
+    }
 }

@@ -1,9 +1,8 @@
 package Entities_and_Player;
 
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
+import java.util.ArrayList;
+import java.util.Random;
 public abstract class Creature extends Entity{
 	protected Position PreviousPos;
 	protected int Health;
@@ -22,6 +21,12 @@ public abstract class Creature extends Entity{
 	protected int AttackDelay;
 	protected int CDelay;
 	protected int ShotSpeed = 2;
+	protected Random randx;
+	protected Random randy;
+	protected ArrayList<Creature>Beach;
+	protected ArrayList<Creature>Forrest;
+	protected ArrayList<Creature>Mountain;
+	protected ArrayList<Creature>creatures;
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);
@@ -177,4 +182,23 @@ public abstract class Creature extends Entity{
 		PreviousPos.X = Position.X;
 		PreviousPos.Y = Position.Y;
 	}
+	protected void SetBeachCreature(){
+		int y =31+randy.nextInt(481);
+		int  x =95+randx.nextInt(386);
+		Beach = new ArrayList<Creature>();
+		for(int i = 0; i < 3; i++ ){
+			Beach.add(new SeaTurtle(new Position(x,y)));
+			Beach.add(new Krabby(new Position(x,y)));
+			Beach.add(new DuckPirate(new Position(x,y),Player));
+		}
+		
+	
+	}
+		public ArrayList<Creature> getBeach(){
+		
+			return Beach;
+		}
+			
+
+	
 }

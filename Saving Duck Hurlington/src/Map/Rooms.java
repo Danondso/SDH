@@ -24,6 +24,8 @@ import Entities_and_Player.Projectile;
 	Item Item;
 	private int x;
 	private int y;
+	//private Random rand = new Random(System.)
+	
 	
 	Tiles tile;
 	
@@ -34,6 +36,8 @@ import Entities_and_Player.Projectile;
 		//somethings about room spawn		
 		display = setTile(xIn, yIn);
 		Collision = setRect(xIn, yIn);
+	    Item = item;
+	
 	}
 	
 	public Rooms(){
@@ -55,6 +59,19 @@ import Entities_and_Player.Projectile;
 	public Image[][] setTile(int x, int y){
 		
 		return tile.swapTile(x, y);
+	}
+	
+	public void setCreatures(int amount){
+	
+		//Neal needs to write a get random creature
+		//public Creature getCreature(Tiles t, int amount)
+		for(int i = 0; i <= amount; i ++)
+		{
+			
+		//	int r = 
+		//   Creatures.add(getCreature(t, random));
+		   
+		}
 	}
 	
 	public Rectangle[][]setRect(int x, int y){

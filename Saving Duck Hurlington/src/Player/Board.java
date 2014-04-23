@@ -76,7 +76,7 @@ public class Board extends JPanel implements ActionListener {
     	
         addKeyListener(new TAdapter());
         setFocusable(true);
-        creature.add(new Rat(pos));
+        creature.add(new DuckPirate(new Position(64, 64), player));
         
         //the map draws here
         b.createMap();

@@ -47,16 +47,15 @@ public class Map {
 		{
 			t.fillIdentity();
 			t.createMap();
+			t.sealBorders();
 			t.clearDoors();
 			((Beach) t).addWater();
-			t.genBorders();
-			t.sealBorders();
+		
 		}
 		else{
 			t.createMap();
 			t.clearDoors();
-			t.genBorders();
-			t.addDoors();
+		
 		}
 	}
 	
@@ -156,12 +155,9 @@ public class Map {
 		return null;
 	}
 
-	
-	public void MapUpdate(){
+	public void CollisionPlayer(){
 		
-
-		
-		boolean xFirst = false;
+      
 		
 		for(int i = 0; i < room.roomSize; i ++)	
 		   {
@@ -252,6 +248,115 @@ public class Map {
 			   }
 		   
 		   }
+	}
+	
+	public void CollisionEnemy(Creature c){
+	
+		
+
+		
+		for(int i = 0; i < room.roomSize; i ++)	
+		   {
+			   for(int j = 0; j < room.roomSize; j ++)
+			   {
+				  
+			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(c.GetX(), c.GetY(), c.getImage().getWidth(null), c.getImage().getHeight(null)))	   
+			     {
+			    	// System.out.println("yes" + "Rectangle" + i + ", " + j);
+			     
+			    	//four if statements
+			       int RockX = room.GetCollision()[i][j].x;
+			       int RockY = room.GetCollision()[i][j].y;
+			       int RockW = room.GetCollision()[i][j].width;
+			       int RockH = room.GetCollision()[i][j].height;
+			       int CreatureW = c.getImage().getWidth(null);
+			       int CreatureH = c.getImage().getHeight(null);
+			       int xPoint = c.GetX() + (CreatureW * (c.GetMovingX() + 1) / 2);
+			       int yPoint = c.GetY() + (CreatureH * (c.GetMovingY() + 1) / 2);
+			       char side = 'Q';
+			       int shallow = Integer.MIN_VALUE;
+			    	
+			       if(RockX - (c.GetX() + CreatureW) < 0 && RockX - (c.GetX() + CreatureW) >= shallow)
+			       {
+			    	   side = 'L';
+			    	   	shallow = RockX - (c.GetX() + CreatureW);
+			       }
+			      
+			       if(c.GetY() - (RockY + RockH) < 0 && c.GetY() - (RockY + RockH) >= shallow)
+			       {
+			    	   side = 'D';
+			    	   	shallow = c.GetY() - (RockY + RockH);
+			       }
+			       
+			       if(c.GetX() - (RockX + RockW) < 0 && c.GetX() - (RockX + RockW) >= shallow)
+			       {
+			    	   side = 'R';
+			    	   	shallow = c.GetX() - (RockX + RockW);
+			       }
+
+			       if(RockY - (c.GetY() + CreatureW) < 0 && RockY - (c.GetY() + CreatureW) >= shallow)
+			       {
+			    	   side = 'U';
+			    	   	shallow = RockY - (c.GetY() + CreatureW);
+			       }
+			       
+			       
+			       switch(side){
+			       
+			       case 'U':
+			    	  // System.out.println(side);
+						 c.SetY(room.GetCollision()[i][j].y - c.getImage().getHeight(null));
+
+			       break;
+			    	   
+			       case 'D':
+			 		  c.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
+			    	   //System.out.println(side);
+
+
+			       break;
+			       
+			       case 'L':
+					
+						 c.SetX(room.GetCollision()[i][j].x - c.getImage().getWidth(null));
+				    	//   System.out.println(side);
+
+
+			       break;
+			       
+			       case 'R':
+			    		
+			  		 c.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
+			    	  // System.out.println(side);
+
+			   	   break;
+			    	   
+			    	   default:
+			    		   
+			   	   break;
+			       
+			       }
+ 
+			       side = 'Q';
+			       shallow = Integer.MIN_VALUE;
+			     }
+			    
+			   }
+		   
+		   }
+		
+	}
+	
+	public void MapUpdate(){
+		
+
+		
+      CollisionPlayer();
+      for(Creature cr : room.getCreArray())
+       CollisionEnemy(cr);
+      
+      
+      
 		//checks to see if a creature moved out of the room
 		if(!room.getCreArray().isEmpty())
 		{

@@ -83,7 +83,7 @@ abstract class Tiles{
 		public Tiles(String[] texture) {
 				
 			
-		
+	
 	       //passes the array to the Tiles 	
 			textures = texture;	
 			//instantiates the terrain array 
@@ -144,36 +144,6 @@ abstract class Tiles{
 		}
 		
 		
-		public void genBorders() {
-			// TODO Auto-generated method stub
-			//SKELETAL STRUCTURE FOR THE BORDERS OF THE TILES AND THE DOORS
-		     //sets the borders for the tiles
-			//With how this works, the stone borders have 
-			//to be in the correct array space.	
-			//for the beach, have everything has to have (i > 3)
-			for(int i = 0; i < totalmap.length; i++)
-			{
-			   for(int j = 0; j < totalmap.length; j++)
-			   {
-			    if((i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48 || i == 63 || i == 64))
-			    { totalmap[i][j] = terrain[4];
-			     
-			    }
-				if((j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63 || j == 64))
-				{	totalmap[i][j] = terrain[4];
-				 			}
-				
-		     	if((i == 0 || i == 63))
-		     	{
-		     		totalmap[i][j] = terrain[4];
-		     		 	     	}
-				if(j == 0 || j == 63)
-				  totalmap[i][j] = terrain[4];
-						   } 
-			}
-		}
-		
-		
 		public void clearDoors(){
 			for(int i = 0; i < row; i++) 
 			{
@@ -201,7 +171,22 @@ abstract class Tiles{
 				    totalmap[i][j] = terrain[1];
 				    identity[i][j] = null;
 				  }
+				  
+				
+				  
+				  if(i == 0 || j == 0){
+						totalmap[i][j] = terrain[2];  
+				        identity[i][j] = new Rectangle(0, 0, 32, 32);
+				  }
+				  if(i == 63 || j == 63)
+					  {
+						  totalmap[i][j] = terrain[2];
+				        identity[i][j] = new Rectangle(0, 0, 32, 32);
+					  }
+				  				
 				}
+			
+			
 			}
 			
 		}	
@@ -212,60 +197,37 @@ abstract class Tiles{
 				for(int j = 0; j < column; j++)
 				{
 			
-			  if(j == 63 && i <= 63)
-				  {totalmap[i][j] = terrain[2];
-//				   identity[i][j].clearRect(0, 0, 32, 32);
-				  }
-			  
-			  if(i == 63 && j <= 63)
-			  {
-			   totalmap[i][j] = terrain[2];
-//			   identity[i][j].clearRect(0, 0, 32, 32);
-			  }
-			  
-			  if(j == 0 && i <= 63)
-			  {
-			   totalmap[i][j] = terrain[2];
-//			   identity[i][j].clearRect(0, 0, 32, 32);
-			  }
-			  
-			  if(j == 0 && i <= 63)
-			  {
-			   totalmap[i][j] = terrain[2];
-//			   identity[i][j].clearRect(0, 0, 32, 32);
-			  }
-			  
+			     if(i <= 63){
+			    	 if(j == 0 || j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63){
+				    totalmap[i][j] = terrain[2];
+			        identity[i][j] = new Rectangle(0,0,32,32);
+			    	 }
+			    }
+
+			     if(j <= 63){
+			    	 if(i == 0 || i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48 || i == 63){
+					    totalmap[i][j] = terrain[2];
+				        identity[i][j] = new Rectangle(0,0,32,32);}
+
+			     }
+			     if(i == 0 || i == 63){
+					    totalmap[i][j] = terrain[2];
+			        identity[i][j] = new Rectangle(0,0,32,32);
+			     }
+
+			    
+			     if(j == 0 || j == 63){
+					    totalmap[i][j] = terrain[2];
+			        identity[i][j] = new Rectangle(0,0,32,32);
+			     }
+
 				}
 			}
 			
 			
 		}
 		
-       //This method creates the doors 	
-		public void addDoors(){
-			
-			for(int i = 0; i < totalmap.length; i++)	
-			{
-				for(int j = 0; j < totalmap.length; j++)
-				{
-			    if(i == 15 || i == 23 || i == 31 || i == 32 || i == 47 || i == 48 && j == 6 ||  j == 19 || j == 41 || j == 54) 		   
-			    {  totalmap[i][j] = terrain[4];
-			       identity[i][j] = null; 
-			    
-			    }
-				   if(j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 && i == 7 || i == 23 || i == 41 || i == 54) 	
-				   {
-					   totalmap[i][j] = terrain[4];
-				       identity[i][j] = null;
-				   }    
-				   
-			   }
-			}  
-			
-		}
 
-		
-		
 		//loads a tile to display on the map
 		public Image[][] loadTile(int r, int c, Image[][] inTile){
 				

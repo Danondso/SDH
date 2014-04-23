@@ -27,7 +27,7 @@ public abstract class Creature extends Entity{
 	protected ArrayList<Creature>Forrest;
 	protected ArrayList<Creature>Mountain;
 	protected ArrayList<Creature>creatures;
-	
+	protected Player p;
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);
 		PreviousPos = new Position(pos.X, pos.Y);
@@ -112,7 +112,7 @@ public abstract class Creature extends Entity{
 					
 					//Enemy-Player collision
 					if(entity instanceof Projectile){
-						if(((Projectile) entity).Owner = Player){//check to see if this creature and the projectile are the same ownership
+						if(((Projectile) entity).Owner == Player){//check to see if this creature and the projectile are the same ownership
 							if(entity instanceof fireball){
 								this.Burn(3, ((fireball)entity).BurnDamage);
 							}
@@ -182,6 +182,7 @@ public abstract class Creature extends Entity{
 		PreviousPos.X = Position.X;
 		PreviousPos.Y = Position.Y;
 	}
+	
 	protected void SetBeachCreature(){
 		int y =31+randy.nextInt(481);
 		int  x =95+randx.nextInt(386);
@@ -189,12 +190,13 @@ public abstract class Creature extends Entity{
 		for(int i = 0; i < 3; i++ ){
 			Beach.add(new SeaTurtle(new Position(x,y)));
 			Beach.add(new Krabby(new Position(x,y)));
-			Beach.add(new DuckPirate(new Position(x,y),Player));
+			Beach.add(new DuckPirate(new Position(x,y), p));
 		}
 		
 	
 	}
-		public ArrayList<Creature> getBeach(){
+	
+	public ArrayList<Creature> getBeach(){
 		
 			return Beach;
 		}

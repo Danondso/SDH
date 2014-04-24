@@ -2,7 +2,7 @@ package Entities_and_Player;
 
 
 public class Player extends Creature{
-	private Projectile Attack;
+	protected Projectile Attack;
 	private int ShotX = 0;
 	private int ShotY = 0;
 	protected boolean PanicBoots;
@@ -18,8 +18,12 @@ public class Player extends Creature{
 	Projectile AttackMethod() {
 		if(ShotX != 0 || ShotY != 0){
 			if(Attack instanceof Sword){
-			Projectile sword = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range + (PanicGloves ? MaxHealth - Health : 0), Player, new Position(Position.X, Position.Y));
-			return sword;
+				Projectile sword = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range + (PanicGloves ? MaxHealth - Health : 0), Player, new Position(Position.X, Position.Y));
+				return sword;
+			}
+			
+			if(Attack instanceof fireball){
+				return new fireball(Damage, 1, ShotSpeed * ShotX, ShotSpeed * ShotY, Range + (PanicGloves ? MaxHealth - Health : 0), Player, new Position(Position.X, Position.Y));
 			}
 		}
 		return null;

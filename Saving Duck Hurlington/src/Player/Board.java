@@ -84,15 +84,15 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         
         //spawns 10 enemies on the map every time
-        for(int i = 0; i < 10; i++)
-        {
+        //for(int i = 0; i < 10; i++)
+        //{
         	Random Rand = new Random();
         	
-          if(i % 2 == 0)
+          //if(i % 2 == 0)
         	creature.add(new DuckPirate(new Position(Rand.nextInt(512), Rand.nextInt(512)), player));
-          else
-        	  creature.add(new Rat(new Position(Rand.nextInt(512), Rand.nextInt(512))));
-        }
+          //else
+        	creature.add(new Rat(new Position(Rand.nextInt(512), Rand.nextInt(512))));
+        //}
         
        
         //craft = new Craft();

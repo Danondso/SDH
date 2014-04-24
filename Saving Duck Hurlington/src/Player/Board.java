@@ -59,7 +59,10 @@ public class Board extends JPanel implements ActionListener {
 
     
     ImageIcon PauseIcon = new ImageIcon(this.getClass().getResource(PauseMenuLoc));
-    private Image PauseMenu = PauseIcon.getImage();    
+    private Image PauseMenu = PauseIcon.getImage();  
+    
+    ImageIcon DeadIcon = new ImageIcon(this.getClass().getResource(PauseMenuLoc));
+    private Image DeadMenu = DeadIcon.getImage();
     
     ImageIcon StartIcon = new ImageIcon(this.getClass().getResource(StartMenuLoc));
     private Image StartMenu = StartIcon.getImage();
@@ -103,6 +106,57 @@ public class Board extends JPanel implements ActionListener {
        			g2d.drawString(ConfMsg, (getWidth() - MenuHeadMetr.stringWidth(ConfMsg)) / 2, getHeight() * 2 / 5 + 100);
        		}
         }
+        
+       	if(GameState == "Dead"){
+       		int wWin = getWidth() / b.tilerow;
+	        int hWin = getHeight() / b.tilecolumn;
+	           
+       		for(int i = 0; i < b.tilerow; i++)
+	        {
+	        	for(int j = 0; j < b.tilecolumn; j++)
+	            {
+	        		int x = i * wWin;
+	        	    int y = j * hWin;
+	        	       
+	        	    try{
+	        	    	g2d.drawImage(currentRoom.GetDisplay()[i][j], x, y, this);
+	        	    		
+	        	    	if(currentRoom.GetCollision()[i][j] != null)
+	        	    	{
+	        	    		currentRoom.GetCollision()[i][j].setBounds(x, y, 32, 32);
+	        	    	}
+	        	    	  
+	        	    }catch(Exception e){}
+	            }
+	        }
+       	
+       		//Draw Creatures
+	        for(Creature c : creature)
+	        	if(c != null)
+	        		g2d.drawImage(c.getImage(), c.GetX(), c.GetY(), this);
+       		
+       		g2d.drawImage(DeadMenu, getWidth()/2 - DeadMenu.getWidth(null)/2, getHeight()/2 - DeadMenu.getHeight(null)/2, null);
+      		
+       		g2d.setColor(Color.BLACK);
+       		g2d.setFont(MenuHeader);
+       		
+       		String MenuMsg = "Oh no you died!";
+       		g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5);
+       		
+       		g2d.setFont(MenuContent);
+       		MenuMsg = "'Enter' - Return to Start Menu";
+       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 25);
+       		
+       		MenuMsg = "'Esc' - Rage Quit";
+       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 50);
+
+       		if(confirmation){
+       			g2d.setColor(Color.RED);
+       			g2d.setFont(MenuHeader);
+       			MenuMsg = "Are you sure? y/n";
+       			g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 100);
+       		}
+       	}
         
         if(GameState == "Play" || GameState == "Pause"){
         	int wWin = getWidth() / b.tilerow;
@@ -252,7 +306,7 @@ public class Board extends JPanel implements ActionListener {
 			}
 	     	//Check if player is dead
 	     	if(player.GetHealth() == 0){
-	     		GameState = "StartMenu";
+	     		GameState = "Dead";
 	     	}
         }
         
@@ -413,12 +467,29 @@ public class Board extends JPanel implements ActionListener {
         			if(Character.toLowerCase(e.getKeyChar()) == 'n')
         				confirmation = false;
         		}
+        		
         		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        		//	System.out.println("ENTER PRESSED");
         			GameState = "StartMenu";
+        			W = false;
+            		S = false;
+            		A = false;
+            		D = false;
+            		Up = false;
+            		Left = false;
+            		Down = false;
+            		Right = false;
         		}
         		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-        			//Display are you sure?
+        			//disply are you sure???
         			confirmation = true;
+        		}
+        		if(confirmation && e.getKeyChar() == 'y'){
+        			GameState = "StartMenu";
+        			confirmation = false;
+        		}
+        		if(confirmation && e.getKeyChar() == 'n'){
+        			confirmation = false;
         		}
         	}
         }

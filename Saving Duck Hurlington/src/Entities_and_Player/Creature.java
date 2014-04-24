@@ -105,7 +105,7 @@ public abstract class Creature extends Entity{
 			else{
 				//Enemy-Player collision
 				if(entity instanceof Player){
-					if(((Player) entity).IFCount > 0){
+					if(((Player) entity).IFCount == 0){
 						((Player) entity).AdjustHealth(-Damage);
 						((Player) entity).IFCount = ((Player) entity).InvincibilityFrames;
 					}

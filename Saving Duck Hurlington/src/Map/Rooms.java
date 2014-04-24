@@ -119,6 +119,11 @@ import Entities_and_Player.SeaTurtle;
 		return Item;
 	}
 	
+	public void setItem(Item i){
+		Item = i;
+	}
+	
+	
 	public void Clone(Rooms room){
 		//empty projectile array list
 		System.out.printf("%b\n", room.cleared);

@@ -40,7 +40,6 @@ public class Board extends JPanel implements ActionListener {
     boolean Left = false;
     boolean Down = false;
     boolean Right = false;
-    Item item = currentRoom.getItem();
     boolean confirmation = false;
 	private Timer timer;
     private Craft craft;
@@ -132,10 +131,12 @@ public class Board extends JPanel implements ActionListener {
 	        //Draw player, not craft
 	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
 	        
+	        //Draw Creatures
 	        for(Creature c : creature)
 	        	if(c != null)
 	        		g2d.drawImage(c.getImage(), c.GetX(), c.GetY(), this);
 	          
+	        //Draw Projectiles
 	       	for(Projectile p : projectile)
 	       		if(p != null){
 	       			locationX = p.getImage().getWidth(null) / 2;
@@ -171,6 +172,10 @@ public class Board extends JPanel implements ActionListener {
        				g2d.drawImage(op.filter(toBufferedImage(p.getImage()), null), p.GetX(), p.GetY(), null);
 
 	       		}
+	       	//Draw the item
+	       	if(currentRoom.cleared && currentRoom.getItem() != null){
+	    		g2d.drawImage(currentRoom.getItem().getImage(), currentRoom.getItem().GetX(), currentRoom.getItem().GetY(), this);
+	    	}
 	       	
 	       	
 	       	if(GameState == "Pause"){
@@ -460,8 +465,8 @@ public class Board extends JPanel implements ActionListener {
 	    	}
     	}
     	//Player hit the item
-    	if(currentRoom.cleared && item != null){
-    		player.Collide(item);
+    	if(currentRoom.cleared && currentRoom.getItem() != null){
+    		player.Collide(currentRoom.getItem());
     	}
     }
     
@@ -496,9 +501,9 @@ public class Board extends JPanel implements ActionListener {
     	   			itrProjectile.remove();
         }
     	//Check remove item how to do this??
-    	if(item != null){
-    		if(item.ShouldRemove()){
-    			item = null;
+    	if(currentRoom.getItem() != null){
+    		if(currentRoom.getItem().ShouldRemove()){
+    			currentRoom.setItem(null);
     		}
     	}
     	//Check remove player

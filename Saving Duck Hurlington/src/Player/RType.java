@@ -22,7 +22,7 @@ public class RType extends JFrame {
         setSize(512, 512);
         setLocationRelativeTo(null);
         
-        setTitle("R - Type");
+        setTitle("Saving Duck Hurlington");
         setResizable(false);
         setVisible(true);
     }

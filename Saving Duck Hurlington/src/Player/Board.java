@@ -21,23 +21,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import Entities_and_Player.Creature;
-import Entities_and_Player.DuckPirate;
-import Entities_and_Player.Item;
-import Entities_and_Player.Player;
-import Entities_and_Player.Position;
-import Entities_and_Player.Projectile;
-import Entities_and_Player.Rat;
-import Map.Beach;
-import Map.Map;
-import Map.Rooms;
+import Entities_and_Player.*;
+import Map.*;
 
 public class Board extends JPanel implements ActionListener {
 
 	  //Make variables move these to top so it doesnt break
     Rooms currentRoom = new Rooms();
-    Player player = new Player(new Position(256 - 25,256 - 25));
-    Map theMap = new Map(currentRoom, player);
+    Player player;// = new Player(new Position(256 - 25,256 - 25));
+    Map theMap;// = new Map(currentRoom, player);
     ArrayList<Creature> creature = currentRoom.getCreArray();
     ArrayList<Projectile> projectile = currentRoom.getProArray();
     boolean W = false;
@@ -48,7 +40,6 @@ public class Board extends JPanel implements ActionListener {
     boolean Left = false;
     boolean Down = false;
     boolean Right = false;
-    Item item = currentRoom.getItem();
     boolean confirmation = false;
 	private Timer timer;
     private Craft craft;
@@ -58,7 +49,8 @@ public class Board extends JPanel implements ActionListener {
     private Position pos = new Position(250, 250);
     //private Rat rat = new Rat(pos);
     private Random Rand = new Random();
-    private String GameState = "Play";
+    private String GameState = "StartMenu";
+    private String StartMenuLoc = "/Menus/StartMenu.png";
     private String PauseMenuLoc = "/Menus/BlankPanel-2.png";
 	double locationX, locationY, rotationRequired;
 	AffineTransform tx;
@@ -66,8 +58,11 @@ public class Board extends JPanel implements ActionListener {
 	
 
     
-    ImageIcon ii = new ImageIcon(this.getClass().getResource(PauseMenuLoc));
-    private Image PauseMenu = ii.getImage();    
+    ImageIcon PauseIcon = new ImageIcon(this.getClass().getResource(PauseMenuLoc));
+    private Image PauseMenu = PauseIcon.getImage();    
+    
+    ImageIcon StartIcon = new ImageIcon(this.getClass().getResource(StartMenuLoc));
+    private Image StartMenu = StartIcon.getImage();
     
     Font MenuHeader = new Font("Helvetica", Font.BOLD, 24);
     FontMetrics MenuHeadMetr = this.getFontMetrics(MenuHeader);
@@ -78,24 +73,20 @@ public class Board extends JPanel implements ActionListener {
     AffineTransform identity = new AffineTransform();
       
     public Board() {
-    	
-    	
         addKeyListener(new TAdapter());
         setFocusable(true);
-         
-        //craft = new Craft();
+
+        //Add misc creatures for testing under here
+        creature.add(new DuckPirate(new Position(100,100), player));
+        
         timer = new Timer(5, this);
         timer.start();
     }
 
     public Image[][] getTile(){
-    	
-    	//Map = b.swapTile();
-    	
     	return Map;
     }
     
-     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);      
        
@@ -103,10 +94,17 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D g2d = (Graphics2D)g;
         Graphics2D g2dRot = (Graphics2D)g;
         
+        if(GameState == "StartMenu"){
+        	g2d.drawImage(StartMenu, 0, 0, getWidth(), getHeight(), null);
+        	if(confirmation){
+       			g2d.setColor(Color.RED);
+       			g2d.setFont(MenuHeader);
+       			String ConfMsg = "Are you sure? y/n";
+       			g2d.drawString(ConfMsg, (getWidth() - MenuHeadMetr.stringWidth(ConfMsg)) / 2, getHeight() * 2 / 5 + 100);
+       		}
+        }
+        
         if(GameState == "Play" || GameState == "Pause"){
-	        //if(Map == null)
-	        //   Map = b.getTile1();
-	            
         	int wWin = getWidth() / b.tilerow;
 	        int hWin = getHeight() / b.tilecolumn;
 	               
@@ -124,23 +122,21 @@ public class Board extends JPanel implements ActionListener {
 	        	    	if(currentRoom.GetCollision()[i][j] != null)
 	        	    	{
 	        	    		currentRoom.GetCollision()[i][j].setBounds(x, y, 32, 32);
-	                    //   g2d.draw(currentRoom.GetCollision()[i][j]);
 	        	    	}
 	        	    	  
 	        	    }catch(Exception e){}
 	            }
 	        }
-	
-	        //Draw the rat
-	        //g2d.drawImage(rat.getImage(), rat.GetX(), rat.GetY(), this);
 
 	        //Draw player, not craft
 	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
 	        
+	        //Draw Creatures
 	        for(Creature c : creature)
 	        	if(c != null)
 	        		g2d.drawImage(c.getImage(), c.GetX(), c.GetY(), this);
 	          
+	        //Draw Projectiles
 	       	for(Projectile p : projectile)
 	       		if(p != null){
 	       			locationX = p.getImage().getWidth(null) / 2;
@@ -176,6 +172,10 @@ public class Board extends JPanel implements ActionListener {
        				g2d.drawImage(op.filter(toBufferedImage(p.getImage()), null), p.GetX(), p.GetY(), null);
 
 	       		}
+	       	//Draw the item
+	       	if(currentRoom.cleared && currentRoom.getItem() != null){
+	    		g2d.drawImage(currentRoom.getItem().getImage(), currentRoom.getItem().GetX(), currentRoom.getItem().GetY(), this);
+	    	}
 	       	
 	       	
 	       	if(GameState == "Pause"){
@@ -191,7 +191,7 @@ public class Board extends JPanel implements ActionListener {
 	       		MenuMsg = "'Enter' - Resume";
 	       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 25);
 	       		
-	       		MenuMsg = "'Esc' - Exit Game";
+	       		MenuMsg = "'Esc' - Return to Start Menu";
 	       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 50);
 
 	       		if(confirmation){
@@ -200,68 +200,7 @@ public class Board extends JPanel implements ActionListener {
 	       			MenuMsg = "Are you sure? y/n";
 	       			g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 100);
 	       		}
-	       		//MenuMsg = "'s' - Show Player Stats";
-	       		//g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 75);
-
 	       	}
-	        //When player collides with the far right.
-/*	       	if (player.GetX() + player.GetMovingX() == getWidth()){
-	       		//Clear crap
-	       		// b.setNextCoord(1, 0);
-	       		Map = b.swapTile(1, 0);
-	       		//Change map
-	       		player.SetX(0 - player.getImage().getWidth(null));
-	        }
-	          
-	        //When player collides with the far left
-	       	if (player.GetX() + player.GetMovingX() + player.getImage().getWidth(null) == 0){
-	       		//Clear crap
-	        	// b.setNextCoord(1, 0);
-	        	Map = b.swapTile((-1), 0);
-	        	//Change map
-	        	player.SetX(getWidth());
-	       	}
-	        
-	        //When player collides with the bottom.
-	       	if (player.GetY() + player.GetMovingY() == getHeight()){
-	       		//Clear crap
-	        	//  b.setNextCoord(0, 1);
-	        	Map = b.swapTile(0, 1);
-	        	//Change map        	  
-	        	player.SetY(0 - player.getImage().getHeight(null));
-	       	}
-
-	       	//When player collides with the top.
-	        if (player.GetY() + player.GetMovingY() + player.getImage().getHeight(null) == 0){
-	        	//Clear crap
-	        	//  b.setNextCoord(0, 1);
-	        	Map = b.swapTile(0, (-1));
-	        	//Change map        	  
-	        	player.SetY(getHeight());
-	        }
-			
-	        /* This orients the projectiles so they are facing the right direction
-	        ArrayList<Missile> ms = craft.getMissiles();
-	
-	        for (int i = 0; i < ms.size(); i++ ) {
-	            Missile m = (Missile) ms.get(i);
-	            if(m.getVX() == 1){
-	               g2d.drawImage(m.getImage(), m.getX(), m.getY(), m.getVX() * m.getImage().getWidth(this), m.getImage().getHeight(this), this);
-	            }
-	            
-	            if(m.getVX() == -1){
-	                g2d.drawImage(m.getImage(), m.getX() + craft.getCraftSize(), m.getY(), m.getVX() * m.getImage().getWidth(this), m.getImage().getHeight(this), this);
-	             }
-	            
-	            if(m.getVY() == -1){
-	                g2d.drawImage(m.getImage(), m.getX() + craft.getCraftSize() / 2, m.getY(), m.getVY() * m.getImage().getWidth(this), m.getImage().getHeight(this), this);
-	             }
-	            
-	            if(m.getVY() == 1){
-	                g2d.drawImage(m.getImage(), m.getX() + craft.getCraftSize() / 2, m.getY() + craft.getCraftSize() / 2, -m.getVY() * m.getImage().getWidth(this), -m.getImage().getHeight(this), this);
-	             }
-	        }*/
-	
 	        Toolkit.getDefaultToolkit().sync();
 	        g.dispose();
         }
@@ -269,16 +208,8 @@ public class Board extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
     	 //THIS IS MAIN LOOP
-        //ArrayList<Missile> ms = craft.getMissiles();
 
         if(GameState == "Play"){
-	        /*for (int i = 0; i < ms.size(); i++) {
-	            Missile m = (Missile) ms.get(i);
-	            if (m.isVisible()) 
-	                m.move();
-	            else ms.remove(i);
-	        }*/
-	        
 	        if(!D && !A)
 	        	player.SetXDirection(0);
 	        if(!W && !S)
@@ -313,7 +244,18 @@ public class Board extends JPanel implements ActionListener {
 	     	collisions();
 	     	removeSomeOfTheThings();
 	     	theMap.MapUpdate();
+	       	try {
+				Thread.sleep(10);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	     	//Check if player is dead
+	     	if(player.GetHealth() == 0){
+	     		GameState = "StartMenu";
+	     	}
         }
+        
         repaint();  
     }
 
@@ -354,6 +296,7 @@ public class Board extends JPanel implements ActionListener {
 	            	Right = false;
 	            }
         	}
+        	//Pause Menu Stuff
         	else if(GameState == "Pause"){
         		W = false;
         		S = false;
@@ -363,12 +306,12 @@ public class Board extends JPanel implements ActionListener {
         		Left = false;
         		Down = false;
         		Right = false;
-        		//Pause Menu Stuff
         	}
         }
 
         public void keyPressed(KeyEvent e) {
-        	if(GameState == "Pause"){
+        	//Start Menu Stuff
+        	if(GameState == "StartMenu"){
         		if(confirmation){
         			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
         				System.exit(0);
@@ -376,7 +319,37 @@ public class Board extends JPanel implements ActionListener {
         			if(Character.toLowerCase(e.getKeyChar()) == 'n')
         				confirmation = false;
         		}
-        		//Start Menu Stuff
+        		
+        		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        				player = new Player(new Position(256 - 25,256 - 25));
+        				theMap = new Map(currentRoom, player);
+            			GameState = "Play";
+            			//have mason display and then we need to change game state there as well
+            		}
+            		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            			//display are you sure?
+            			confirmation = true;
+            		}
+            		if(confirmation && e.getKeyChar() == 'y'){
+            			//confirm that they want to exit
+            			GameState = "StartMenu";
+            			confirmation = false;
+            		}
+            		if(confirmation && e.getKeyChar() == 'n'){
+            			//they do not want to exit
+            			confirmation = false;
+            		}
+        	}
+        	//Pause Menu stuff
+        	else if(GameState == "Pause"){
+        		if(confirmation){
+        			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
+        				GameState = "StartMenu";
+        			}
+        			if(Character.toLowerCase(e.getKeyChar()) == 'n')
+        				confirmation = false;
+        		}
+        		
         		if(e.getKeyCode() == KeyEvent.VK_ENTER){
         		//	System.out.println("ENTER PRESSED");
         			GameState = "Play";
@@ -389,7 +362,8 @@ public class Board extends JPanel implements ActionListener {
         			confirmation = true;
         		}
         		if(confirmation && e.getKeyChar() == 'y'){
-        			GameState = "Exit";
+        			GameState = "StartMenu";
+        			confirmation = false;
         		}
         		if(confirmation && e.getKeyChar() == 'n'){
         			confirmation = false;
@@ -431,8 +405,21 @@ public class Board extends JPanel implements ActionListener {
 	            	GameState = "Pause";
 	            }
 	        }
-        	else if(GameState == "Pause"){
-        		//Pause Menu Stuff
+        	else if(GameState == "Dead"){
+        		if(confirmation){
+        			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
+        				System.exit(0);
+        			}
+        			if(Character.toLowerCase(e.getKeyChar()) == 'n')
+        				confirmation = false;
+        		}
+        		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        			GameState = "StartMenu";
+        		}
+        		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+        			//Display are you sure?
+        			confirmation = true;
+        		}
         	}
         }
     }   
@@ -442,10 +429,10 @@ public class Board extends JPanel implements ActionListener {
     
     //Movement function
     public void moveAllTheThings(){
+       	player.Move();
     	for(Creature i: creature){
     		i.Move();
     	}
-    	player.Move();
     	synchronized(projectile){
 	    	for(Projectile j: projectile){
 	    		if(j != null)
@@ -478,8 +465,8 @@ public class Board extends JPanel implements ActionListener {
 	    	}
     	}
     	//Player hit the item
-    	if(currentRoom.cleared && item != null){
-    		player.Collide(item);
+    	if(currentRoom.cleared && currentRoom.getItem() != null){
+    		player.Collide(currentRoom.getItem());
     	}
     }
     
@@ -514,9 +501,9 @@ public class Board extends JPanel implements ActionListener {
     	   			itrProjectile.remove();
         }
     	//Check remove item how to do this??
-    	if(item != null){
-    		if(item.ShouldRemove()){
-    			item = null;
+    	if(currentRoom.getItem() != null){
+    		if(currentRoom.getItem().ShouldRemove()){
+    			currentRoom.setItem(null);
     		}
     	}
     	//Check remove player
@@ -529,6 +516,7 @@ public class Board extends JPanel implements ActionListener {
     	
     }
     
+    //Converts Image to BufferedImage
     public static BufferedImage toBufferedImage(Image img)
     {
         if (img instanceof BufferedImage)

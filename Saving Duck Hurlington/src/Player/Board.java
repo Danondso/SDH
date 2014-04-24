@@ -313,6 +313,10 @@ public class Board extends JPanel implements ActionListener {
 	     	collisions();
 	     	removeSomeOfTheThings();
 	     	theMap.MapUpdate();
+	     	//Check if player is dead
+	     	if(player.GetHealth() == 0){
+	     		GameState = "Dead";
+	     	}
         }
         repaint();  
     }
@@ -354,6 +358,7 @@ public class Board extends JPanel implements ActionListener {
 	            	Right = false;
 	            }
         	}
+        	//Pause Menu Stuff
         	else if(GameState == "Pause"){
         		W = false;
         		S = false;
@@ -363,12 +368,12 @@ public class Board extends JPanel implements ActionListener {
         		Left = false;
         		Down = false;
         		Right = false;
-        		//Pause Menu Stuff
         	}
         }
 
         public void keyPressed(KeyEvent e) {
-        	if(GameState == "Pause"){
+        	//Start Menu Stuff
+        	if(GameState == "StartMenu"){
         		if(confirmation){
         			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
         				System.exit(0);
@@ -376,7 +381,42 @@ public class Board extends JPanel implements ActionListener {
         			if(Character.toLowerCase(e.getKeyChar()) == 'n')
         				confirmation = false;
         		}
-        		//Start Menu Stuff
+        		
+        		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            		//	System.out.println("ENTER PRESSED");
+            			GameState = "Story";
+            			//have mason display and then we need to change game state there as well
+            		}
+            		if(e.getKeyChar() == 'u'){
+            			//display unlock
+            		}
+            		
+            		if(e.getKeyChar() == 's'){
+            			//display stats
+            		}
+            		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            			//display are you sure?
+            			confirmation = true;
+            		}
+            		if(confirmation && e.getKeyChar() == 'y'){
+            			//confirm that they want to exit
+            			GameState = "Exit";
+            		}
+            		if(confirmation && e.getKeyChar() == 'n'){
+            			//they do not want to exit
+            			confirmation = false;
+            		}
+        	}
+        	//Pause Menu stuff
+        	else if(GameState == "Pause"){
+        		if(confirmation){
+        			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
+        				System.exit(0);
+        			}
+        			if(Character.toLowerCase(e.getKeyChar()) == 'n')
+        				confirmation = false;
+        		}
+        		
         		if(e.getKeyCode() == KeyEvent.VK_ENTER){
         		//	System.out.println("ENTER PRESSED");
         			GameState = "Play";
@@ -431,8 +471,21 @@ public class Board extends JPanel implements ActionListener {
 	            	GameState = "Pause";
 	            }
 	        }
-        	else if(GameState == "Pause"){
-        		//Pause Menu Stuff
+        	else if(GameState == "Dead"){
+        		if(confirmation){
+        			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
+        				System.exit(0);
+        			}
+        			if(Character.toLowerCase(e.getKeyChar()) == 'n')
+        				confirmation = false;
+        		}
+        		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        			GameState = "StartMenu";
+        		}
+        		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+        			//Display are you sure?
+        			confirmation = true;
+        		}
         	}
         }
     }   

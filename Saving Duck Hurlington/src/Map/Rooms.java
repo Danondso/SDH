@@ -3,10 +3,15 @@ package Map;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Entities_and_Player.Creature;
 import Entities_and_Player.Item;
+import Entities_and_Player.Krabby;
+import Entities_and_Player.Position;
 import Entities_and_Player.Projectile;
+import Entities_and_Player.Rat;
+import Entities_and_Player.SeaTurtle;
  
   public class Rooms {
 	
@@ -17,14 +22,19 @@ import Entities_and_Player.Projectile;
 	// private Beach beach;
     // private Forest forest;
     // private Mountain mountain;
-	private ArrayList<Creature> Creatures;
+	private ArrayList<Creature> Creatures = new ArrayList<Creature>();
 	private ArrayList<Projectile> Projectiles;
 	public boolean cleared = false;
 	public boolean itemSpawn = false;
 	Item Item;
 	private int x;
 	private int y;
+	private Random randx = new Random(System.currentTimeMillis());
+	private Random randy = new Random(System.currentTimeMillis());
 	//private Random rand = new Random(System.)
+    Rat r;
+    SeaTurtle s;
+    Krabby k;
 	
 	
 	Tiles tile;
@@ -36,6 +46,7 @@ import Entities_and_Player.Projectile;
 		//somethings about room spawn		
 		display = setTile(xIn, yIn);
 		Collision = setRect(xIn, yIn);
+		setCreature(tile, xIn, yIn);
 	    Item = item;
 	
 	}
@@ -61,18 +72,36 @@ import Entities_and_Player.Projectile;
 		return tile.swapTile(x, y);
 	}
 	
-	public void setCreatures(int amount){
 	
-		//Neal needs to write a get random creature
-		//public Creature getCreature(Tiles t, int amount)
-		for(int i = 0; i <= amount; i ++)
+	protected void setCreature(Tiles t, int x, int y){
+    
+		
+		
+		
+		if(t instanceof Beach)
+		{
+		for(int i = 0; i < 3; i++)
 		{
 			
-		//	int r = 
-		//   Creatures.add(getCreature(t, random));
-		   
+			int yPos = 31 + randy.nextInt(481);
+			int  xPos = 95 + randx.nextInt(386);
+			Creatures.add(new Rat(new Position(xPos, yPos)));
+		    //r = new Rat(new Position(xPos, yPos));
+		    //s = new SeaTurtle(new Position(xPos + yPos, yPos));
+			//k = new Krabby(new Position(xPos, yPos + xPos));
+		    //Creatures.add(r.Clone());
+			//Creatures.add(s.Clone());
+		    //Creatures.add(k.Clone());
+			//Creature.add(new DuckPirate(new Position(x,y), p));
 		}
-	}
+		
+		
+		}
+	
+		
+		
+		}
+  
 	
 	public Rectangle[][]setRect(int x, int y){
 		return tile.swapRect(x, y);
@@ -92,6 +121,7 @@ import Entities_and_Player.Projectile;
 	
 	public void Clone(Rooms room){
 		//empty projectile array list
+		System.out.printf("%b\n", room.cleared);
 		Projectiles.clear();
 		
 		//empty creature array list
@@ -101,12 +131,16 @@ import Entities_and_Player.Projectile;
 		Item = room.Item;
 		
 		//copy creature array list from room to this hardcopy not referencey
+
+		cleared = room.cleared;
+		
 		if(!room.cleared){
-			if(room.Creatures != null)
+			if(!room.Creatures.isEmpty())	
 				for(Creature C : room.Creatures)
 					if(C != null)
-						room.Creatures.add(C.Clone());
-	 	}
+						Creatures.add(C.clone());
+		}	
+		
 		//copy tile from room to this, reference not hardcopy
 		//if(room != null)
 			//if(room.display != null)
@@ -115,7 +149,7 @@ import Entities_and_Player.Projectile;
 		Collision = room.Collision.clone();
 	    
 		//copy IsCleared from room to this, reference not hardcopy
-	    cleared = room.cleared; 
+	    //cleared = room.cleared; 
     
 	}
 	

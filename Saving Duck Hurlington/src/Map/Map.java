@@ -375,7 +375,7 @@ public class Map {
 	    	}	
 		
 		}
-		else{ room.cleared = true;  }
+		else{ room.cleared = true; blueprint[X][Y].cleared = true;  }
 		//checks to see if the player moved out of the room
 		if(player.GetX() + player.getImage().getWidth(null) < 0){
 			X--;

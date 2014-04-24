@@ -167,7 +167,7 @@ public abstract class Creature extends Entity{
 
 
 	public Creature Clone() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -184,18 +184,7 @@ public abstract class Creature extends Entity{
 		PreviousPos.Y = Position.Y;
 	}
 	
-	protected void SetBeachCreature(){
-		int y =31+randy.nextInt(481);
-		int  x =95+randx.nextInt(386);
-		Beach = new ArrayList<Creature>();
-		for(int i = 0; i < 3; i++ ){
-			Beach.add(new SeaTurtle(new Position(x,y)));
-			Beach.add(new Krabby(new Position(x,y)));
-			Beach.add(new DuckPirate(new Position(x,y), p));
-		}
-		
-	
-	}
+
 	
 	public ArrayList<Creature> getBeach(){
 		

@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Entities_and_Player.Creature;
+import Entities_and_Player.DuckPirate;
 import Entities_and_Player.Item;
 import Entities_and_Player.Krabby;
+import Entities_and_Player.Player;
 import Entities_and_Player.Position;
 import Entities_and_Player.Projectile;
 import Entities_and_Player.Rat;
@@ -80,19 +82,15 @@ import Entities_and_Player.SeaTurtle;
 		
 		if(t instanceof Beach)
 		{
-		for(int i = 0; i < 3; i++)
+		for(int i = 0; i < 3 - randx.nextInt(2); i++)
 		{
 			
 			int yPos = 31 + randy.nextInt(481);
-			int  xPos = 95 + randx.nextInt(386);
-			Creatures.add(new Rat(new Position(xPos, yPos)));
-		    //r = new Rat(new Position(xPos, yPos));
-		    //s = new SeaTurtle(new Position(xPos + yPos, yPos));
-			//k = new Krabby(new Position(xPos, yPos + xPos));
-		    //Creatures.add(r.Clone());
-			//Creatures.add(s.Clone());
-		    //Creatures.add(k.Clone());
-			//Creature.add(new DuckPirate(new Position(x,y), p));
+			 int  xPos = 95 + randx.nextInt(386);
+				Creatures.add(new Rat(new Position(xPos, yPos)));
+				Creatures.add(new SeaTurtle(new Position(xPos, yPos)));
+				Creatures.add(new Krabby(new Position(yPos, xPos)));
+		    
 		}
 		
 		

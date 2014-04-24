@@ -7,7 +7,7 @@ public class Krabby extends Creature {
 	int x,y,xslope,yslope;
 	int movecounter = 0;
 	int movecountermax = 10;
-	private static Random rand;
+	private static Random rand = new Random(System.currentTimeMillis());
 	public Krabby (Position pos){
 		super(10,10,3,1, 0,pos, "/Entities/Placeholder/placeholder.png");
 		Position = pos;

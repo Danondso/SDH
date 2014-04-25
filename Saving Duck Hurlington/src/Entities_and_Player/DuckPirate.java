@@ -12,7 +12,7 @@ public class DuckPirate extends Creature{
 	 }
 
 		Projectile AttackMethod() {
-			Sword sword = new Sword(2, 2, 2, 2, Enemy, Position);
+			Sword sword = new Sword(2, 2, 2, 2, Enemy, new Position(Position.X, Position.Y));
 			return sword;
 		}
 		

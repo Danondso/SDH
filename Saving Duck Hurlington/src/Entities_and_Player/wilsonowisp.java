@@ -12,7 +12,7 @@ public class wilsonowisp extends Creature {
 
 	@Override
 	Projectile AttackMethod() {
-		fireball fire = new fireball(Damage, 5, 5, 256, Range, Enemy, Position);
+		fireball fire = new fireball(Damage, 5, 5, 256, Range, Enemy, new Position(Position.X, Position.Y));
 		return fire;
 		
 	}
@@ -21,8 +21,8 @@ public class wilsonowisp extends Creature {
 	public void Move() {
 		Update();
 		
-		SetX(256);
-		SetY(256);
+		//SetX(256);
+		//SetY(256);
 		
 		// TODO Auto-generated method stub
     	if(Player.Position.GetX() > Position.GetX()){

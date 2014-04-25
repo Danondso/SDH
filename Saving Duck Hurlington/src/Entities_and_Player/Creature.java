@@ -23,11 +23,7 @@ public abstract class Creature extends Entity{
 	protected int ShotSpeed = 2;
 	protected Random randx;
 	protected Random randy;
-	protected ArrayList<Creature>Beach;
-	protected ArrayList<Creature>Forrest;
-	protected ArrayList<Creature>Mountain;
-	protected ArrayList<Creature>creatures;
-	protected Player p;
+	
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);
@@ -184,24 +180,7 @@ public abstract class Creature extends Entity{
 		PreviousPos.Y = Position.Y;
 	}
 	
-	protected void SetBeachCreature(){
-		int y =31+randy.nextInt(481);
-		int  x =95+randx.nextInt(386);
-		Beach = new ArrayList<Creature>();
-		for(int i = 0; i < 3; i++ ){
-			Beach.add(new SeaTurtle(new Position(x,y)));
-			Beach.add(new Krabby(new Position(x,y)));
-			Beach.add(new DuckPirate(new Position(x,y), p));
-		}
-		
 	
-	}
-	
-	public ArrayList<Creature> getBeach(){
-		
-			return Beach;
-		}
-			
 
 	
 }

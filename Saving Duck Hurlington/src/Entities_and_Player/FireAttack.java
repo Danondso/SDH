@@ -13,6 +13,6 @@ public class FireAttack extends Item {
 
 	@Override
 	void Collect(Entities_and_Player.Player player) {
-		player.Attack = new fireball(0, 0, 0, 0, false, null);
+		player.Attack = new fireball(0, 0, 0, 0, 0, false, null);
 	}
 }

@@ -1,7 +1,7 @@
 package Entities_and_Player;
 
 
-import java.util.ArrayList;
+
 import java.util.Random;
 public abstract class Creature extends Entity{
 	protected Position PreviousPos;
@@ -20,10 +20,9 @@ public abstract class Creature extends Entity{
 	protected int IFCount; //IFCount counts how many invincibility frames remain on a creature
 	protected int AttackDelay;
 	protected int CDelay;
-	protected int ShotSpeed = 2;
-	protected Random randx;
-	protected Random randy;
-	
+	protected int ShotSpeed = 4;
+
+
 	
 	public Creature(int health, int maxhealth, int damage, int speed, int range, Position pos, String ImageLocation){
 		super(pos, ImageLocation);
@@ -101,7 +100,7 @@ public abstract class Creature extends Entity{
 			else{
 				//Enemy-Player collision
 				if(entity instanceof Player){
-					if(((Player) entity).IFCount > 0){
+					if(((Player) entity).IFCount == 0){
 						((Player) entity).AdjustHealth(-Damage);
 						((Player) entity).IFCount = ((Player) entity).InvincibilityFrames;
 					}
@@ -163,7 +162,7 @@ public abstract class Creature extends Entity{
 
 
 	public Creature Clone() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -179,7 +178,6 @@ public abstract class Creature extends Entity{
 		PreviousPos.X = Position.X;
 		PreviousPos.Y = Position.Y;
 	}
-	
 	
 
 	

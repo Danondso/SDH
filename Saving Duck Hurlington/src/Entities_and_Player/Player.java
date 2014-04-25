@@ -9,10 +9,10 @@ public class Player extends Creature{
 	protected boolean PanicGloves;
 	
 	public Player(Position pos){
-		super(5, 5, 5, 1, 100, pos, "/Player/player_male.png");
+		super(10, 10, 5, 2, 50, pos, "/Player/player_male.png");
 		Attack = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range, Player, pos);
 		PanicBoots = false;
-		InvincibilityFrames = 10;
+		InvincibilityFrames = 250;
 	}
 
 	Projectile AttackMethod() {

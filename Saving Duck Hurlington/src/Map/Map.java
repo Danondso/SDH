@@ -84,9 +84,9 @@ public class Map {
 				     RoomItem = items.NextItem();
 				   
 				   if(RoomItem != null)
-				   		blueprint[i][j] = new Rooms(t, i, j, RoomItem.Clone());
+				   		blueprint[i][j] = new Rooms(t, player, i, j, RoomItem.Clone());
 				   else
-				   		blueprint[i][j] = new Rooms(t, i, j, null);
+				   		blueprint[i][j] = new Rooms(t, player, i, j, null);
 				   RoomItem = null;
 				   if(blueprint[i][j] == null)
 					   System.out.printf("What is this even\n");

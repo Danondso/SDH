@@ -14,6 +14,7 @@ import Entities_and_Player.Position;
 import Entities_and_Player.Projectile;
 import Entities_and_Player.Rat;
 import Entities_and_Player.SeaTurtle;
+import Entities_and_Player.wilsonowisp;
  
   public class Rooms {
 	
@@ -40,10 +41,12 @@ import Entities_and_Player.SeaTurtle;
 	
 	
 	Tiles tile;
+	Player player;
 	
 	//I forgot why the X and Y values are in there D:<
-	public Rooms(Tiles t, int xIn, int yIn, Item item){
+	public Rooms(Tiles t,Player p, int xIn, int yIn, Item item){
 		
+		player = p;
 		tile = t;
 		//somethings about room spawn		
 		display = setTile(xIn, yIn);
@@ -85,12 +88,16 @@ import Entities_and_Player.SeaTurtle;
 		for(int i = 0; i < 3 - randx.nextInt(2); i++)
 		{
 			
+			if(x == 3 && y ==3)
+			   Creatures.add(new wilsonowisp(new Position(100, 100), player));
+				else{
 			int yPos = 31 + randy.nextInt(481);
 			 int  xPos = 95 + randx.nextInt(386);
 				Creatures.add(new Rat(new Position(xPos, yPos)));
 				Creatures.add(new SeaTurtle(new Position(xPos, yPos)));
 				Creatures.add(new Krabby(new Position(yPos, xPos)));
-		    
+				Creatures.add(new DuckPirate(new Position(xPos, yPos),player));
+				}
 		}
 		
 		

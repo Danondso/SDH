@@ -2,9 +2,11 @@ package Entities_and_Player;
 
 
 public class wilsonowisp extends Creature {
-Player Player;
+ 
+	Player Player;
+	
 	public wilsonowisp(Position pos, Player p) {
-		super(100, 100, 3, 10, 100, pos, "/Entities/Placeholder/placeholder.png");
+		super(100, 100, 3, 1, 100, pos, "/Entities/Placeholder/placeholder.png");
 		Player = p;
 	}
 
@@ -18,8 +20,12 @@ Player Player;
 	@Override
 	public void Move() {
 		Update();
+		
+		SetX(256);
+		SetY(256);
+		
 		// TODO Auto-generated method stub
-    	if(Player.Position.GetX()> Position.GetX()){
+    	if(Player.Position.GetX() > Position.GetX()){
     		Position.AdjustX(Speed);
     	}
     	else if(Player.Position.GetX()< Position.GetX()){
@@ -31,6 +37,7 @@ Player Player;
     	else if (Player.Position.GetY()<Position.GetY()){
     		Position.AdjustY(-Speed);
     	}
+	   
 	}
 
 	@Override

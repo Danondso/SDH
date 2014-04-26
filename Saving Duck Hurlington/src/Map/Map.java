@@ -32,10 +32,10 @@ public class Map {
 		room = r;
 		loadMap(b);
 		ItemPool itemPool =  new ItemPool();
-		//loadMap(f);
+		loadMap(f);
 		//loadMap(m);
 		blueprintBeach = createBlueprint(b, itemPool);
-		//blueprintForest = createBluePrint(f, itemPool);
+	//	blueprintForest = createBlueprint(f, itemPool);
 		//blueprintMountain = createBluePrint(m, itemPool);
 		room.Clone(blueprintBeach[X][Y]);
 		
@@ -53,9 +53,10 @@ public class Map {
 		
 		}
 		else{
+			t.fillIdentity();
 			t.createMap();
 			t.clearDoors();
-		
+		    t.sealBorders();
 		}
 	}
 	

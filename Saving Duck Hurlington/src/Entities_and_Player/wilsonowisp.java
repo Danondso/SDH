@@ -6,7 +6,7 @@ public class wilsonowisp extends Creature {
 	Player Player;
 	
 	public wilsonowisp(Position pos, Player p) {
-		super(100, 100, 3, 1, 100, pos, "/Entities/Placeholder/placeholder.png");
+		super(100, 100, 3, 1, 100, pos, "/Entities/Boss/Wilson.png");
 		Player = p;
 	}
 

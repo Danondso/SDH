@@ -133,12 +133,13 @@ abstract class Tiles{
 				{
 			    
 			     int r = rand.nextInt(terrain.length);
-		
-			        if(r != 2 || r != 4)
-			          identity[i][j] = null;
-			     
-			     	totalmap[i][j] = terrain[r];
-		            
+					
+			        if(r == 2 || r == 4)
+			          identity[i][j] = new Rectangle(0,0,32, 32);
+			        else
+			            identity[i][j] = null;
+			     	
+			       totalmap[i][j] = terrain[r];    	
 				}
 			}
 		}

@@ -7,6 +7,7 @@ import java.util.Random;
 
 import Entities_and_Player.Creature;
 import Entities_and_Player.DuckPirate;
+import Entities_and_Player.Evilwoodduck;
 import Entities_and_Player.Item;
 import Entities_and_Player.Krabby;
 import Entities_and_Player.Player;
@@ -15,6 +16,7 @@ import Entities_and_Player.Projectile;
 import Entities_and_Player.Rat;
 import Entities_and_Player.SeaTurtle;
 import Entities_and_Player.wilsonowisp;
+import Entities_and_Player.wolf;
  
   public class Rooms {
 	
@@ -98,15 +100,24 @@ import Entities_and_Player.wilsonowisp;
 				Creatures.add(new Krabby(new Position(yPos, xPos)));
 				Creatures.add(new DuckPirate(new Position(xPos, yPos),player));
 				}
-		}
-		
-		
+			}
 		}
 	
+		else if(t instanceof Forest){
+			for(int i = 0; i < 3 - randx.nextInt(2); i++)
+			{
+				int yPos = 31 + randy.nextInt(481);
+				 int  xPos = 95 + randx.nextInt(386);
+					//Creatures.add(new wolf(new Position(xPos, yPos), player));
+					//Creatures.add(new Evilwoodduck(new Position(xPos, yPos)));
+				 	Creatures.add(new Rat(new Position(xPos, yPos)));
+					}
+			
+			
+			}
 		
+			}	
 		
-		}
-  
 	
 	public Rectangle[][]setRect(int x, int y){
 		return tile.swapRect(x, y);

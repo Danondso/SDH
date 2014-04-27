@@ -55,8 +55,8 @@ public class Map {
 		else{
 			t.fillIdentity();
 			t.createMap();
-			t.clearDoors();
 		    t.sealBorders();
+		    t.clearDoors();
 		}
 	}
 	

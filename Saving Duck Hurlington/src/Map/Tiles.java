@@ -12,50 +12,24 @@ import javax.imageio.ImageIO;
 abstract class Tiles{
 	
 		private String[] textures;
-	
 		private String[] name;
-		protected boolean issolid = false;
-		
-		
-		
-		//entire generated map dimensions
+		protected boolean issolid = false;				
 		static int row = 64;
-		static int column = 64;
-		
-        protected int x;
-        
-        
-        protected int y;
-		
-        protected int nextX;
-        
-        protected int nextY;
-        
-        protected int rectX;
-        
+		static int column = 64;		
+        protected int x;      
+        protected int y;		
+        protected int nextX;      
+        protected int nextY;       
+        protected int rectX;       
         protected int rectY;
         
 		//display tile dimensions
 		public static int tilerow = 16;
-		public int tilecolumn = 16;
-		
-		
+		public int tilecolumn = 16;	
 		//These allow the tiles to reload based on adding values of 
 		//  16, 32, and 48
 	    protected Image[][] displaytile;
-				
-		//This will be used for the entity collision 
-		
-		
-	    
-	    
-		//This creates the map for the levels
-		//Will consist of the tiles
 		protected Image[][] totalmap = new Image[row][column];
-		
-		//protected Image[][] level;
-
-		
 		protected Rectangle[][] identity = new Rectangle[row][column];
 		protected Rectangle[][] roomID = new Rectangle[tilerow][tilecolumn];
 		//The subclass array of asset strings will be passed into this
@@ -67,49 +41,28 @@ abstract class Tiles{
 		                 tile5, tile6, tile7, tile8,
 		                 tile9, tile10, tile11, tile12,
 		                 tile13, tile14, tile15, tile16;
-		
 		public Rectangle[][] rectTile1, rectTile2, rectTile3, rectTile4,
-		rectTile5, rectTile6, rectTile7, rectTile8,
-		rectTile9, rectTile10, rectTile11, rectTile12,
-		rectTile13, rectTile14,rectTile15, rectTile16;
-		
-		
-		
-		
+							 rectTile5, rectTile6, rectTile7, rectTile8,
+							 rectTile9, rectTile10, rectTile11, rectTile12,
+							 rectTile13, rectTile14,rectTile15, rectTile16;
 		protected Image[][] tile;
-		
 		protected Graphics g;
-		
 		public Tiles(String[] texture) {
-				
-			
-	
 	       //passes the array to the Tiles 	
 			textures = texture;	
 			//instantiates the terrain array 
 			this.terrain = new Image[textures.length];
 			this.tile = new Image[tilerow][tilecolumn];
 			//string for textures
-			name = new String[textures.length];
-			//string for 
-				
+			name = new String[textures.length];	
 			nextX = 0;
 			nextY = 0;
-			
-			
 			try{
-				
 				for(int i = 0; i < textures.length; i++){
-				   terrain[i] = ImageIO.read(Tiles.class.getResourceAsStream(textures[i])); 				   
-			       }
-			  }
-			catch(IOException e){System.out.println("Error: " + e);}
-			
-		  //  setPreferredSize(new Dimension(800,800));
-			
-			
+				   terrain[i] = ImageIO.read(Tiles.class.getResourceAsStream(textures[i]));}
+			  	}
+			catch(IOException e){System.out.println("Error: " + e);}			
 		}
-
 
 		public void fillIdentity(){
 			
@@ -119,11 +72,8 @@ abstract class Tiles{
 				{
 			      identity[i][j] = new Rectangle(0, 0, 32, 32);
 				}
-			}
-		  
-		}
-
-	
+			}		  
+		}	
 		//Randomizes the terrain of the entire 64 X 64 map
 		public void createMap(){
 			
@@ -144,7 +94,6 @@ abstract class Tiles{
 			}
 		}
 		
-		
 		public void clearDoors(){
 			for(int i = 0; i < row; i++) 
 			{
@@ -152,7 +101,7 @@ abstract class Tiles{
 				{
 					
 				//you pretty much subgrid the map so it makes all the entrances and exits nonsolid	
-				  if(i == 7 || j == 7)//add the rest of the i's and j's for the rest of the map
+				  if(i == 7 || j == 7)
 					{
 					 totalmap[i][j] = terrain[1]; 
 					 identity[i][j] = null;
@@ -172,9 +121,7 @@ abstract class Tiles{
 				    totalmap[i][j] = terrain[1];
 				    identity[i][j] = null;
 				  }
-				  
-				
-				  
+				  //Fills the very outer borders with rocks. 
 				  if(i == 0 || j == 0){
 						totalmap[i][j] = terrain[2];  
 				        identity[i][j] = new Rectangle(0, 0, 32, 32);
@@ -184,11 +131,8 @@ abstract class Tiles{
 						 totalmap[i][j] = terrain[2];
 				        identity[i][j] = new Rectangle(0, 0, 32, 32);
 					  }
-				}
-			
-			
+				}	
 			}
-			
 		}	
 		
 		public void sealBorders(){
@@ -200,34 +144,26 @@ abstract class Tiles{
 			     if(i <= 63){
 			    	 if(j == 0 || j == 15 || j == 16 || j == 31 || j == 32 || j == 47 || j == 48 || j == 63){
 				    totalmap[i][j] = terrain[2];
-			        identity[i][j] = new Rectangle(0,0,32,32);
-			    	 }
+			        identity[i][j] = new Rectangle(0,0,32,32);}
 			    }
-
 			     if(j <= 63){
 			    	 if(i == 0 || i == 15 || i == 16 || i == 31 || i == 32 || i == 47 || i == 48 || i == 63){
 					    totalmap[i][j] = terrain[2];
 				        identity[i][j] = new Rectangle(0,0,32,32);}
-
-			     }
+			    }
 			     if(i == 0 || i == 63){
 					    totalmap[i][j] = terrain[2];
 			        identity[i][j] = new Rectangle(0,0,32,32);
 			     }
-
-			    
 			     if(j == 0 || j == 63){
 					    totalmap[i][j] = terrain[2];
 			        identity[i][j] = new Rectangle(0,0,32,32);
 			     }
 
 				}
-			}
-			
-			
-		}
+			}	
+		}	
 		
-
 		//loads a tile to display on the map
 		public Image[][] loadTile(int r, int c, Image[][] inTile){
 				
@@ -236,15 +172,10 @@ abstract class Tiles{
 			if(r == 48 && c == 48)
 			   BossRoom(inTile);
 			else{
-			
-			for(int i = 0; i < tilerow; i++){
-		       for(int j = 0; j < tilecolumn; j++){
-				
-		    	
-		    	   inTile[i][j] = totalmap[(i + r)][(j + c)]; 
-				}      
-			}	
-			
+					for(int i = 0; i < tilerow; i++){
+					    for(int j = 0; j < tilecolumn; j++){    	
+					    	inTile[i][j] = totalmap[(i + r)][(j + c)];}      
+			    }	
 			}
 			return inTile;
 		}
@@ -260,63 +191,46 @@ abstract class Tiles{
 				 if(i > 0 && i < 15)
 				 {
 						if(j > 0 && j < 15)
-						  inTile[i][j] = terrain[1];
-				 }			
-				
-				
+						  inTile[i][j] = terrain[1];}				
 				}
 			}
 		}
-		
 		
 		public void RectRoom(Rectangle[][] inRect)
 		{
 			for(int i = 0; i < tilerow; i++){
 				for(int j = 0; j < tilecolumn; j++)
 				{
-				
-					inRect[i][j] = identity[i + 48][j + 48];
-					
+					inRect[i][j] = identity[i + 48][j + 48];	
 				 if(i > 0 && i < 15)
 					 if(j > 0 && j < 15)
-						 inRect[i][j] = null;
-				 			
-				
-				
+						 inRect[i][j] = null;	
 				}
 			}
 		}
-		
-		
 		//loads the rectangles used for collision
 		public Rectangle[][] loadRect(int r, int c, Rectangle[][] CollideTile){
 			
 			   if(CollideTile == null)
 				   CollideTile = new Rectangle[tilerow][tilecolumn]; 
-			
-			if(r == 48 && c == 48)
-				RectRoom(CollideTile);
-			else{  
-			for(int i = 0; i < tilerow; i++){
-		       for(int j = 0; j < tilecolumn; j++){
-					
-		    	   CollideTile[i][j] = identity[(i + r)][(j + c)]; 
-				}      
-			}	
-			}
+			   if(r == 48 && c == 48)
+				   RectRoom(CollideTile);
+			   else{  
+				   	for(int i = 0; i < tilerow; i++){
+				   		for(int j = 0; j < tilecolumn; j++){
+				   			CollideTile[i][j] = identity[(i + r)][(j + c)];}      
+				   	}	
+			   	}
 			return CollideTile;
 		}
-		
-		
-		
+			
 		public Image[][] swapTile(int newX, int newY){
 			
 			//4/10/2014 this may need to get changed to accommodate room.
 			if(newX == 0 && newY == 0)
 			{
 				nextX = 0;
-				nextY = 0;
-			}
+				nextY = 0;}
 			
 			nextX = newX;
 			nextY = newY;
@@ -358,14 +272,9 @@ abstract class Tiles{
 			return null;
 		}
 		
-		
-		
-		
 		//1st row
 		public Image[][] getTile1(){tile1 = loadTile(0,0, tile1); return tile1; }
-		public Image[][] getTile2()
-		
-		{tile2 = loadTile(16,0, tile2); return tile2;}
+		public Image[][] getTile2(){tile2 = loadTile(16,0, tile2); return tile2;}
 		public Image[][] getTile3(){tile3 = loadTile(32,0, tile3); return tile3;}
 		public Image[][] getTile4(){tile4 = loadTile(48,0, tile4); return tile4;}
 		//2nd row
@@ -383,8 +292,6 @@ abstract class Tiles{
 		public Image[][] getTile14(){tile14 = loadTile(16,48, tile14); return tile14;}
 		public Image[][] getTile15(){tile15 = loadTile(32,48, tile15); return tile15;}
 		public Image[][] getTile16(){tile16 = loadTile(48,48, tile16); return tile16;}
-		
-	
 		
 	public Rectangle[][] swapRect(int newX, int newY){
 			
@@ -435,8 +342,7 @@ abstract class Tiles{
 			return null;
 		}
 		
-	
-	//1st row
+			//1st row
 			public Rectangle[][] getRect1(){rectTile1 = loadRect(0,0, rectTile1); return rectTile1; }
 			public Rectangle[][] getRect2(){rectTile2 = loadRect(16,0, rectTile2); return rectTile2;}
 			public Rectangle[][] getRect3(){rectTile3 = loadRect(32,0, rectTile3); return rectTile3;}
@@ -455,10 +361,9 @@ abstract class Tiles{
 			public Rectangle[][] getRect13(){rectTile13 = loadRect(0,48, rectTile13);  return rectTile13;}
 			public Rectangle[][] getRect14(){rectTile14 = loadRect(16,48, rectTile14); return rectTile14;}
 			public Rectangle[][] getRect15(){rectTile15 = loadRect(32,48, rectTile15); return rectTile15;}
-			public Rectangle[][] getRect16(){rectTile16 = loadRect(48,48, rectTile16); return rectTile16;}
-		
-		
-		
+			public Rectangle[][] getRect16(){rectTile16 = loadRect(48,48, rectTile16); return rectTile16;}		
+	
+//End Class
 	}
 
 

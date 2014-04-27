@@ -47,7 +47,6 @@ public class Board extends JPanel implements ActionListener {
     private Beach b = new Beach();
     private Image[][] Map;
     private Position pos = new Position(250, 250);
-    //private Rat rat = new Rat(pos);
     private Random Rand = new Random();
     private String GameState = "StartMenu";
     private String StartMenuLoc = "/Menus/StartMenu.png";
@@ -55,9 +54,7 @@ public class Board extends JPanel implements ActionListener {
 	double locationX, locationY, rotationRequired;
 	AffineTransform tx;
 	AffineTransformOp op;
-	
-
-    
+  
     ImageIcon PauseIcon = new ImageIcon(this.getClass().getResource(PauseMenuLoc));
     private Image PauseMenu = PauseIcon.getImage();  
     
@@ -78,18 +75,11 @@ public class Board extends JPanel implements ActionListener {
     public Board() {
         addKeyListener(new TAdapter());
         setFocusable(true);
-
-        //Add misc creatures for testing under here
-        creature.add(new DuckPirate(new Position(100,100), player));
         
         timer = new Timer(5, this);
         timer.start();
     }
-
-    public Image[][] getTile(){
-    	return Map;
-    }
-    
+   
     public void paintComponent(Graphics g) {
         super.paintComponent(g);      
        

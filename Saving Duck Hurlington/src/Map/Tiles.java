@@ -104,10 +104,8 @@ abstract class Tiles{
 			       }
 			  }
 			catch(IOException e){System.out.println("Error: " + e);}
-			
-		  //  setPreferredSize(new Dimension(800,800));
-			
-			
+		
+		
 		}
 
 

@@ -21,34 +21,25 @@ import Entities_and_Player.wilsonowisp;
     int roomSize = 16;
 	private Image[][] display = new Image[roomSize][roomSize];
 	private Rectangle[][]Collision = new Rectangle[roomSize][roomSize];
-  
-	// private Beach beach;
-    // private Forest forest;
-    // private Mountain mountain;
 	private ArrayList<Creature> Creatures = new ArrayList<Creature>();
 	private ArrayList<Projectile> Projectiles;
 	public boolean cleared = false;
 	public boolean itemSpawn = false;
-	Item Item;
+	protected Item Item;
 	private int x;
 	private int y;
 	private Random randx = new Random(System.currentTimeMillis());
 	private Random randy = new Random(System.currentTimeMillis());
-	//private Random rand = new Random(System.)
-    Rat r;
-    SeaTurtle s;
-    Krabby k;
-	
-	
-	Tiles tile;
-	Player player;
-	
+	protected Rat r;
+    protected SeaTurtle s;
+    protected Krabby k;	
+	protected Tiles tile;
+	protected Player player;	
 	//I forgot why the X and Y values are in there D:<
 	public Rooms(Tiles t,Player p, int xIn, int yIn, Item item){
 		
 		player = p;
 		tile = t;
-		//somethings about room spawn		
 		display = setTile(xIn, yIn);
 		Collision = setRect(xIn, yIn);
 		setCreature(tile, xIn, yIn);
@@ -72,17 +63,11 @@ import Entities_and_Player.wilsonowisp;
 		Item = null;
 	}
 	
-	public Image[][] setTile(int x, int y){
-		
-		return tile.swapTile(x, y);
-	}
+	public Image[][] setTile(int x, int y){return tile.swapTile(x, y);}
 	
 	
 	protected void setCreature(Tiles t, int x, int y){
     
-		
-		
-		
 		if(t instanceof Beach)
 		{
 		for(int i = 0; i < 3 - randx.nextInt(2); i++)
@@ -99,15 +84,29 @@ import Entities_and_Player.wilsonowisp;
 				Creatures.add(new DuckPirate(new Position(xPos, yPos),player));
 				}
 		}
-		
+		}
+		else if(t instanceof Forest)
+		{
+		for(int i = 0; i < 3 - randx.nextInt(2); i++)
+		{
+			
+			if(x == 3 && y ==3)
+			   Creatures.add(new wilsonowisp(new Position(100, 100), player));
+				else{
+			int yPos = 31 + randy.nextInt(481);
+			 int  xPos = 95 + randx.nextInt(386);
+				Creatures.add(new Rat(new Position(xPos, yPos)));
+				Creatures.add(new SeaTurtle(new Position(xPos, yPos)));
+				Creatures.add(new Krabby(new Position(yPos, xPos)));
+				Creatures.add(new DuckPirate(new Position(xPos, yPos),player));
+				}
+		}
 		
 		}
 	
+	}
 		
 		
-		}
-  
-	
 	public Rectangle[][]setRect(int x, int y){
 		return tile.swapRect(x, y);
 	}

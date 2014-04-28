@@ -1,10 +1,10 @@
 package Map;
 //boopty
-public class Forest {
+public class Forest extends Tiles {
 
-	public Forest(){
-		
-	}
+	protected static String[] texture = {"/Forest/Grass.png", "/Forest/Dirt_Patch.png", "/Forest/Bush.png", "/Forest/Flower_test.png"};
+	
+	public Forest(){super(texture);}
 	
 	
 }

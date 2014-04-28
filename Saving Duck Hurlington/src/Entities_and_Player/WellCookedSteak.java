@@ -3,7 +3,7 @@ package Entities_and_Player;
 public class WellCookedSteak extends Item{
 
 	public WellCookedSteak(Position pos) {
-		super(pos, "/Entities/Placeholder/placeholder.png");
+		super(pos, "/Entities/Items/WellCookedSteak.png");
 	}
 
 	void Collect(Player player) {

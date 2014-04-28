@@ -4,7 +4,7 @@ package Entities_and_Player;
 public class PanicBoots extends Item{
 
 	public PanicBoots(Position pos) {
-		super(pos, "/Entities/Placeholder/placeholder.png");
+		super(pos, "/Entities/Items/PanicBoots.png");
 		// TODO Auto-generated constructor stub
 	}
 

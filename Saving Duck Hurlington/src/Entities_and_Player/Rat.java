@@ -11,7 +11,7 @@ public class Rat extends Creature{
 	private static Random rand = new Random();
 	
 	public Rat(Position pos){
-		super(1, 1, 5, 	1, 5, pos, "/Entities/Rat/rat.png");
+		super(1, 1, 5, 	1, 5, pos, "/Entities/Enemies/Rat.png");
 		Position = pos;
 		
 	

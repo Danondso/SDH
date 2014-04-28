@@ -73,6 +73,9 @@ public class Board extends JPanel implements ActionListener {
     Font MenuContent = new Font("Helvetica", Font.BOLD, 14);
     FontMetrics MenuContMetr = this.getFontMetrics(MenuContent);
     
+    Font HealthFont = new Font("Consolas", Font.BOLD, 12);
+    FontMetrics HealthFontMetr = this.getFontMetrics(HealthFont);
+    
     AffineTransform identity = new AffineTransform();
       
     public Board() {
@@ -91,8 +94,9 @@ public class Board extends JPanel implements ActionListener {
     }
     
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);      
-       
+        super.paintComponent(g);
+        
+ 
         AffineTransform trans = new AffineTransform();
         Graphics2D g2d = (Graphics2D)g;
         Graphics2D g2dRot = (Graphics2D)g;
@@ -182,9 +186,14 @@ public class Board extends JPanel implements ActionListener {
 	            }
 	        }
 
-	        //Draw player, not craft
+	        //Draw player, and current health directly below the player
 	        g2d.drawImage(player.getImage(), player.GetX(), player.GetY(), this);
-	        
+	        g2d.setColor(Color.RED);
+       		g2d.setFont(HealthFont);
+       		
+            String Health = String.valueOf(player.GetHealth());
+       		g2d.drawString(Health, player.GetX() + player.getImage().getWidth(null)/4, player.GetY() + player.getImage().getHeight(null) + 12);
+
 	        //Draw Creatures
 	        for(Creature c : creature)
 	        	if(c != null)
@@ -305,7 +314,7 @@ public class Board extends JPanel implements ActionListener {
 				e1.printStackTrace();
 			}
 	     	//Check if player is dead
-	     	if(player.GetHealth() == 0){
+	     	if(player.GetHealth() <= 0){
 	     		GameState = "Dead";
 	     	}
         }

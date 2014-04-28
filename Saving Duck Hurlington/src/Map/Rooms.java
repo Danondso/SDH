@@ -95,7 +95,7 @@ import Entities_and_Player.wolf;
 				else{
 			int yPos = 31 + randy.nextInt(481);
 			 int  xPos = 95 + randx.nextInt(386);
-				Creatures.add(new Rat(new Position(xPos, yPos)));
+				//Creatures.add(new Rat(new Position(xPos, yPos)));
 				Creatures.add(new SeaTurtle(new Position(xPos, yPos)));
 				Creatures.add(new Krabby(new Position(yPos, xPos)));
 				Creatures.add(new DuckPirate(new Position(xPos, yPos),player));

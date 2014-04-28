@@ -18,13 +18,14 @@ public class Map {
 	private Rooms room;
 	int X = 0;
 	int Y = 0;
-	
 	private Beach b = new Beach();
 	private Forest f = new Forest();
 	private Mountain m = new Mountain();
 	private Random rand = new Random(System.currentTimeMillis());
 	private int counter = 0;
 	
+	
+	//Blueprints are passed by reference, so the last blueprint calls makes it. 
 	public Map(Rooms r, Player p)
 	{
 		//nested for loop generating the room array;
@@ -35,85 +36,77 @@ public class Map {
 		loadMap(f);
 		//loadMap(m);
 		blueprintBeach = createBlueprint(b, itemPool);
-	//	blueprintForest = createBlueprint(f, itemPool);
+	   // blueprintForest = createBlueprint(f, itemPool);
 		//blueprintMountain = createBluePrint(m, itemPool);
 		room.Clone(blueprintBeach[X][Y]);
 		
 	}
-	//method to switch the working blueprint
+	
+	//Loads the map tiles. 
 	public void loadMap(Tiles t){
 		
-		if(t instanceof Beach)
-		{
-			t.fillIdentity();
-			t.createMap();
-			t.sealBorders();
-			t.clearDoors();
-			((Beach) t).addWater();
-		
-		}
-		else{
+		//Creates the map
 			t.fillIdentity();
 			t.createMap();
 		    t.sealBorders();
 		    t.clearDoors();
-		}
+		    
+		    //Adds water for the beach. 
+		    if(t instanceof Beach)
+		      ((Beach) t).addWater();	
+		
 	}
 	
-	
+	//Creates the entire level, complete with boss and enemies 
 	private Rooms[][] createBlueprint(Tiles t, ItemPool items){
 		
         Item RoomItem = null;		
  		
+        //Creates a map blueprint. 
 		for(int i = 0; i < MapSize; i ++)	
 		   {
 			   for(int j = 0; j < MapSize; j ++)
 			   {
-				   //two rooms get an item
-				   //bossroom gets an item
-				   
-				   //I need to write ifs to set up two more items 
+				   //Two rooms get an item
+				   //Bosses room gets an item
+				  
 				   //every room besides the item rooms have a 1/3 chance of a heart spawn
 				   int r = rand.nextInt(3);
 				   if(r == 1 && RoomItem == null)
 				     RoomItem = items.GetHealthPotion();
 				   
+				   //Gets an item for the boss room
 				   if(i == 3 && j == 3)
-				     RoomItem = items.NextItem();
-				   
+				     RoomItem = items.NextItem();	   
 				   else if(SpawnItem(i, j))
 				     RoomItem = items.NextItem();
-				   
+				   //Passes in a room item or null.
 				   if(RoomItem != null)
 				   		blueprint[i][j] = new Rooms(t, player, i, j, RoomItem.Clone());
-				   else
+				   else 
 				   		blueprint[i][j] = new Rooms(t, player, i, j, null);
+				   //Sets room item to null so no item repeats.
 				   RoomItem = null;
+				   
+				   //Alert for blueprint not loading. 
 				   if(blueprint[i][j] == null)
-					   System.out.printf("What is this even\n");
-				   
-				  
-					   
-				   
-				   
+					   System.out.printf("What is this even\n");			   			   
 			   }
 		   }
-			
-		  if(t instanceof Beach)
-		  {
-			blueprintBeach = blueprint;  
-		   return blueprintBeach;
-		  }
-	//	  if(t instanceof Forest){
-		//  blueprintForest = blueprint;
-		//    return blueprintForest;}
+		 
+		 //Passes the blueprints back. 
+		  if(t instanceof Beach){
+			  blueprintBeach = blueprint;  
+				return blueprintBeach;}
+		  if(t instanceof Forest){
+			  blueprintForest = blueprint;
+			  	return blueprintForest;}
 		  
 		 // if(t instanceof Mountain){
 		  //blueprintMountain = blueprint;
 		   //  return blueprintMountain;}
 		  
-		  //allows for multiple method calls so the other biomes
-		  //can have items.
+		  //Zeroes the counter for the other biomes.
 		  counter = 0;
 		  
 		  return null;
@@ -124,19 +117,16 @@ public class Map {
 		int r = rand.nextInt(i + 10) % 2;
 		int s = rand.nextInt(j + 10) % 2;		
 		
-	
-		//gives a room an item based upon these conditions. 
-		//increments the counter so it will only allow two
+		//Gives a room an item based upon these conditions. 
+		//Increments the counter so it will only allow two.
 		if(counter < 2 && r == 0 && s == 0){
 			counter ++;
-			return true;
-          }
+			return true;}
 		//if both items spawn it stops it from giving it another one. 
 		if(counter == 2)
 		  return false;	
 		
-		return false;
-		
+		return false;		
 	}
 		
 	public Rooms[][] getBluePrint(Tiles t){
@@ -146,9 +136,9 @@ public class Map {
 			blueprintBeach = blueprint;  
 		   return blueprintBeach;
 		  }
-	//	  if(t instanceof Forest){
-		//  blueprintForest = blueprint;
-		//    return blueprintForest;}
+		  if(t instanceof Forest){
+			  blueprintForest = blueprint;
+			  	return blueprintForest;}
 		  
 		 // if(t instanceof Mountain){
 		  //blueprintMountain = blueprint;
@@ -158,8 +148,7 @@ public class Map {
 
 	public void CollisionPlayer(){
 		
-      
-		
+      	
 		for(int i = 0; i < room.roomSize; i ++)	
 		   {
 			   for(int j = 0; j < room.roomSize; j ++)
@@ -169,7 +158,7 @@ public class Map {
 			     {
 			    	// System.out.println("yes" + "Rectangle" + i + ", " + j);
 			     
-			    	//four if statements
+			       //Variables set so we don't have to make giant if statements.
 			       int RockX = room.GetCollision()[i][j].x;
 			       int RockY = room.GetCollision()[i][j].y;
 			       int RockW = room.GetCollision()[i][j].width;
@@ -205,57 +194,43 @@ public class Map {
 			    	   	shallow = RockY - (player.GetY() + PlayerW);
 			       }
 			       
-			       
+			      //Switch statement allows for multiple collisions, everything else we tried made the player jump. 
 			       switch(side){
 			       
 			       case 'U':
-			    	  // System.out.println(side);
-						 player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
-
-			       break;
+			    	  //System.out.println(side);
+					    player.SetY(room.GetCollision()[i][j].y - player.getImage().getHeight(null));
+					    	break;
 			    	   
 			       case 'D':
 			 		  player.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
 			    	   //System.out.println(side);
-
-
-			       break;
+			 		  		break;
 			       
 			       case 'L':
-					
 						 player.SetX(room.GetCollision()[i][j].x - player.getImage().getWidth(null));
-				    	//   System.out.println(side);
-
-
-			       break;
+						 	//System.out.println(side);
+						 		break;
 			       
-			       case 'R':
-			    		
+			       case 'R':		
 			  		 player.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
 			    	  // System.out.println(side);
-
-			   	   break;
+			  		 	break;
 			    	   
 			    	   default:
-			    		   
-			   	   break;
+			    		 break;
 			       
 			       }
- 
-			       side = 'Q';
+     		       side = 'Q';
 			       shallow = Integer.MIN_VALUE;
-			     }
-			    
-			   }
-		   
+			     }    
+			   } 
 		   }
 	}
 	
 	public void CollisionEnemy(Creature c){
-	
 		
-
-		
+		//This is the same as Collision Player, it just handles creatures. 
 		for(int i = 0; i < room.roomSize; i ++)	
 		   {
 			   for(int j = 0; j < room.roomSize; j ++)
@@ -263,9 +238,7 @@ public class Map {
 				  
 			     if(room.GetCollision()[i][j] != null && room.GetCollision()[i][j].intersects(c.GetX(), c.GetY(), c.getImage().getWidth(null), c.getImage().getHeight(null)))	   
 			     {
-			    	// System.out.println("yes" + "Rectangle" + i + ", " + j);
-			     
-			    	//four if statements
+			    	
 			       int RockX = room.GetCollision()[i][j].x;
 			       int RockY = room.GetCollision()[i][j].y;
 			       int RockW = room.GetCollision()[i][j].width;
@@ -313,125 +286,88 @@ public class Map {
 			       case 'D':
 			 		  c.SetY(room.GetCollision()[i][j].y + room.GetCollision()[i][j].height);
 			    	   //System.out.println(side);
-
-
-			       break;
+			 		  		break;
 			       
 			       case 'L':
 					
 						 c.SetX(room.GetCollision()[i][j].x - c.getImage().getWidth(null));
 				    	//   System.out.println(side);
-
-
-			       break;
+						 	break;
 			       
 			       case 'R':
 			    		
 			  		 c.SetX(room.GetCollision()[i][j].x + room.GetCollision()[i][j].width);
 			    	  // System.out.println(side);
-
-			   	   break;
+			  		 	break;
 			    	   
-			    	   default:
-			    		   
-			   	   break;
+			    	   default:		   
+			    		   break;
 			       
 			       }
  
 			       side = 'Q';
 			       shallow = Integer.MIN_VALUE;
 			     }
-			    
 			   }
-		   
-		   }
-		
+		   }		
 	}
 	
 	public void MapUpdate(){
 		
 
-		
+	  //Calls the player collision.	
       CollisionPlayer();
+      //Calls the creature collision.
       for(Creature cr : room.getCreArray())
-       CollisionEnemy(cr);
-      
-      
-      
-		//checks to see if a creature moved out of the room
+       CollisionEnemy(cr);  
+		
+      //checks to see if a creature moved out of the room
 		if(!room.getCreArray().isEmpty())
 		{
 	    	for(Creature cr : room.getCreArray()){
 			if(cr.GetX() < 0)
-				cr.SetX(0);
-			
+				cr.SetX(0);		
 			if(cr.GetX() + cr.getImage().getHeight(null) > 32 * 16)
 				cr.SetX(32 * 16 - cr.getImage().getHeight(null));
-			
 			if(cr.GetY() < 0)
 				cr.SetY(0);
-			
 			if(cr.GetY() + cr.getImage().getWidth(null) > 32 * 16)
 				cr.SetY(32 * 16 - cr.getImage().getWidth(null));
 	    	}	
-		
 		}
 		else{ room.cleared = true; blueprint[X][Y].cleared = true;  }
 		//checks to see if the player moved out of the room
 		if(player.GetX() + player.getImage().getWidth(null) < 0){
 			X--;
-			if(X < 0)
-				X = 0;
+				if(X < 0) 
+					X = 0;
 			room.Clone(blueprint[X][Y]);
-			player.SetX(32 * 16 - player.getImage().getWidth(null));
+				player.SetX(32 * 16 - player.getImage().getWidth(null));
 		}
 		else if(player.GetX() > 32 * 16)
 		{
 			X++;
-			if(X > 3)
-				X = 3;
+				if(X > 3)
+					X = 3;
 			room.Clone(blueprint[X][Y]);
-			player.SetX(0);
+				player.SetX(0);
 		}
 		else if(player.GetY() + player.getImage().getHeight(null) < 0){
 			Y--;
-			if(Y < 0)
-				Y = 0;
+				if(Y < 0)
+					Y = 0;
 			room.Clone(blueprint[X][Y]);
-			player.SetY(32 * 16 - player.getImage().getHeight(null));
+				player.SetY(32 * 16 - player.getImage().getHeight(null));
 		}
 		else if(player.GetY() + player.getImage().getHeight(null) > 32 * 16){
 			
 			Y++;
-			if(Y > 3)
-				Y = 3;
+				if(Y > 3)
+					Y = 3;
 		    room.Clone(blueprint[X][Y]);
-		    player.SetY(0);
-		}
-		//System.out.printf("Current room is X: %d Y: %d\n", X, Y);
+		    	player.SetY(0);
 		
-		
-		
-		//Logic for room move can be here but MapUpdate should take in the 
-		//current X and Y, MapUpdate needs parameters and an if statement around it
-		//so the room doesn't try to reload when it's not needed.
-		
-		//if we leave room call room.Clone(RoomWeMovedInto)
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	
-	
+			}
 
-	
-	 
-	  
-	 
-		 }
+		}
 	}

@@ -8,20 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
  public class Beach extends Tiles {
-
-	
-	/**
-	 * 
-	 */
+	 
 	private static final long serialVersionUID = 1L;
 	protected static String[] texture = {"/Beach/sand_grass.png", "/Beach/sand.png", "/Beach/stone.png", "/Beach/wavy_sand.png", "/Beach/water.png"};
     
-	//Look for the size in the Sprite Constructor of Assignment V
-	public Beach(){
-	
-      super(texture);
-      
-		}
+	public Beach(){super(texture);}
 	
 	@Override
 	public void createMap(){
@@ -39,16 +30,9 @@ import javax.imageio.ImageIO;
 		            identity[i][j] = null;
 		     	
 		       totalmap[i][j] = terrain[r];
-		       
-		       
-		      
-		     	
 			}
 		}
 	}
-	
-
-
 	
 	public void addWater(){
 		
@@ -63,11 +47,9 @@ import javax.imageio.ImageIO;
 						identity[i][j] = new Rectangle(0,0,32, 32);
 					   }  
 				   }
-				}
-				
-		
-	}
-	
+				}	
+		}
+//End Class
 }
 	
 

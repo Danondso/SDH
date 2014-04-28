@@ -41,6 +41,8 @@ public class Board extends JPanel implements ActionListener {
     boolean Down = false;
     boolean Right = false;
     boolean confirmation = false;
+    boolean victory = false;
+    boolean trueVictory = true;
 	private Timer timer;
     private Craft craft;
     private boolean mapdraw = true;
@@ -162,7 +164,7 @@ public class Board extends JPanel implements ActionListener {
        		}
        	}
         
-        if(GameState == "Play" || GameState == "Pause"){
+        if(GameState == "Play" || GameState == "Pause" ||  GameState == "Victory"){
         	int wWin = getWidth() / b.tilerow;
 	        int hWin = getHeight() / b.tilecolumn;
 	               
@@ -240,6 +242,31 @@ public class Board extends JPanel implements ActionListener {
 	    		g2d.drawImage(currentRoom.getItem().getImage(), currentRoom.getItem().GetX(), currentRoom.getItem().GetY(), this);
 	    	}
 	       	
+	       	//Victory Conditions we should make this a game state later but for time purposes we aren't
+	       	if(GameState == "Victory"){
+	       		g2d.drawImage(PauseMenu, getWidth()/2 - PauseMenu.getWidth(null)/2, getHeight()/2 - PauseMenu.getHeight(null)/2, null);
+	      		
+	       		g2d.setColor(Color.BLACK);
+	       		g2d.setFont(MenuHeader);
+	       		
+	       		String MenuMsg = "VICTORY";
+	       		g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5);
+	       		
+	       		g2d.setFont(MenuContent);
+	       		MenuMsg = "'Enter' - Resume";
+	       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 25);
+	       		
+	       		MenuMsg = "'Esc' - Return to Start Menu";
+	       		g2d.drawString(MenuMsg, (getWidth() - MenuContMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 50);
+
+	       		if(confirmation){
+	       			g2d.setColor(Color.RED);
+	       			g2d.setFont(MenuHeader);
+	       			MenuMsg = "Are you sure? y/n";
+	       			g2d.drawString(MenuMsg, (getWidth() - MenuHeadMetr.stringWidth(MenuMsg)) / 2, getHeight() * 2 / 5 + 100);
+	       		}
+	       	}
+	       	
 	       	
 	       	if(GameState == "Pause"){
 	       		g2d.drawImage(PauseMenu, getWidth()/2 - PauseMenu.getWidth(null)/2, getHeight()/2 - PauseMenu.getHeight(null)/2, null);
@@ -306,7 +333,11 @@ public class Board extends JPanel implements ActionListener {
 	     	attack();
 	     	collisions();
 	     	removeSomeOfTheThings();
-	     	theMap.MapUpdate();
+	     	victory = theMap.MapUpdate();
+	     	if(trueVictory && victory){
+	     		trueVictory = false;
+	     		GameState = "Victory";
+	     	}
 	       	try {
 				Thread.sleep(10);
 			} catch (InterruptedException e1) {
@@ -370,6 +401,18 @@ public class Board extends JPanel implements ActionListener {
         		Down = false;
         		Right = false;
         	}
+        	
+        	//Victory things
+        	else if(GameState == "Victory"){
+        		W = false;
+        		S = false;
+        		A = false;
+        		D = false;
+        		Up = false;
+        		Left = false;
+        		Down = false;
+        		Right = false;
+        	}
         }
 
         public void keyPressed(KeyEvent e) {
@@ -387,6 +430,8 @@ public class Board extends JPanel implements ActionListener {
         				player = new Player(new Position(256 - 25,256 - 25));
         				theMap = new Map(currentRoom, player);
             			GameState = "Play";
+            			victory = false;
+            			trueVictory = true;
             			//have mason display and then we need to change game state there as well
             		}
             		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
@@ -488,6 +533,30 @@ public class Board extends JPanel implements ActionListener {
             		Left = false;
             		Down = false;
             		Right = false;
+        		}
+        		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+        			//disply are you sure???
+        			confirmation = true;
+        		}
+        		if(confirmation && e.getKeyChar() == 'y'){
+        			GameState = "StartMenu";
+        			confirmation = false;
+        		}
+        		if(confirmation && e.getKeyChar() == 'n'){
+        			confirmation = false;
+        		}
+        	}
+        	else if(GameState == "Victory"){
+        		if(confirmation){
+        			if(Character.toLowerCase(e.getKeyChar()) == 'y'){
+        				GameState = "StartMenu";
+        			}
+        			if(Character.toLowerCase(e.getKeyChar()) == 'n')
+        				confirmation = false;
+        		}
+        		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        		//	System.out.println("ENTER PRESSED");
+        			GameState = "Play";
         		}
         		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
         			//disply are you sure???

@@ -347,7 +347,7 @@ public class Map {
 		
 	}
 	
-	public void MapUpdate(){
+	public boolean MapUpdate(){
 		
 
 		
@@ -417,20 +417,9 @@ public class Map {
 		
 		//if we leave room call room.Clone(RoomWeMovedInto)
 		
-		
-		
-		
-		
-		
-		
-	
-	
-	
-	
-
-	
-	 
-	  
-	 
+		if(room.cleared && X == 3 && Y == 3){
+			return true;
+		}
+			return false;
 		 }
 	}

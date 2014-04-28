@@ -1,6 +1,5 @@
 package Entities_and_Player;
 
-
 public class Player extends Creature{
 	protected Projectile Attack;
 	private int ShotX = 0;

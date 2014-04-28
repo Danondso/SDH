@@ -5,7 +5,7 @@ public class fireball extends Projectile {
 	protected int BurnDamage;
 
 	public fireball(int Damage, int burndamage, int SpeedX, int SpeedY, int Range, boolean ownership, Position pos) {
-		super(Damage, SpeedX, SpeedY, Range, ownership, pos, "/Entities/Projectiles/Fireball.png");
+		super(Damage, SpeedX, SpeedY, Range, ownership, pos, "/Entities/Placeholder/placeholder.png");
 		BurnDamage = burndamage;
 		// TODO Auto-generated constructor stub
 	}

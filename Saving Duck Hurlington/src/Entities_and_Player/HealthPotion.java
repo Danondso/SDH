@@ -3,7 +3,7 @@ package Entities_and_Player;
 public class HealthPotion extends Item {
 
 	public HealthPotion(Position pos){
-		super(pos, "/Entities/Items/HealthPotion.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 		// TODO Auto-generated constructor stub
 	}
 

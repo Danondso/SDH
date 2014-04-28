@@ -9,7 +9,7 @@ public class Krabby extends Creature {
 	int movecountermax = 10;
 	private static Random rand = new Random(System.currentTimeMillis());
 	public Krabby (Position pos){
-		super(10,10,3,1, 0,pos, "/Entities/Enemies/Krabby.png");
+		super(10,10,3,1, 0,pos, "/Entities/Placeholder/placeholder.png");
 		Position = pos;
 		
 	

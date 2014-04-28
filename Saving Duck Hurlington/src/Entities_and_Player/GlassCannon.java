@@ -3,7 +3,7 @@ package Entities_and_Player;
 public class GlassCannon extends Item {
 
 	public GlassCannon(Position pos){
-		super(pos, "/Entities/Items/GlassCannon.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 		// TODO Auto-generated constructor stub
 	}
 

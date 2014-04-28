@@ -3,7 +3,7 @@ package Entities_and_Player;
 public class CrazyArm extends Item {
 
 	public CrazyArm(Position pos) {
-		super(pos, "/Entities/Items/CrazyArm.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 		// TODO Auto-generated constructor stub
 	}
 

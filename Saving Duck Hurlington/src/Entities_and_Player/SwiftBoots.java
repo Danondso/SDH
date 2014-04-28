@@ -3,7 +3,7 @@ package Entities_and_Player;
 public class SwiftBoots extends Item {
 
 	public SwiftBoots(Position pos) {
-		super(pos, "/Entities/Items/SwiftBoots.png");
+		super(pos, "/Entities/Placeholder/placeholder.png");
 		// TODO Auto-generated constructor stub
 	}
 

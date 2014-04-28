@@ -6,7 +6,7 @@ public class DuckPirate extends Creature{
 		public DuckPirate(Position p, Player player)
 		{
 		//figure out how to slow him, too OP
-	    super(30, 30, 10, 1, 0, p, "/Entities/Enemies/DuckPirate.png");
+	    super(30, 30, 10, 1, 0, p, "/Entities/Placeholder/placeholder.png");
 		 Player = player;
 		 Position = p;
 	 }

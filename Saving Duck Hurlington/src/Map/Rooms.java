@@ -93,8 +93,8 @@ import Entities_and_Player.wilsonowisp;
 			if(x == 3 && y ==3)
 			   Creatures.add(new wilsonowisp(new Position(100, 100), player));
 				else{
-			int yPos = 31 + randy.nextInt(256);
-			 int  xPos = 95 + randx.nextInt(256);
+			int yPos = 31 + randy.nextInt(256) + player.getImage().getHeight(null);
+			 int  xPos = 95 + randx.nextInt(256) + player.getImage().getWidth(null);
 				Creatures.add(new Rat(new Position(xPos, yPos)));
 				Creatures.add(new SeaTurtle(new Position(xPos, yPos)));
 				Creatures.add(new Krabby(new Position(yPos, xPos)));

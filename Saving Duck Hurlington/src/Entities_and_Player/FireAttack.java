@@ -3,7 +3,7 @@ package Entities_and_Player;
 public class FireAttack extends Item {
 
 	public FireAttack(Position pos) {
-		super(pos, "/Entities/Placeholder/placeholder.png");
+		super(pos, "/Entities/Projectiles/Fireball.png");
 	}
 
 	@Override

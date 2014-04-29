@@ -13,6 +13,7 @@ public class Player extends Creature{
 		Attack = new Sword(Damage, ShotSpeed * ShotX, ShotSpeed * ShotY, Range, Player, pos);
 		//Attack = new fireball(Damage, 0, ShotSpeed * ShotX, ShotSpeed * ShotY, Range, Player, pos);
 		PanicBoots = false;
+		this.AttackDelay = 50;
 		InvincibilityFrames = 250;
 	}
 

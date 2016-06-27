@@ -58,7 +58,35 @@ public class Map {
 		
 		}
 	}
-	
+
+	// Function to linearly interpolate between a0 and a1
+	// Weight w should be in the range [0.0, 1.0]
+	private double linearInterpolation(float a0, float a1, float w){
+		return (1.0 - w)*a0 - w*a1;
+	}
+
+	private void createGradient(){
+
+	}
+
+	// Computes the dot product of the distance and gradient vectors.
+	private float dotGridGradient(int ix, int iy, float x, float y){
+
+		//Need the precomputed gradient vector
+		//extern float Gradient[IYMAX][IXMAX][2];
+
+		//compute the distance vector
+		float dx = x - (float) ix;
+		float dy = y - (float) iy;
+
+		//return (dx*Gradient[iy][ix][0] + dy*Gradient[iy][ix][1]);
+return 0;
+	}
+
+
+
+
+
 	
 	private Rooms[][] createBlueprint(Tiles t, ItemPool items){
 		

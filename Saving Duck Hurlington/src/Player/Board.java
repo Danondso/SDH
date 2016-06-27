@@ -660,11 +660,7 @@ public class Board extends JPanel implements ActionListener {
     		//gameState = "dead";
     	}    	
     }
-    
-    public void displayMainMenu(){
-    	
-    }
-    
+
     //Converts Image to BufferedImage
     public static BufferedImage toBufferedImage(Image img)
     {

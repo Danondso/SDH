@@ -1,0 +1,6 @@
+
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(‹ì‘¸üÿÿÿÿ
+>squid:S1068")Remove this unused "image" private field.(žðã’
+:squid:S1166"%Either log or rethrow this exception.(÷¹’ä
+8squid:S1148"#Use a logger to log this exception.(ÄÐÒÐ

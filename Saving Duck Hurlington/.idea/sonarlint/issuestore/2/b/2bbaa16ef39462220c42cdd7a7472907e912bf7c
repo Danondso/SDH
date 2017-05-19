@@ -1,0 +1,52 @@
+
+fsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 97 to the 15 allowed.(İ¼õA
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+Nsquid:S1948"-Make "currentRoom" transient or serializable.(±¯Ê²ÿÿÿÿÿ8ù½ˆÂ+
+Esquid:S1948"+Make "StartMenu" transient or serializable.(¢„Æíøÿÿÿÿ
+Csquid:S1068")Remove this unused "craft" private field.(×¶ûïúÿÿÿÿ
+?squid:S1948"#Make "b" transient or serializable.(îÜ¯•8ù½ˆÂ+
+Vsquid:S2209"5Change this instance-reference to a static reference.(ÁÓ€Äşÿÿÿÿ8ù½ˆÂ+
+Psquid:S1147";Remove this call to "exit" or ensure it is really required.(¯á
+Dsquid:S1948"*Make "DeadMenu" transient or serializable.(ÉØ±Âıÿÿÿÿ
+Msquid:S1854"9Remove this useless assignment to local variable "trans".(»½¹
+?squid:S1166"%Either log or rethrow this exception.(¬Àáªøÿÿÿÿ
+Esquid:S1481"+Remove this unused "g2dRot" local variable.(öº®ûÿÿÿÿ
+Vsquid:S2209"5Change this instance-reference to a static reference.(©ÍÇ„ûÿÿÿÿ8ù½ˆÂ+
+<squid:S1068"'Remove this unused "pos" private field.(ÂÊ˜Ú
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(„õªıÿÿÿÿ
+Esquid:S1068"+Remove this unused "mapdraw" private field.(³—ûöıÿÿÿÿ
+Asquid:S1659"'Declare "locationY" on a separate line.(œ¨Á»úÿÿÿÿ
+Dsquid:S1066"/Merge this if statement with the enclosing one.(áì…Ö
+[squid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(‘í†
+=squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
+9squid:S1948"$Make "op" transient or serializable.(ö¸š
+Asquid:S1948"%Make "pos" transient or serializable.(ÂÊ˜Ú8Ñå‚Â+
+Csquid:S1948"(Make "theMap" transient or serializable.(¹îD8ù½ˆÂ+
+csquid:S2184"BCast one of the operands of this division operation to a "double".(ÖÎùûıÿÿÿÿ8Ñå‚Â+
+?squid:S1166"%Either log or rethrow this exception.(¬Àáªøÿÿÿÿ
+Isquid:S1948"(Make "player" transient or serializable.(ò¡ãÎøÿÿÿÿ8Ñå‚Â+
+Dsquid:S1066"/Merge this if statement with the enclosing one.(áì…Ö
+gsquid:S1871"MThis branch's code block is the same as the block for the branch on line 394.(ç‰Â®ûÿÿÿÿ
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 39 to the 15 allowed.(¼ Òşüÿÿÿÿ
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(˜Â½€øÿÿÿÿ
+Hsquid:S1948"'Make "craft" transient or serializable.(×¶ûïúÿÿÿÿ8Ñå‚Â+
+Vsquid:S2209"5Change this instance-reference to a static reference.(©ÍÇ„ûÿÿÿÿ8ù½ˆÂ+
+[squid:S1192"FDefine a constant instead of duplicating this literal "Pause" 6 times.(¼Šîş
+Tsquid:S1161":Add the "@Override" annotation above this method signature(˜Â½€øÿÿÿÿ
+Osquid:S1161":Add the "@Override" annotation above this method signature(³ıŸê
+Dsquid:S1066"/Merge this if statement with the enclosing one.(ÓñŸ
+]squid:S1192"HDefine a constant instead of duplicating this literal "Victory" 5 times.(¼Šîş
+>squid:S1481"*Remove this unused "trans" local variable.(»½¹
+Vsquid:S2209"5Change this instance-reference to a static reference.(ÁÓ€Äşÿÿÿÿ8ù½ˆÂ+
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(†µ¯¬
+csquid:S2184"BCast one of the operands of this division operation to a "double".(Ÿ©¼Òùÿÿÿÿ8Ñå‚Â+
+?squid:S1948"%Make "Map" transient or serializable.(Îøáúüÿÿÿÿ
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 81 to the 15 allowed.(³ıŸê
+=squid:S1068"(Remove this unused "Rand" private field.(Ü±¤õ
+Tsquid:S1854":Remove this useless assignment to local variable "g2dRot".(öº®ûÿÿÿÿ
+esquid:S1192"KDefine a constant instead of duplicating this literal "StartMenu" 11 times.(ö½¿—üÿÿÿÿ
+Nsquid:S1161":Add the "@Override" annotation above this method signature(İ¼õA
+fsquid:S1192"RDefine a constant instead of duplicating this literal "Are you sure? y/n" 4 times.(ğ‹½C
+Psquid:S1147";Remove this call to "exit" or ensure it is really required.(¯á
+Hsquid:S1659".Declare "rotationRequired" on a separate line.(œ¨Á»úÿÿÿÿ
+Esquid:S1948"+Make "PauseMenu" transient or serializable.(’¶›Ùûÿÿÿÿ

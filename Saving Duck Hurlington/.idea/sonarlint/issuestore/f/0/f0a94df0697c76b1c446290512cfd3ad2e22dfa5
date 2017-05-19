@@ -1,0 +1,35 @@
+
+Psquid:S1854"6Remove this useless assignment to local variable "dy".(ğÁ¶Çıÿÿÿÿ
+Usquid:S1854";Remove this useless assignment to local variable "shallow".(Ù…ËÇùÿÿÿÿ
+gsquid:S1871"MThis branch's code block is the same as the block for the branch on line 111.(Óªôşÿÿÿÿ
+;squid:S1168"&Return an empty array instead of null.(¥¹ï
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¬¯ş 
+Esquid:S1481"+Remove this unused "yPoint" local variable.(ì·óğûÿÿÿÿ
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(Ğ×ô¯
+Usquid:S1854";Remove this useless assignment to local variable "shallow".(á´Á©ûÿÿÿÿ
+fsquid:S2275"Q%n should be used in place of \n to produce the platform-specific line separator.(Ğ×ô¯
+:squid:S2275"%String contains no format specifiers.(Ğ×ô¯
+Ksquid:S1854"6Remove this useless assignment to local variable "dx".(†¿×Ì
+Psquid:S1854";Remove this useless assignment to local variable "shallow".(á«’Ö
+Tsquid:S1854":Remove this useless assignment to local variable "xPoint".(‚¨Òôøÿÿÿÿ
+Psquid:S1854";Remove this useless assignment to local variable "shallow".(á«’Ö
+<squid:S1481"'Remove this unused "dx" local variable.(†¿×Ì
+Esquid:S1481"+Remove this unused "yPoint" local variable.(üò±¯øÿÿÿÿ
+Osquid:S1068"5Remove this unused "blueprintMountain" private field.(‹ÕıØùÿÿÿÿ
+Esquid:S1481"+Remove this unused "xPoint" local variable.(•ƒ›ıÿÿÿÿ
+Msquid:S1068"3Remove this unused "blueprintForest" private field.(‡úşŸøÿÿÿÿ
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(â¯‚¶
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ú¸‚™úÿÿÿÿ
+•squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ã‘åk
+Msquid:S1854"8Remove this useless assignment to local variable "side".(ÃÍ”
+Esquid:S1481"+Remove this unused "xPoint" local variable.(‚¨Òôøÿÿÿÿ
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(‹ŒªÊ
+?squid:S1068"%Remove this unused "m" private field.(ÅˆÚùÿÿÿÿ
+?squid:S1068"%Remove this unused "f" private field.(ËŒ²Ëşÿÿÿÿ
+;squid:S1168"&Return an empty array instead of null.(¥¹ï
+Asquid:S1481"'Remove this unused "dy" local variable.(ğÁ¶Çıÿÿÿÿ
+Tsquid:S1854":Remove this useless assignment to local variable "yPoint".(üò±¯øÿÿÿÿ
+Tsquid:S1854":Remove this useless assignment to local variable "yPoint".(ì·óğûÿÿÿÿ
+Tsquid:S1854":Remove this useless assignment to local variable "xPoint".(•ƒ›ıÿÿÿÿ
+Msquid:S1854"8Remove this useless assignment to local variable "side".(ÃÍ”

@@ -1,0 +1,57 @@
+
+msquid:S2275"Q%n should be used in place of \n to produce the platform-specific line separator.(¾‘ùè8£‰Â+
+Esquid:S1659"$Declare "tile16" on a separate line.(ãÖÖÿÿÿÿÿ8£‰Â+
+>squid:S1659"$Declare "tile13" on a separate line.(ãÖÖÿÿÿÿÿ
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ëÕğ¬øÿÿÿÿ8£‰Â+
+<squid:S1659"(Declare "rectTile14" on a separate line.(èŞµ
+>squid:S1659"#Declare "tile5" on a separate line.(ÚïÁ8£‰Â+
+>squid:S1659"$Declare "tile15" on a separate line.(ãÖÖÿÿÿÿÿ
+Nsquid:S1444"-Make this "public static tilerow" field final(Ş×à”ÿÿÿÿÿ8£‰Â+
+msquid:S2275"Q%n should be used in place of \n to produce the platform-specific line separator.(¾‘ùè8£‰Â+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(¾‘ùè8£‰Â+
+<squid:S1659"(Declare "rectTile13" on a separate line.(èŞµ
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(ö¾šşÿÿÿÿ8£‰Â+
+Asquid:S1659"'Declare "rectTile5" on a separate line.(¶ïîûüÿÿÿÿ
+Asquid:S1659"'Declare "rectTile2" on a separate line.(ÑŒÄúÿÿÿÿ
+Esquid:S1659"$Declare "tile11" on a separate line.(À‚ÁÊùÿÿÿÿ8£‰Â+
+Dsquid:S1659"#Declare "tile9" on a separate line.(À‚ÁÊùÿÿÿÿ8£‰Â+
+>squid:S1659"$Declare "tile14" on a separate line.(ãÖÖÿÿÿÿÿ
+Asquid:S1659"'Declare "rectTile3" on a separate line.(ÑŒÄúÿÿÿÿ
+Hsquid:S1659"'Declare "rectTile9" on a separate line.(÷Ô¶ûÿÿÿÿ8£‰Â+
+Asquid:S2275"%String contains no format specifiers.(¾‘ùè8£‰Â+
+>squid:S1659"#Declare "tile7" on a separate line.(ÚïÁ8£‰Â+
+Asquid:S1659"'Declare "rectTile8" on a separate line.(¶ïîûüÿÿÿÿ
+Ksquid:S1066"/Merge this if statement with the enclosing one.(¨İãƒ8£‰Â+
+Dsquid:S1659"#Declare "tile4" on a separate line.(òü£³úÿÿÿÿ8£‰Â+
+Bsquid:S1168"&Return an empty array instead of null.(¥¹ï8£‰Â+
+Isquid:S1659"(Declare "rectTile11" on a separate line.(÷Ô¶ûÿÿÿÿ8£‰Â+
+Isquid:S1659"(Declare "rectTile10" on a separate line.(÷Ô¶ûÿÿÿÿ8£‰Â+
+{squid:S1067"ZReduce the number of conditional operators (7) used in the expression (maximum allowed 3).(µïëÿÿÿÿÿ8£‰Â+
+Ksquid:S1066"/Merge this if statement with the enclosing one.(Ñö›8£‰Â+
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.(´¸§úúÿÿÿÿ8£‰Â+
+Asquid:S1659"'Declare "rectTile4" on a separate line.(ÑŒÄúÿÿÿÿ
+Isquid:S1659"(Declare "rectTile12" on a separate line.(÷Ô¶ûÿÿÿÿ8£‰Â+
+>squid:S1659"#Declare "tile8" on a separate line.(ÚïÁ8£‰Â+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(¾‘ùè8£‰Â+
+Bsquid:S1168"&Return an empty array instead of null.(¥¹ï8£‰Â+
+<squid:S1659"(Declare "rectTile15" on a separate line.(èŞµ
+Asquid:S2275"%String contains no format specifiers.(¾‘ùè8£‰Â+
+Dsquid:S1659"#Declare "tile2" on a separate line.(òü£³úÿÿÿÿ8£‰Â+
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ª¤¬Ÿıÿÿÿÿ8£‰Â+
+Ksquid:S1066"/Merge this if statement with the enclosing one.(¨İãƒ8£‰Â+
+Asquid:S1659"'Declare "rectTile7" on a separate line.(¶ïîûüÿÿÿÿ
+vsquid:S1067"ZReduce the number of conditional operators (7) used in the expression (maximum allowed 3).(Ñö›8£‰Â+
+Esquid:S1659"$Declare "tile10" on a separate line.(À‚ÁÊùÿÿÿÿ8£‰Â+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.(Ìğå¡8£‰Â+
+Csquid:S1659"(Declare "rectTile16" on a separate line.(èŞµ8£‰Â+
+Psquid:S1066"/Merge this if statement with the enclosing one.(µïëÿÿÿÿÿ8£‰Â+
+_squid:S1226"CIntroduce a new variable instead of reusing the parameter "inTile".(”ûÄ8£‰Â+
+Asquid:S1659"'Declare "rectTile6" on a separate line.(¶ïîûüÿÿÿÿ
+>squid:S1659"#Declare "tile6" on a separate line.(ÚïÁ8£‰Â+
+Dsquid:S1068"(Remove this unused "name" private field.(û—µ8£‰Â+
+dsquid:S1226"HIntroduce a new variable instead of reusing the parameter "CollideTile".(§üì±8£‰Â+
+Dsquid:S1659"#Declare "tile3" on a separate line.(òü£³úÿÿÿÿ8£‰Â+
+Esquid:S1659"$Declare "tile12" on a separate line.(À‚ÁÊùÿÿÿÿ8£‰Â+
